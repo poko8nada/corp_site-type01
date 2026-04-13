@@ -1,8 +1,8 @@
-import type {} from 'hono'
+import 'hono';
 
 declare module 'hono' {
   interface Env {
-    Variables: {}
-    Bindings: {}
+    Variables: {};
+    Bindings: {};
   }
 }
