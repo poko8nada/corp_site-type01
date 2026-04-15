@@ -85,6 +85,13 @@ is_outside_workspace() {
   local normalized
   normalized="$(normalize_abs_path "$path")"
 
+  # ~/.cursor
+  local cursor_dir
+  cursor_dir="$(normalize_abs_path "$HOME/.cursor")"
+  case "$normalized" in
+    "$cursor_dir"|"$cursor_dir"/*) return 1 ;;
+  esac
+
   for root in "${ROOTS_NORM[@]}"; do
     case "$normalized" in
       "$root"|"$root"/*)
