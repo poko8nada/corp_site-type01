@@ -1,11 +1,20 @@
 import build from '@hono/vite-build/cloudflare-workers';
 import adapter from '@hono/vite-dev-server/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
+import client from 'honox/vite/client';
 import honox from 'honox/vite';
 import ssg from '@hono/vite-ssg';
+import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'vite';
 
+const appDir = fileURLToPath(new URL('./app', import.meta.url));
+
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': appDir,
+    },
+  },
   plugins: [
     honox({
       devServer: { adapter },
@@ -16,5 +25,6 @@ export default defineConfig({
     ssg({
       entry: './app/server.ts',
     }),
+    client(),
   ],
 });

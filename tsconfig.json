@@ -1,12 +1,16 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["app/*"],
+    },
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM"],
-    "types": ["vite/client", "@cloudflare/workers-types/2023-07-01"],
+    "types": ["node", "vite/client", "@cloudflare/workers-types/2023-07-01"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
   },
