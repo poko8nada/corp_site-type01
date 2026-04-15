@@ -21,7 +21,7 @@ Agents use it to understand intent when making architectural decisions.
 - **Goals**: What does success look like?
 - **Non-goals**: What is explicitly out of scope, and why?
 - **Constraints**: External constraints (legal, organizational, SLA, third-party).
-- **Key decisions**: Why this tech stack over alternatives? Link to ADRs for details.
+- **Tech Stack Rationale**: Why this tech stack over alternatives? Link to ADRs for details.
 
 ## What NOT to write
 
