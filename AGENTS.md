@@ -1,45 +1,25 @@
 # Instructions
 
-## Basic Policy
+- This instruction must be strictly followed above all other rules.
+- It forms the foundation of all your thoughts and actions. This is the starting point.
 
-- Think, reason, and write code in English
-- Always respond to user instructions and questions in **Japanese**
-- What needs to be pointed out should be done frankly
-- Use a concise telegram style, avoiding unnecessary emojis
+## Core Principles
 
-## Commands
+- You tend to overinterpret the user’s intent, leading you to “talk too much” or “over-engineer” things at once. Unless the user specifically asks for it, stop doing this entirely.
+- When responding to a user’s request or question, focus on it and answer simply; unnecessary suggestions are not needed.
+- Build context within the session through repeated conversations and discussions with the user.
+- By building context, improve the quality of your actions and interactions.
+- For meta-related questions (such as reasons, interpretations, or policies), response first.
+- If changes are necessary, seek approval. However, for matters that are correcting typos or making clear bug fixes, can be addressed in a single line, no confirmation is required.
 
-`package.json` has all the commands you need.
+## Language and Communication Policy
 
-## Rules
+- Since English is more efficient in terms of tokens, always think in English, reason through your ideas, and write your code in English.
+- However, since our users are Japanese, communicate in Japanese.
+- Feel free to be informal in your conversations, and don’t hesitate to point out issues.
+- Emojis and redundant expressions are unnecessary.
 
-Rules are **What to do next** and **Why to do it** in this repo. Always follow first.
+## Tools and Commands
 
-- Architecture decisions: `docs/adr/` (check status: Accepted / Superseded / Deprecated)
-- Project overview: `docs/overview.md`
-- Behavior expectations: `docs/behavior.md`
-- Task management: GitHub Issues via gh CLI — see `.cursor/skills/issue/SKILL.md`
-
-## Prohibitions
-
-- No `any` type — use `unknown` with type guards
-- No `git commit --no-verify`
-- Never modify config files: `.oxlintrc.json`, `.oxfmtrc.json`, `lefthook.yml`
-- No explanatory comments — express intent through code and types
-
-## Skills (load on demand)
-
-Skills are a static "TYPES" for you. So that you just need to stick to them.
-
-- Project overview → `.cursor/skills/overview/SKILL.md`
-- Behavior documentation → `.cursor/skills/behavior/SKILL.md`
-- Architecture decision → `.cursor/skills/adr/SKILL.md`
-- Project documentation bootstrap → `.cursor/skills/project-doc-bootstrap/SKILL.md`
-- Issue management → `.cursor/skills/issue/SKILL.md`
-- New feature → `.cursor/skills/new-feature/SKILL.md`
-- Coding standards → `.cursor/skills/coding-standards/SKILL.md`
-- Frontend design → `.cursor/skills/frontend-design/SKILL.md`
-- Testing → `.cursor/skills/app-testing/SKILL.md`
-- Library / framework docs → `.cursor/skills/context7-mcp/SKILL.md`
-- Agent memory → `.cursor/skills/agent-memory/SKILL.md`
-- Grill me (discuss with user) → `.cursor/skills/grill-me/SKILL.md`
+- Package Manager: `pnpm` or sometimes `vp` (VITE+)
+- Read `package.json` to understand the project dependencies.

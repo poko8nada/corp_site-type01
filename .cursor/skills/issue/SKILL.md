@@ -1,24 +1,20 @@
 ---
 name: issue
-description: >
-  Manages GitHub Issues using gh CLI — creation, decomposition, update, and close.
-  Load when asked to create a new issue, break down a large task into issues,
-  update issue status or labels, or close an issue after a PR is merged.
-  Human decides whether to create an issue. Agent handles all gh CLI operations.
+description: Manages GitHub Issues using gh CLI — creation, decomposition, update, and close. Load when asked to create a new issue, break down a large task into issues, update issue status, or close an issue after a PR is merged. User decides whether to create an issue. Agent handles all gh CLI operations.
 ---
 
 # Issue Management
 
 ## Principle
 
-- 1 Issue = 1 PR — scope each issue to what can be completed in a single PR
-- Human decides whether to create. Agent handles creation, updates, and closing.
-- Issues are the session-to-session bridge — always reference the issue number in commits and PRs
-- If implementation depends on fixed contracts or planned files, create or update the ADR first and link it from the issue
+- If the intent is unclear, discuss it with the user so that you can write it in the format below.
+- User decides whether to create. Agent handles creation, updates, and closing.
+- 1 Issue = 1 PR — scope each issue to what can be completed in a single PR.
+- Issues are the session-to-session bridge — always reference the issue number in commits and PRs.
 
 ## Granularity Guide
 
-**Good scope (1 PR完結)**
+**Good scope**
 
 - Add a specific feature function with tests
 - Fix a specific bug
@@ -33,81 +29,26 @@ When asked to implement something large, list the decomposed Issues for human ap
 
 ## Commands
 
-### Create
+- You already have `gh-cli` skill in user level (global). Use it to create, update, and close issues.
 
-```bash
-# Single issue
-gh issue create \
-  --title "[concise action-oriented title]" \
-  --body "[context, acceptance criteria, references]" \
-  --label "[label]" \
-  --assignee "@me"
+## Format
 
-# Decompose a large task — list first, then create after approval
-gh issue create --title "..." --body "..." --assignee "@me"
-gh issue create --title "..." --body "..." --assignee "@me"
-```
+Use this template for issues.
 
-### View & List
+```Markdown
+## Why
 
-```bash
-gh issue list --state open --assignee "@me"
-gh issue view [number]
-```
+<one sentence in Japanese>
 
-### Update
+## What
 
-```bash
-gh issue edit [number] --title "..." --body "..."
-gh issue edit [number] --add-label "in-progress" --remove-label "todo"
-```
+<bullets scoped to one PR in Japanese>
 
-### Close
+## Done when
 
-```bash
-# Close when PR is merged
-gh issue close [number] --comment "Resolved in PR #[pr-number]"
-```
+- [ ] <criteria in Japanese>
 
-## Issue Body Format
+## Notes
 
-```markdown
-## Context
-
-[Why this needs to be done]
-
-## Acceptance Criteria
-
-- [ ] [specific verifiable condition]
-- [ ] [specific verifiable condition]
-
-## References
-
-- Related: #[issue-number]
-- ADR: docs/adr/NNNN-\*.md (if applicable)
-- Behavior: docs/behavior.md (if behavior mapping changed)
-```
-
-## Labels Convention
-
-| Label      | Meaning                             |
-| ---------- | ----------------------------------- |
-| `bug`      | Something is broken                 |
-| `feature`  | New capability                      |
-| `refactor` | Code change with no behavior change |
-| `docs`     | Documentation only                  |
-| `chore`    | Tooling, config, dependencies       |
-
-## Commit & PR convention
-
-Always reference the issue:
-
-```bash
-# Commit
-git commit -m "feat: add [feature] (#[issue-number])"
-
-# PR — closes issue automatically on merge
-gh pr create \
-  --title "feat: [title] (#[issue-number])" \
-  --body "Closes #[issue-number]"
+<decisions or discussion summary in Japanese — omit if empty>
 ```
