@@ -1,7 +1,7 @@
 import { raw } from 'hono/html';
 import { jsxRenderer } from 'hono/jsx-renderer';
 import { Link, Script } from 'honox/server';
-import { siteWide } from '../../content/site';
+import { siteShell } from '../../content/site';
 
 function escapeHtmlAttr(value: string): string {
   return value
@@ -13,11 +13,11 @@ function escapeHtmlAttr(value: string): string {
 
 export default jsxRenderer((props) => {
   const { children, Layout } = props;
-  const title = props.title ?? siteWide.defaultTitle;
-  const description = props.description ?? siteWide.defaultDescription;
+  const title = props.title ?? siteShell.defaultTitle;
+  const description = props.description ?? siteShell.defaultDescription;
 
   return (
-    <html lang={siteWide.htmlLang}>
+    <html lang={siteShell.htmlLang}>
       <head>
         {raw('<!-- site-shell:analytics-head (e.g. GTM container snippet) -->')}
         <meta charset='utf-8' />

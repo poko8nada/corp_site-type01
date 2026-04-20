@@ -1,8 +1,6 @@
-import { siteData } from './data';
-
 /**
  * Props passed as the second argument to `c.render(..., props)` for the global shell.
- * Defaults fall back to `siteWide` when omitted.
+ * Defaults fall back to `siteShell` when omitted.
  */
 export interface SiteShellRenderProps {
   title?: string;
@@ -10,17 +8,20 @@ export interface SiteShellRenderProps {
 }
 
 /**
- * Site-wide values consumed by the global HTML shell (`_renderer`).
- * Keep this separate from route/section content so `lang` and defaults stay in one place.
+ * Default document metadata for the global HTML shell (`_renderer`).
+ *
+ * README のとおり、ここはサイト向けの確定コピー／メタであり、`interview` を import して直結しない。
+ * デモでは取材と同じ文言でも、責務上は別レイヤーとして維持する。
  */
-export interface SiteWide {
+export interface SiteShell {
   htmlLang: string;
   defaultTitle: string;
   defaultDescription: string;
 }
 
-export const siteWide: SiteWide = {
+export const siteShell: SiteShell = {
   htmlLang: 'ja',
-  defaultTitle: siteData.interview.identity.publicName,
-  defaultDescription: siteData.interview.identity.summary,
+  defaultTitle: 'BAR KAGETSUKI NAKASU',
+  defaultDescription:
+    '福岡・中洲の夜に、静かに寄り添うオーセンティックバー。ウイスキーとカクテルを落ち着いた空間で楽しめます。',
 };
