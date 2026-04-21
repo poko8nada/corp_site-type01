@@ -1,7 +1,8 @@
-import type { FooterPattern } from '../../content/structure';
 import type { ShellFooterCopy } from './config';
 
-export interface SiteFooterProps {
+export type FooterPattern = 'standard' | 'minimal' | 'none';
+
+export interface FooterProps {
   pattern: FooterPattern;
   copy: ShellFooterCopy;
 }
@@ -10,7 +11,7 @@ function currentYear(): number {
   return new Date().getFullYear();
 }
 
-export function SiteFooter(props: SiteFooterProps) {
+export function Footer(props: FooterProps) {
   const { pattern, copy } = props;
 
   if (pattern === 'none') {

@@ -1,7 +1,8 @@
-import type { HeaderPattern } from '../../content/structure';
 import type { ShellNavEntry } from './config';
 
-export interface SiteHeaderProps {
+export type HeaderPattern = 'standard' | 'compact' | 'none';
+
+export interface HeaderProps {
   pattern: HeaderPattern;
   brandText: string;
   drawerId: string;
@@ -9,7 +10,7 @@ export interface SiteHeaderProps {
   primaryCta: { readonly label: string; readonly href: string };
 }
 
-export function SiteHeader(props: SiteHeaderProps) {
+export function Header(props: HeaderProps) {
   const { pattern, brandText, drawerId, navEntries, primaryCta } = props;
 
   if (pattern === 'none') {

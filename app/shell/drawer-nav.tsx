@@ -1,10 +1,10 @@
 import type { ShellNavEntry } from './config';
 
-export interface SiteDrawerNavProps {
+export interface DrawerNavProps {
   entries: readonly ShellNavEntry[];
 }
 
-export function SiteDrawerNav(props: SiteDrawerNavProps) {
+export function DrawerNav(props: DrawerNavProps) {
   const { entries } = props;
 
   return (

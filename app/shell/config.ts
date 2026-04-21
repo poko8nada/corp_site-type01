@@ -1,5 +1,3 @@
-/** シェル導線・文言（`content/site.ts` のメタとは別。ナビ／フッターはここで閉じる） */
-
 export const SITE_SHELL_DRAWER_ID = 'site-shell-drawer' as const;
 
 export type ShellNavEntry =

@@ -5,7 +5,36 @@ export type RouteKey = 'home' | 'contact';
 // structure 側の role / pattern とは別レイヤーとしていったん残している。
 export type SectionKey = 'hero' | 'concept' | 'access' | 'contact';
 
-// header / footer は route ごとに合成して持つ。
+// ---------------------------------------------------------------------------
+// Header / Footer の見せ方パターン
+// ---------------------------------------------------------------------------
+// これらはインタビュー時の「どんなヘッダー・フッターにするか」の選択肢として
+// まとめておくもの。実際のコンポーネント実装（app/shell/）とは独立しており、
+// 数や名称が一致する保証はない。
+//
+// header: standard
+//   - サイト名、グローバルナビ、主要 CTA の 3 要素が並ぶ。
+//   - ロゴが大きく、ナビが中央に配置される。
+//
+// header: compact
+//   - 同じ要素を詰めたバリエーション。
+//   - 上下の余白が狭く、フォントサイズが一段階小さい。
+//
+// header: none
+//   - ヘッダーを表示しない。
+//
+// footer: standard
+//   - 4 カラム構成。
+//   - 店舗情報、連絡先、法務・ポリシー、コピーライト。
+//   - 複数の情報セクションが並ぶケース向き。
+//
+// footer: minimal
+//   - コピーライト＋連絡先の 1 行だけ。
+//   - ページ数が少ないサイトやランディングページ向き。
+//
+// footer: none
+//   - フッターを表示しない。
+// ---------------------------------------------------------------------------
 export const headerPatterns = ['standard', 'compact', 'none'] as const;
 export const footerPatterns = ['standard', 'minimal', 'none'] as const;
 
@@ -17,7 +46,15 @@ export interface LayoutFormat {
   footer: FooterPattern;
 }
 
-// role は「何のためのブロックか」を表す。
+// ---------------------------------------------------------------------------
+// role = ブロックが担う「役割」
+// pattern = その役割を「どう見せるか」の UI バリエーション
+// ---------------------------------------------------------------------------
+// インタビューでは「トップページに何を置きたいか」から逆算して、
+// 適切な role を選び、さらにその中から pattern を決めていく。
+// 実際のコンポーネント実装（app/）とは独立している。
+// ---------------------------------------------------------------------------
+
 export const contentRoles = [
   'lead', // 第一印象を作る導入。主メッセージ、ブランドの顔、ファーストビュー。
   'explanation', // 内容や背景を説明する役。サービス説明、想い、会社紹介、ストーリー。
@@ -32,8 +69,6 @@ export const contentRoles = [
 
 export type ContentRole = (typeof contentRoles)[number];
 
-// pattern は「どう見せるか」の選択肢。
-// route や role に厳密に縛らず、まずは structure 側の語彙として持つ。
 export const blockPatterns = [
   'visual-lead',
   'carousel',

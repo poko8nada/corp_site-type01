@@ -1,10 +1,9 @@
-import { SiteDrawerNav } from '@/shell/site-drawer-nav';
-import { SiteFooter } from '@/shell/site-footer';
-import { SiteHeader } from '@/shell/site-header';
+import { DrawerNav } from '@/shell/drawer-nav';
+import { Footer } from '@/shell/footer';
+import { Header } from '@/shell/header';
 import { raw } from 'hono/html';
 import { jsxRenderer } from 'hono/jsx-renderer';
 import { Link, Script } from 'honox/server';
-import { siteShell } from '../../content/site';
 import {
   SITE_SHELL_DRAWER_ID,
   shellFooterCopy,
@@ -20,15 +19,24 @@ function escapeHtmlAttr(value: string): string {
     .replaceAll('<', '&lt;');
 }
 
+export type ShellRenderProps = {
+  title?: string;
+  description?: string;
+  headerPattern?: 'standard' | 'compact' | 'none';
+  footerPattern?: 'standard' | 'minimal' | 'none';
+};
+
 export default jsxRenderer((props) => {
   const { children, Layout } = props;
-  const title = props.title ?? siteShell.defaultTitle;
-  const description = props.description ?? siteShell.defaultDescription;
+  const title = props.title ?? 'BAR KAGETSUKI NAKASU';
+  const description =
+    props.description ??
+    '福岡・中洲の夜に、静かに寄り添うオーセンティックバー。ウイスキーとカクテルを落ち着いた空間で楽しめます。';
   const headerPattern = props.headerPattern ?? 'standard';
   const footerPattern = props.footerPattern ?? 'standard';
 
   return (
-    <html lang={siteShell.htmlLang}>
+    <html lang='ja'>
       <head>
         {raw('<!-- site-shell:analytics-head (e.g. GTM container snippet) -->')}
         <meta charset='utf-8' />
@@ -51,8 +59,8 @@ export default jsxRenderer((props) => {
         <input class='peer sr-only' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
 
         <div class='flex min-h-screen flex-col bg-white'>
-          <SiteHeader
-            brandText={siteShell.defaultTitle}
+          <Header
+            brandText='BAR KAGETSUKI NAKASU'
             drawerId={SITE_SHELL_DRAWER_ID}
             navEntries={shellNavEntries}
             pattern={headerPattern}
@@ -61,7 +69,7 @@ export default jsxRenderer((props) => {
           <main class='flex flex-1 flex-col' id='main-content'>
             <Layout>{children}</Layout>
           </main>
-          <SiteFooter copy={shellFooterCopy} pattern={footerPattern} />
+          <Footer copy={shellFooterCopy} pattern={footerPattern} />
         </div>
 
         <label
@@ -71,10 +79,10 @@ export default jsxRenderer((props) => {
         />
 
         <aside class='fixed right-0 top-0 z-50 flex h-full w-[min(100vw-1rem,20rem)] max-w-full translate-x-full flex-col gap-4 border-l border-neutral-200 bg-white p-4 transition-transform peer-checked:translate-x-0 lg:hidden'>
-          <p class='text-base leading-snug break-words' title={siteShell.defaultTitle}>
-            {siteShell.defaultTitle}
+          <p class='text-base leading-snug break-words' title='BAR KAGETSUKI NAKASU'>
+            BAR KAGETSUKI NAKASU
           </p>
-          <SiteDrawerNav entries={shellNavEntries} />
+          <DrawerNav entries={shellNavEntries} />
           <a
             class='inline-flex items-center justify-center rounded border border-neutral-300 px-3 py-2 text-center text-sm'
             href={shellPrimaryCta.href}
