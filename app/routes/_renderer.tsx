@@ -47,49 +47,74 @@ export default jsxRenderer((props) => {
         <Link href='/app/style.css' rel='stylesheet' />
         <Script src='/app/client.ts' async />
       </head>
-      <body class='min-h-dvh overflow-x-hidden'>
+      <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden'>
         {raw('<!-- site-shell:analytics-body-open (e.g. GTM noscript iframe) -->')}
-        <a
-          class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:border focus:border-neutral-300 focus:bg-white focus:px-4 focus:py-2 focus:shadow'
-          href='#main-content'
-        >
-          メインコンテンツへスキップ
-        </a>
-
-        <input class='peer sr-only' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
-
-        <div class='flex min-h-screen flex-col'>
-          <Header
-            brandText='BAR KAGETSUKI NAKASU'
-            drawerId={SITE_SHELL_DRAWER_ID}
-            navEntries={shellNavEntries}
-            pattern={headerPattern}
-            primaryCta={shellPrimaryCta}
-          />
-          <main class='flex flex-1 flex-col' id='main-content'>
-            <Layout>{children}</Layout>
-          </main>
-          <Footer copy={shellFooterCopy} pattern={footerPattern} />
+        <div class='drawer drawer-end'>
+          <input class='drawer-toggle' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
+          <div class='drawer-content bg-base-100 flex min-h-dvh min-w-0 flex-col'>
+            <a
+              class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:border focus:border-base-300 focus:bg-base-100 focus:px-4 focus:py-2 focus:text-base-content focus:shadow focus:outline-2 focus:outline-offset-2'
+              href='#main-content'
+            >
+              メインコンテンツへスキップ
+            </a>
+            <div class='flex min-h-screen flex-1 flex-col'>
+              <Header
+                brandText='BAR KAGETSUKI NAKASU'
+                drawerId={SITE_SHELL_DRAWER_ID}
+                navEntries={shellNavEntries}
+                pattern={headerPattern}
+                primaryCta={shellPrimaryCta}
+              />
+              <main class='flex flex-1 flex-col' id='main-content'>
+                <Layout>{children}</Layout>
+              </main>
+              <Footer copy={shellFooterCopy} pattern={footerPattern} />
+            </div>
+          </div>
+          <div class='drawer-side z-50 lg:hidden'>
+            <label
+              aria-label='画面のこの部分をタップしてメニューを閉じる'
+              class='drawer-overlay'
+              htmlFor={SITE_SHELL_DRAWER_ID}
+            />
+            <aside class='bg-base-200 text-base-content flex min-h-full w-80 max-w-[calc(100vw-1rem)] flex-col gap-4 border-l border-base-300 p-4'>
+              <div class='flex min-w-0 items-start justify-between gap-2'>
+                <p
+                  class='font-display text-lg leading-snug tracking-tight break-words'
+                  title='BAR KAGETSUKI NAKASU'
+                >
+                  BAR KAGETSUKI NAKASU
+                </p>
+                <label
+                  aria-label='メニューを閉じる'
+                  class='btn btn-square btn-ghost btn-sm shrink-0'
+                  htmlFor={SITE_SHELL_DRAWER_ID}
+                >
+                  <svg
+                    aria-hidden='true'
+                    class='h-5 w-5'
+                    fill='none'
+                    stroke='currentColor'
+                    viewBox='0 0 24 24'
+                    xmlns='http://www.w3.org/2000/svg'
+                  >
+                    <path
+                      d='M6 18L18 6M6 6l12 12'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                      stroke-width='2'
+                    />
+                  </svg>
+                </label>
+              </div>
+              <DrawerNav entries={shellNavEntries} />
+              <a class='btn btn-outline btn-primary btn-sm shrink-0' href={shellPrimaryCta.href}>
+                {shellPrimaryCta.label}
+              </a>
+            </aside>
+          </div>
         </div>
-
-        <label
-          aria-label='メニューを閉じる'
-          class='pointer-events-none fixed inset-0 z-40 bg-neutral-950/0 transition peer-checked:pointer-events-auto peer-checked:bg-neutral-950/30 lg:hidden'
-          htmlFor={SITE_SHELL_DRAWER_ID}
-        />
-
-        <aside class='fixed right-0 top-0 z-50 flex h-full w-[min(100vw-1rem,20rem)] max-w-full translate-x-full flex-col gap-4 border-l border-neutral-200 bg-white p-4 transition-transform peer-checked:translate-x-0 lg:hidden'>
-          <p class='text-base leading-snug break-words' title='BAR KAGETSUKI NAKASU'>
-            BAR KAGETSUKI NAKASU
-          </p>
-          <DrawerNav entries={shellNavEntries} />
-          <a
-            class='inline-flex items-center justify-center rounded border border-neutral-300 px-3 py-2 text-center text-sm'
-            href={shellPrimaryCta.href}
-          >
-            {shellPrimaryCta.label}
-          </a>
-        </aside>
       </body>
     </html>
   );

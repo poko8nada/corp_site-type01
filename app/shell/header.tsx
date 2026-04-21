@@ -18,59 +18,72 @@ export function Header(props: HeaderProps) {
   }
 
   const compact = pattern === 'compact';
-  const pad = compact ? 'py-2' : 'py-3';
+
+  const menuBtn = compact
+    ? 'btn btn-square btn-ghost btn-sm lg:hidden'
+    : 'btn btn-square btn-ghost lg:hidden';
+
+  const barPad = compact ? 'py-2.5 sm:py-3' : 'py-3.5 sm:py-4';
+  const barMinH = compact ? 'min-h-12 sm:min-h-14' : 'min-h-14 sm:min-h-16';
+
+  const brandSize = compact
+    ? 'text-lg leading-tight sm:text-xl'
+    : 'text-xl leading-tight sm:text-2xl';
+
+  const navText = compact ? 'text-sm' : 'text-sm sm:text-base';
 
   return (
-    <header class='border-b border-neutral-200 bg-white'>
+    <header class='border-base-300 bg-base-100 border-b'>
       <div
-        class={`mx-auto flex w-full max-w-6xl min-w-0 items-center gap-2 px-3 sm:gap-3 sm:px-4 ${pad}`}
+        class={`mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:gap-x-8 lg:px-8 ${barMinH} ${barPad}`}
       >
-        <label
-          aria-label='メニューを開く'
-          class={`order-1 inline-flex shrink-0 cursor-pointer items-center justify-center rounded border border-neutral-300 lg:hidden ${compact ? 'h-8 w-8' : 'h-9 w-9'}`}
-          htmlFor={drawerId}
-        >
-          <svg
-            aria-hidden='true'
-            class={compact ? 'h-4 w-4' : 'h-5 w-5'}
-            fill='none'
-            stroke='currentColor'
-            viewBox='0 0 24 24'
-            xmlns='http://www.w3.org/2000/svg'
+        <div class='flex min-w-0 items-center gap-3 sm:gap-4'>
+          <label
+            aria-label='メニューを開く'
+            class={`drawer-button shrink-0 ${menuBtn}`}
+            htmlFor={drawerId}
           >
-            <path
-              d='M4 6h16M4 12h16M4 18h16'
-              stroke-linecap='round'
-              stroke-linejoin='round'
-              stroke-width='2'
-            />
-          </svg>
-        </label>
+            <svg
+              aria-hidden='true'
+              class={compact ? 'h-4 w-4' : 'h-5 w-5'}
+              fill='none'
+              stroke='currentColor'
+              viewBox='0 0 24 24'
+              xmlns='http://www.w3.org/2000/svg'
+            >
+              <path
+                d='M4 6h16M4 12h16M4 18h16'
+                stroke-linecap='round'
+                stroke-linejoin='round'
+                stroke-width='2'
+              />
+            </svg>
+          </label>
+          <a
+            class={`font-display text-base-content min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-left tracking-tight ${brandSize}`}
+            href='/'
+            title={brandText}
+          >
+            {brandText}
+          </a>
+        </div>
 
-        <a
-          class={`order-2 min-w-0 flex-1 overflow-hidden text-ellipsis whitespace-nowrap px-1 text-left lg:order-1 lg:max-w-sm lg:flex-none ${compact ? 'text-sm sm:text-base' : 'text-base sm:text-lg'}`}
-          href='/'
-          title={brandText}
-        >
-          {brandText}
-        </a>
-
-        <nav
-          aria-label='グローバルナビ'
-          class='order-3 hidden min-w-0 lg:order-2 lg:flex lg:flex-1 lg:justify-center'
-        >
+        <nav aria-label='グローバルナビ' class='hidden min-w-0 flex-1 justify-center px-2 lg:flex'>
           <ul
-            class={`flex flex-nowrap items-center gap-4 ${compact ? 'text-sm' : 'text-sm sm:text-base'}`}
+            class={`flex max-w-full flex-nowrap items-center justify-center gap-6 lg:gap-10 ${navText}`}
           >
             {navEntries.map((entry) => (
-              <li key={entry.label}>
+              <li class='shrink-0' key={entry.label}>
                 {entry.kind === 'link' ? (
-                  <a class='underline-offset-4 hover:underline' href={entry.href}>
+                  <a
+                    class='link link-hover text-base-content inline-flex min-h-11 items-center rounded-sm px-1 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
+                    href={entry.href}
+                  >
                     {entry.label}
                   </a>
                 ) : (
                   <span
-                    class='cursor-not-allowed opacity-50'
+                    class='text-base-content/50 inline-flex min-h-11 cursor-not-allowed items-center px-1 py-2'
                     data-shell-link-state='placeholder'
                     title={entry.reason}
                   >
@@ -82,9 +95,9 @@ export function Header(props: HeaderProps) {
           </ul>
         </nav>
 
-        <div class='order-4 hidden shrink-0 lg:order-3 lg:block'>
+        <div class='flex min-w-0 shrink-0 items-center gap-2 sm:pl-2'>
           <a
-            class={`inline-flex items-center justify-center rounded border border-neutral-300 px-3 text-center ${compact ? 'py-1.5 text-sm' : 'py-2 text-sm sm:text-base'}`}
+            class={compact ? 'btn btn-outline btn-primary btn-sm' : 'btn btn-outline btn-primary'}
             href={primaryCta.href}
           >
             {primaryCta.label}

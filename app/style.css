@@ -1,3 +1,6 @@
+@import '@fontsource-variable/noto-serif-jp/index.css';
+@import '@fontsource-variable/playfair-display/index.css';
+
 @import 'tailwindcss' source('../app');
 
 @plugin 'daisyui';
