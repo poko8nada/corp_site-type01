@@ -20,10 +20,13 @@
     "prepare": "lefthook install && chmod +x .cursor/hooks/*.sh"
   },
   "dependencies": {
+    "daisyui": "^5.5.19",
     "hono": "^4.12.12",
     "honox": "^0.1.55"
   },
   "devDependencies": {
+    "@fontsource-variable/noto-serif-jp": "^5.2.9",
+    "@fontsource-variable/playfair-display": "^5.2.8",
     "@hono/vite-dev-server": "^0.18.2",
     "@hono/vite-ssg": "^0.3.3",
     "@tailwindcss/vite": "^4.0.9",

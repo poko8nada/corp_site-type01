@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      daisyui:
+        specifier: ^5.5.19
+        version: 5.5.19
       hono:
         specifier: ^4.12.12
         version: 4.12.14
@@ -15,6 +18,12 @@ importers:
         specifier: ^0.1.55
         version: 0.1.55(hono@4.12.14)(miniflare@4.20260415.0)(wrangler@4.83.0)
     devDependencies:
+      '@fontsource-variable/noto-serif-jp':
+        specifier: ^5.2.9
+        version: 5.2.9
+      '@fontsource-variable/playfair-display':
+        specifier: ^5.2.8
+        version: 5.2.8
       '@hono/vite-dev-server':
         specifier: ^0.18.2
         version: 0.18.3(hono@4.12.14)(miniflare@4.20260415.0)(wrangler@4.83.0)
@@ -470,6 +479,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/noto-serif-jp@5.2.9':
+    resolution: {integrity: sha512-FBQiejB8H0Jifs6BzC1yD32MKwdOLk63B/Dwaefauly0b36I6kL1L3a8zre7SWETP3zfe1eP0/H6DUR96jePpg==, tarball: https://registry.npmjs.org/@fontsource-variable/noto-serif-jp/-/noto-serif-jp-5.2.9.tgz}
+
+  '@fontsource-variable/playfair-display@5.2.8':
+    resolution: {integrity: sha512-ZzVIXPOrL85yyOvZYoBzUszIJM+xKkHqni4IYn2CVLaGQQdJR8sBeC8yFNgjxSJ7ludTwta8qpULeOFuk5X75A==, tarball: https://registry.npmjs.org/@fontsource-variable/playfair-display/-/playfair-display-5.2.8.tgz}
 
   '@hono/node-server@1.19.14':
     resolution: {integrity: sha512-GwtvgtXxnWsucXvbQXkRgqksiH2Qed37H9xHZocE5sA3N8O8O8/8FA3uclQXxXVzc9XBZuEOMK7+r02FmSpHtw==, tarball: https://registry.npmjs.org/@hono/node-server/-/node-server-1.19.14.tgz}
@@ -1440,6 +1455,9 @@ packages:
     resolution: {integrity: sha512-ei8Aos7ja0weRpFzJnEA9UHJ/7XQmqglbRwnf2ATjcB9Wq874VKH9kfjjirM6UhU2/E5fFYadylyhFldcqSidQ==, tarball: https://registry.npmjs.org/cookie/-/cookie-1.1.1.tgz}
     engines: {node: '>=18'}
 
+  daisyui@5.5.19:
+    resolution: {integrity: sha512-pbFAkl1VCEh/MPCeclKL61I/MqRIFFhNU7yiXoDDRapXN4/qNCoMxeCCswyxEEhqL5eiTTfwHvucFtOE71C9sA==, tarball: https://registry.npmjs.org/daisyui/-/daisyui-5.5.19.tgz}
+
   debug@4.4.3:
     resolution: {integrity: sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA==, tarball: https://registry.npmjs.org/debug/-/debug-4.4.3.tgz}
     engines: {node: '>=6.0'}
@@ -2303,6 +2321,10 @@ snapshots:
   '@esbuild/win32-x64@0.27.3':
     optional: true
 
+  '@fontsource-variable/noto-serif-jp@5.2.9': {}
+
+  '@fontsource-variable/playfair-display@5.2.8': {}
+
   '@hono/node-server@1.19.14(hono@4.12.14)':
     dependencies:
       hono: 4.12.14
@@ -2951,6 +2973,8 @@ snapshots:
   convert-source-map@2.0.0: {}
 
   cookie@1.1.1: {}
+
+  daisyui@5.5.19: {}
 
   debug@4.4.3:
     dependencies:

@@ -11,3 +11,6 @@ declare module 'hono' {
     Bindings: {};
   }
 }
+
+declare module '@fontsource-variable/*' {}
+declare module '@fontsource/*' {}

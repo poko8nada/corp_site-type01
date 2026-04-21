@@ -58,7 +58,7 @@ export default jsxRenderer((props) => {
 
         <input class='peer sr-only' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
 
-        <div class='flex min-h-screen flex-col bg-white'>
+        <div class='flex min-h-screen flex-col'>
           <Header
             brandText='BAR KAGETSUKI NAKASU'
             drawerId={SITE_SHELL_DRAWER_ID}
