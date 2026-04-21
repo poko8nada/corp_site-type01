@@ -28,7 +28,6 @@
     "@hono/vite-ssg": "^0.3.3",
     "@tailwindcss/vite": "^4.0.9",
     "@types/node": "^25.6.0",
-    "daisyui": "^5.5.19",
     "lefthook": "^1.11.0",
     "oxc-parser": "^0.123.0",
     "oxfmt": "^0.41.0",

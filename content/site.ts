@@ -1,3 +1,5 @@
+import { structure, type FooterPattern, type HeaderPattern, type RouteKey } from './structure';
+
 /**
  * Props passed as the second argument to `c.render(..., props)` for the global shell.
  * Defaults fall back to `siteShell` when omitted.
@@ -5,6 +7,8 @@
 export interface SiteShellRenderProps {
   title?: string;
   description?: string;
+  headerPattern?: HeaderPattern;
+  footerPattern?: FooterPattern;
 }
 
 /**
@@ -25,3 +29,13 @@ export const siteShell: SiteShell = {
   defaultDescription:
     '福岡・中洲の夜に、静かに寄り添うオーセンティックバー。ウイスキーとカクテルを落ち着いた空間で楽しめます。',
 };
+
+/**
+ * `structure.routes` の layout を `c.render` の shell props に落とす。
+ */
+export function shellLayoutForRoute(
+  route: RouteKey,
+): Pick<SiteShellRenderProps, 'headerPattern' | 'footerPattern'> {
+  const { layout } = structure.routes[route];
+  return { headerPattern: layout.header, footerPattern: layout.footer };
+}

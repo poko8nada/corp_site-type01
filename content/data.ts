@@ -49,26 +49,11 @@ export interface InterviewData {
   };
 }
 
+/**
+ * レイアウト・余白・非色の効き方（トーン／質感の語彙のみ）。
+ * テーマ名・パレット・フォントファミリーは CSS 側の責務とし、ここには持たない。
+ */
 export interface PresentationData {
-  colors: {
-    pageBackground: string;
-    surfaceBackground: string;
-    surfaceMuted: string;
-    textPrimary: string;
-    textSecondary: string;
-    accent: string;
-    border: string;
-    overlay: string;
-  };
-  typography: {
-    headingFamily: string;
-    bodyFamily: string;
-    accentFamily?: string;
-    headingWeight: number;
-    bodyWeight: number;
-    lineHeight: string;
-    letterSpacing: string;
-  };
   spacing: {
     section: string;
     content: string;
@@ -148,25 +133,6 @@ export const siteData: SiteData = {
     },
   },
   presentation: {
-    colors: {
-      pageBackground: '#171311',
-      surfaceBackground: '#211916',
-      surfaceMuted: '#2b221e',
-      textPrimary: '#f4ede7',
-      textSecondary: '#cbb8a6',
-      accent: '#b08a5a',
-      border: 'rgba(176, 138, 90, 0.24)',
-      overlay: 'rgba(16, 10, 8, 0.58)',
-    },
-    typography: {
-      headingFamily: '"Noto Serif JP", "Hiragino Mincho ProN", serif',
-      bodyFamily: '"Noto Sans JP", "Hiragino Sans", sans-serif',
-      accentFamily: '"Cormorant Garamond", serif',
-      headingWeight: 500,
-      bodyWeight: 400,
-      lineHeight: '1.8',
-      letterSpacing: '0.04em',
-    },
     spacing: {
       section: 'clamp(4rem, 8vw, 7rem)',
       content: '1.5rem',
@@ -174,8 +140,8 @@ export const siteData: SiteData = {
     },
     effects: {
       radius: '1rem',
-      shadow: '0 18px 40px rgba(0, 0, 0, 0.22)',
-      overlayImage: 'linear-gradient(180deg, rgba(16, 10, 8, 0.16) 0%, rgba(16, 10, 8, 0.58) 100%)',
+      shadow: '',
+      overlayImage: '',
     },
     imagery: {
       tone: 'warm',

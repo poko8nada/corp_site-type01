@@ -5,14 +5,14 @@
     "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["app/*"],
+      "@/*": ["app/*"]
     },
     "strict": true,
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM"],
     "types": ["vite/client"],
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx",
+    "jsxImportSource": "hono/jsx"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["**/*.ts", "**/*.tsx"]
 }

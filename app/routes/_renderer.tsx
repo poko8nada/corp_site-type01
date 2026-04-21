@@ -1,7 +1,16 @@
+import { SiteDrawerNav } from '@/shell/site-drawer-nav';
+import { SiteFooter } from '@/shell/site-footer';
+import { SiteHeader } from '@/shell/site-header';
 import { raw } from 'hono/html';
 import { jsxRenderer } from 'hono/jsx-renderer';
 import { Link, Script } from 'honox/server';
 import { siteShell } from '../../content/site';
+import {
+  SITE_SHELL_DRAWER_ID,
+  shellFooterCopy,
+  shellNavEntries,
+  shellPrimaryCta,
+} from '@/shell/config';
 
 function escapeHtmlAttr(value: string): string {
   return value
@@ -15,6 +24,8 @@ export default jsxRenderer((props) => {
   const { children, Layout } = props;
   const title = props.title ?? siteShell.defaultTitle;
   const description = props.description ?? siteShell.defaultDescription;
+  const headerPattern = props.headerPattern ?? 'standard';
+  const footerPattern = props.footerPattern ?? 'standard';
 
   return (
     <html lang={siteShell.htmlLang}>
@@ -28,17 +39,49 @@ export default jsxRenderer((props) => {
         <Link href='/app/style.css' rel='stylesheet' />
         <Script src='/app/client.ts' async />
       </head>
-      <body class='min-h-dvh'>
+      <body class='min-h-dvh overflow-x-hidden'>
         {raw('<!-- site-shell:analytics-body-open (e.g. GTM noscript iframe) -->')}
         <a
-          class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black'
+          class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:border focus:border-neutral-300 focus:bg-white focus:px-4 focus:py-2 focus:shadow'
           href='#main-content'
         >
           メインコンテンツへスキップ
         </a>
-        <main id='main-content'>
-          <Layout>{children}</Layout>
-        </main>
+
+        <input class='peer sr-only' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
+
+        <div class='flex min-h-screen flex-col bg-white'>
+          <SiteHeader
+            brandText={siteShell.defaultTitle}
+            drawerId={SITE_SHELL_DRAWER_ID}
+            navEntries={shellNavEntries}
+            pattern={headerPattern}
+            primaryCta={shellPrimaryCta}
+          />
+          <main class='flex flex-1 flex-col' id='main-content'>
+            <Layout>{children}</Layout>
+          </main>
+          <SiteFooter copy={shellFooterCopy} pattern={footerPattern} />
+        </div>
+
+        <label
+          aria-label='メニューを閉じる'
+          class='pointer-events-none fixed inset-0 z-40 bg-neutral-950/0 transition peer-checked:pointer-events-auto peer-checked:bg-neutral-950/30 lg:hidden'
+          htmlFor={SITE_SHELL_DRAWER_ID}
+        />
+
+        <aside class='fixed right-0 top-0 z-50 flex h-full w-[min(100vw-1rem,20rem)] max-w-full translate-x-full flex-col gap-4 border-l border-neutral-200 bg-white p-4 transition-transform peer-checked:translate-x-0 lg:hidden'>
+          <p class='text-base leading-snug break-words' title={siteShell.defaultTitle}>
+            {siteShell.defaultTitle}
+          </p>
+          <SiteDrawerNav entries={shellNavEntries} />
+          <a
+            class='inline-flex items-center justify-center rounded border border-neutral-300 px-3 py-2 text-center text-sm'
+            href={shellPrimaryCta.href}
+          >
+            {shellPrimaryCta.label}
+          </a>
+        </aside>
       </body>
     </html>
   );

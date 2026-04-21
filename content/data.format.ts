@@ -49,26 +49,8 @@ export interface InterviewData {
   };
 }
 
+/** `data.ts` の PresentationData と形を揃える（テーマ・色・フォントは持たない）。 */
 export interface PresentationData {
-  colors: {
-    pageBackground: string;
-    surfaceBackground: string;
-    surfaceMuted: string;
-    textPrimary: string;
-    textSecondary: string;
-    accent: string;
-    border: string;
-    overlay: string;
-  };
-  typography: {
-    headingFamily: string;
-    bodyFamily: string;
-    accentFamily?: string;
-    headingWeight: number;
-    bodyWeight: number;
-    lineHeight: string;
-    letterSpacing: string;
-  };
   spacing: {
     section: string;
     content: string;
@@ -142,25 +124,6 @@ export const siteDataFormat: SiteData = {
     },
   },
   presentation: {
-    colors: {
-      pageBackground: '#000000',
-      surfaceBackground: '#111111',
-      surfaceMuted: '#222222',
-      textPrimary: '#ffffff',
-      textSecondary: '#cccccc',
-      accent: '#888888',
-      border: 'rgba(255, 255, 255, 0.16)',
-      overlay: 'rgba(0, 0, 0, 0.4)',
-    },
-    typography: {
-      headingFamily: '',
-      bodyFamily: '',
-      accentFamily: '',
-      headingWeight: 600,
-      bodyWeight: 400,
-      lineHeight: '1.7',
-      letterSpacing: '0.02em',
-    },
     spacing: {
       section: '',
       content: '',
