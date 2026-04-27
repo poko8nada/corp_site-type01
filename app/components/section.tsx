@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'hono/jsx';
 
-/** Home の構成は `content/structure.ts` の `routes.home.blocks` を目視参照。 */
+/** Home の構成は `content/structure.md` の「routes.home」を目視参照。 */
 export type HomeSectionRole = 'lead' | 'explanation' | 'facts' | 'conversion';
 
 const SECTION_LABEL: Record<HomeSectionRole, string> = {

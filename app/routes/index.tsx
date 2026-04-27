@@ -6,8 +6,8 @@ import { VisualLead } from '@/components/visual-lead';
 import { createRoute } from 'honox/factory';
 
 /**
- * ブロックの並びは `content/structure.ts` の `routes.home.blocks` に合わせる。
- * 文言・事実は `content/interview.ts` を目視して手で埋める（`content/` から import しない）。
+ * ブロックの並びは `content/structure.md` の「routes.home」に合わせる。
+ * 事実は `content/facts.md`、コピー素地は `content/brief.md`、取材の生メモは `content/interview.md` を目視して手で埋める（`content/` から import しない）。
  */
 export default createRoute((c) => {
   return c.render(

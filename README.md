@@ -1,73 +1,114 @@
 # corp-site-type01
 
-中小企業向けの静的コーポレートサイトを、再利用しやすい型として整備するためのリポジトリ。`dist/` をそのまま静的ホスティングへ配置して運用できる形を目指す。
+![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
+![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=node.js)
+![GitHub last commit](https://img.shields.io/github/last-commit/poko8nada/corp_site-type01)
+![GitHub issues](https://img.shields.io/github/issues/poko8nada/corp_site-type01)
 
-この README は背景と前提の共有用で、実装の単位・完了条件・優先順は GitHub Issues を正本とする。
+中小企業向けの静的コーポレートサイトを、再利用しやすい型として整備するためのリポジトリ。`dist/` をそのまま静的ホスティングへ置いて運用できる形を目指す。
 
-## このリポジトリの位置づけ
+## Developer Notes
 
-- 一般的な中小企業サイトを素早く組み立てるための format を育てる
-- 最低限の format を作りつつ、実在しない企業を題材に demo としても育てる
-- page や shell の差し替えで、案件ごとの variation を出しやすくする
+> 開発者・AI エージェント向けのメモ。実装の単位・完了条件・優先順は GitHub Issues。
 
-## コンテンツと実装の関係（正本の置き方）
+### Concept & Goals
 
-`content/` 配下は**取材結果・設計メモ**としての役割のみとする。コードから自動 import せず、人間やエージェントが「ページに何を載せるか」を決める際に参照する材料として使う。
+- 一般的な中小企業サイトを素早く組み立てるテンプレートを作成。page / shell の差し替えで案件 variation を出しやすく。
+- 完了のイメージ: セクションと shell のパーツセット、静的成果物、GTM / sitemap などの基盤、確認用に Cloudflare を使える導線。
+- やらないこと: LP 特化の過剰演出、CMS 直結、高頻度記事運用の内蔵、`content/` からコードへの自動データ連携（手動確認・手埋め込みが原則）。
 
-**インタビューデータ（`content/data.ts` / `data.format.ts`）**  
-取材やヒアリングで集めた生に近い整理用の情報。サイトの実装としてそのまま直結しない。実装者が目視して「電話番号はこれ」「営業時間はこれ」を確認し、コンポーネントに手動で埋めていく。
+### Stack & Key Decisions
 
-**プレゼンテーションデータ（`content/data.ts` の presentation 相当）**  
-セクション余白・コンテナ幅・角の半径、画像トーンの語彙など、レイアウトと質感の目安。テーマ名・配色・フォントファミリーはここには置かず、スタイルは `app/style.css` 側の責務とする。実装者が目視して参考にするが、スタイル変数への自動連携はしない。
+- App / SSG: Honox + Hono + Vite。静的ビルド、`app/` が実装の自己完結領域。
+- Styling: Tailwind CSS 4 + DaisyUI。トークン・テーマは `app/style.css` 側（`content/` と自動連携しない）。
+- Package maneger: `pnpm`
+- Deploy: Wrangler（`preview:pages` 等）。GitHub Pages も本番候補とする。
+- Design: Pencil（`pencil/*.pen`）。運用は未確定論点として Issues 側で追う。
 
-**サイト構成の設計メモ（`content/structure.ts`）**  
-ルート、各ルートの blocks（役割 `role` と見せ方 `pattern`）で、サイトの骨格と並びを設計時にまとめておくもの。インタビューで「ロゴ+説明+地図+CTA」の構成にしたい、といった話を起こしたメモ。実装では、この構成に沿ってコンポーネントを手動で並べるが、型としての強制はない。
+## Overview
 
-**header / footer の設計メモ**  
-`structure.ts` に header / footer のパターン選定（standard / compact / minimal / none）も設計メモとして残す。どのパターンがどんな情報を含んでどう見えるかの説明をコメントとして持つ。
+このリポジトリは、案件ごとに差し替え可能な雛形の作る上で、実在しない企業を題材にしたデモ用の例として使う。`content/` は取材・構成の設計メモ置き場であり import せず、実装者が目視して `app/` に手で反映する。
 
-雛形と案件ごとの実値の切り分けは、`*.format.ts`（コピー用の汎用形）と、それを埋めた `data.ts` / `structure.ts` のペアで行う。
+## Getting Started
 
-## 実装側の責務
+### Prerequisites
 
-`app/` 以下は **実装の自己完結領域** とする。`content/` に対する自動 import や型の同期を持たず、実装者がコンポーネントに直接値や型を書き込む。
+- Node.js 18 以上
+- [pnpm](https://pnpm.io/)
 
-- **Shell（`app/shell/`）**: header、footer、drawer-nav を含む。各コンポーネントは取りうる値を自分で型として持ち、`content/` から型を import しない。
-- **Renderer（`app/routes/_renderer.tsx`）**: サイトタイトル・description・lang などのメタ情報を直接書く。`content/site.ts` のような「確定コピー層」をコードに持たない。
-- **Route ファイル**: `c.render` の第2引数で `headerPattern` / `footerPattern` を直接指定する。`shellLayoutForRoute` のような helper は持たない。
+### Installation
 
-## 目指すもの
+```bash
+git clone https://github.com/poko8nada/corp_site-type01.git
+cd corp_site-type01
+pnpm install
+```
 
-- 一般的な中小企業サイトをカバーできるセクション・shell のパーツセットを作ること
-- GitHub Pages や一般的なレンタルサーバーへ、そのまま載せやすい静的成果物を作ること
-- 三層（interview / presentation / structure）の設計メモを元に、実装者が手動でコンポーネントを組み上げられるワークフローを確立すること
-- GTM、sitemap など、コーポレートサイトで必要になりやすい基盤を揃えること
-- Cloudflare を確認環境として使い、顧客とのレビュー導線を持てること
+## Usage
 
-## 目指さないもの
+```bash
+pnpm dev              # 開発サーバー
+pnpm build            # 静的成果物を dist/ に出力
+pnpm preview          # ビルド結果のプレビュー
+pnpm preview:pages    # rebuild 後に wrangler pages dev
+pnpm typecheck        # TypeScript チェック
+pnpm lint             # oxlint
+pnpm test:run         # Vitest
+```
 
-- LP 特化の演出や構成
-- 派手な animation を主目的にした表現
-- このリポジトリ内での CMS 直結
-- 高頻度更新を前提にした記事運用システムの内蔵
-- `content/` からコードへの自動データ連携（人間の確認・手動埋め込みを原則とする）
+## Configuration
 
-## 運用前提
+- Pages プロジェクト名など: `package.json` の `deploy` スクリプトと `wrangler.jsonc` を、環境に合わせて変更する。
 
-- 本番の主軸は静的配信を想定する
-- GitHub Pages は本番候補、Cloudflare は確認用環境として扱う
-- CMS が必要になっても、ブラウザから直接 API を叩く構成は採らない
-- API key の隠蔽、cache、CORS 制御が必要な場合は、別システムや別リポジトリ側で受ける
+## Content and implementation (`content/`)
 
-## その他の方向性
+`content/` は取材結果・設計メモのみ。コードから自動 import せず、人間やエージェントが「ページに何を載せるか」を決めるときの参照材料とする。
 
-- shell と section を入れ替えながら、複数案件に流用できる構造を目指す
-- Pencil の `.pen` を使った design 管理を前提にする
+### Current content
 
-## いま未確定の論点
+- `interview.md`: 取材・ヒアリングの整理メモ（identity / business / operations 等の見出し）。
+- `structure.md`: ルートと blocks（`role` / `pattern`）、header・footer パターンの設計メモ。
 
-- お問い合わせ機能の library や構成
-- Pencil と実装をどの順番で固めるか
-- UI library を使うかどうか
+### Header / footer
 
-実装を進めるときは、背景はこの README、具体の作業単位と完了条件は GitHub Issues を参照する。
+パターン名（`standard` / `compact` / `minimal` / `none` 等）は設計メモとして `structure.md` に寄せ、実装は `app/shell/` と `c.render` のオプションで直接指定する。
+
+## App responsibilities (`app/`)
+
+- Shell（`app/shell/`）: header、footer、drawer-nav。型は各コンポーネントが持ち、`content/` から型を import しない。
+- Renderer（`app/routes/_renderer.tsx`）: タイトル・description・lang 等を直接記述。`content/site.ts` のような確定コピー層は持たない。
+- Route: `c.render` の第2引数で `headerPattern` / `footerPattern` を指定。`shellLayoutForRoute` のような共通 helper は持たない。
+
+## Goals and non-goals
+
+### Goals
+
+- 中小コーポレで必要になりやすいセクション・shell のパーツセット
+- GitHub Pages やレンタルサーバーへ載せやすい静的 `dist/`
+- interview / presentation / structure のメモを手作業で実装へ繋ぐワークフロー
+- GTM、sitemap 等の基盤、顧客レビュー用の確認環境（Cloudflare 等）
+
+### Non-goals
+
+- LP 特化・animation 主目的の表現、ブラウザからの API 直叩き、上記「Concept & Goals」の境界と重なるものは同様に扱う。
+
+## Operational assumptions
+
+- 本番の主軸は静的配信。
+- GitHub Pages は本番候補、Cloudflare は確認用として扱う想定。
+- CMS が必要でも、ブラウザから直接 API を叩く構成は採らない。API key 隠蔽・cache・CORS は別システム側。
+
+## Direction and open questions
+
+- shell / section の組み替えで複数案件へ流用。
+- Pencil と実装の順番、お問い合わせ機能の library、UI library の採否は Issues で整理。
+
+## Contributing
+
+変更の単位と受け入れ条件は GitHub Issues に合わせる。PR では再現手順と関連 Issue の参照を書く。
+
+## License
+
+MIT（LICENSE ファイル未配置の場合はリポジトリオーナーに確認のうえ整備する）。

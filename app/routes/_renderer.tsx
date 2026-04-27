@@ -53,7 +53,7 @@ export default jsxRenderer((props) => {
           <input class='drawer-toggle' id={SITE_SHELL_DRAWER_ID} type='checkbox' />
           <div class='drawer-content bg-base-100 flex min-h-dvh min-w-0 flex-col'>
             <a
-              class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:border focus:border-base-300 focus:bg-base-100 focus:px-4 focus:py-2 focus:text-base-content focus:shadow focus:outline-2 focus:outline-offset-2'
+              class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-btn focus:border focus:border-base-300 focus:bg-base-100 focus:px-4 focus:py-2 focus:text-base-content focus:shadow focus:outline-2 focus:outline-offset-2'
               href='#main-content'
             >
               メインコンテンツへスキップ
@@ -81,7 +81,7 @@ export default jsxRenderer((props) => {
             <aside class='bg-base-200 text-base-content flex min-h-full w-80 max-w-[calc(100vw-1rem)] flex-col gap-4 border-l border-base-300 p-4'>
               <div class='flex min-w-0 items-start justify-between gap-2'>
                 <p
-                  class='font-display text-lg leading-snug tracking-tight break-words'
+                  class='font-display text-lg leading-snug tracking-tight wrap-break-words'
                   title='BAR KAGETSUKI NAKASU'
                 >
                   BAR KAGETSUKI NAKASU
