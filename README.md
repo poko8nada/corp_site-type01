@@ -68,7 +68,7 @@ pnpm test:run         # Vitest
 
 ### Current content
 
-- `interview.md`: 取材・ヒアリングの整理メモ（identity / business / operations 等の見出し）。
+- `interview.md`: 案件ごとの取材整理（デモは BAR KAGETSUKI NAKASU。テンプレに既存メモを当てはめた版）。
 - `structure.md`: ルートと blocks（`role` / `pattern`）、header・footer パターンの設計メモ。
 
 ### Header / footer

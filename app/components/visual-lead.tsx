@@ -25,7 +25,7 @@ export function VisualLead(props: VisualLeadProps) {
         <div class='card bg-base-200/80 w-full max-w-none border border-dashed border-base-300 shadow-none lg:max-w-md'>
           <div
             aria-label={imageAlt}
-            class='card-body text-base-content/45 flex aspect-[4/3] flex-col items-center justify-center gap-2 py-10 text-center text-sm leading-snug'
+            class='card-body text-base-content/45 flex aspect-4/3 flex-col items-center justify-center gap-2 py-10 text-center text-sm leading-snug'
             role='img'
           >
             <span class='font-medium'>画像プレースホルダー</span>
