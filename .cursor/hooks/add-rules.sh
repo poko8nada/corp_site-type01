@@ -1,18 +1,7 @@
 #!/bin/sh
 # add-rules.sh
 
-input=$(cat)
-
-conversation_id=$(echo "$input" | grep -o '"conversation_id":"[^"]*"' | cut -d'"' -f4)
-workspace=$(echo "$input" | grep -o '"workspace_roots":\["[^"]*"' | cut -d'"' -f4)
-loop_count=$(echo "$input" | grep -o '"loop_count":[0-9]*' | cut -d':' -f2)
-
-if [ "${loop_count:-0}" -ge 3 ]; then
-  printf '{}'
-  exit 0
-fi
-
-state_file="$workspace/.cursor/hooks/state/$conversation_id.txt"
+state_file="$CURSOR_PROJECT_DIR/.cursor/hooks/state/pending.txt"
 
 if [ ! -f "$state_file" ]; then
   printf '{}'
@@ -22,7 +11,7 @@ fi
 files=$(cat "$state_file")
 rm "$state_file"
 
-rules_dir="$workspace/.cursor/rules"
+rules_dir="$CURSOR_PROJECT_DIR/.cursor/rules"
 collected_rules=""
 
 while IFS= read -r file; do
