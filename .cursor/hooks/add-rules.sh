@@ -46,7 +46,7 @@ if [ -z "$rule_content" ]; then
   exit 0
 fi
 
-message="Review your work against the following rules and make any necessary corrections if you find any violations. If all criteria are met, open the review screen in the difit skill. If you have already run difit, skip this step.
+message="Review your work against the following rules and make any necessary corrections if you find any violations. If all criteria are met, open the review screen in the difit skill. If localhost:4966 is still running, skip this step.
 
 $rule_content
 
