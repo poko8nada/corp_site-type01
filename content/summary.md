@@ -1,21 +1,13 @@
-# インタビュー整理メモ（BAR KAGETSUKI NAKASU）
-
-旧 TypeScript 版のフィールド案（見出しの意味の目安）:
-
-- **identity** — 公開名・屋号・一言要約・キーワード
-- **business** — 業態・コンセプト・強み・提供物・想定顧客・利用シーン
-- **operations** — 住所・最寄り・営業時間・休日・予約まわりの注記
-- **contact** — 連絡チャネル（種別・表示ラベル・値・リンク）
-- **trust** — 実績・運用方針など信頼に関するメモ
-- **design** — 雰囲気・色・写真・フォントなどクライアントの生の言葉
+# Summary of Client
 
 ---
+
+## preliminary survey
 
 ## identity
 
 - **publicName**: BAR KAGETSUKI NAKASU
 - **legalName**: BAR KAGETSUKI
-- **summary**: 福岡・中洲の夜に、静かに寄り添うオーセンティックバー。ウイスキーとカクテルを落ち着いた空間で楽しめます。
 - **keywords**
   - オーセンティック
   - 中洲
@@ -51,9 +43,15 @@
   - **streetAddress**: 3-7-24
   - **building**: Gate Stage Nakasu 5F
 - **nearestStation**: 中洲川端駅から徒歩約4分
-- **businessHours**: 19:00 - 02:00
-- **holidayNotes**: 日曜定休
-- **reservationNotes**: 貸切や記念日の相談可。混雑日は電話予約推奨。
+- **businessHours**:
+  - MON: close
+  - TUE: 19:00 - 02:00
+  - WED: 19:00 - 02:00
+  - THU: 19:00 - 02:00
+  - FRI: 19:00 - 02:00
+  - SAT: 19:00 - 02:00
+  - SUN: close
+- **holidayNotes**: 正月、お盆
 
 ## contact
 
