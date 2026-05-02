@@ -1,35 +1,18 @@
 # corp-site-type01
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-active-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?logo=typescript)
 ![Node](https://img.shields.io/badge/node-%3E%3D18-brightgreen?logo=node.js)
 ![GitHub last commit](https://img.shields.io/github/last-commit/poko8nada/corp_site-type01)
 ![GitHub issues](https://img.shields.io/github/issues/poko8nada/corp_site-type01)
 
-中小企業向けの静的コーポレートサイトを、再利用しやすい型として整備するためのリポジトリ。`dist/` をそのまま静的ホスティングへ置いて運用できる形を目指す。
-
-## Developer Notes
-
-> 開発者・AI エージェント向けのメモ。実装の単位・完了条件・優先順は GitHub Issues。
-
-### Concept & Goals
-
-- 一般的な中小企業サイトを素早く組み立てるテンプレートを作成。page / shell の差し替えで案件 variation を出しやすく。
-- 完了のイメージ: セクションと shell のパーツセット、静的成果物、GTM / sitemap などの基盤、確認用に Cloudflare を使える導線。
-- やらないこと: LP 特化の過剰演出、CMS 直結、高頻度記事運用の内蔵、`content/` からコードへの自動データ連携（手動確認・手埋め込みが原則）。
-
-### Stack & Key Decisions
-
-- App / SSG: Honox + Hono + Vite。静的ビルド、`app/` が実装の自己完結領域。
-- Styling: Tailwind CSS 4 + DaisyUI。トークン・テーマは `app/style.css` 側（`content/` と自動連携しない）。
-- Package maneger: `pnpm`
-- Deploy: Wrangler（`preview:pages` 等）。GitHub Pages も本番候補とする。
-- Design: Pencil（`pencil/*.pen`）。運用は未確定論点として Issues 側で追う。
-
 ## Overview
 
-このリポジトリは、案件ごとに差し替え可能な雛形の作る上で、実在しない企業を題材にしたデモ用の例として使う。`content/` は取材・構成の設計メモ置き場であり import せず、実装者が目視して `app/` に手で反映する。
+中小企業向けの静的コーポレートサイトを、再利用しやすい型として整備するためのリポジトリ。`dist/` をそのまま静的ホスティングへ置いて運用できる形を目指す。
+
+このリポジトリは、案件ごとに差し替え可能な雛形を作る過程で、実在しない企業を題材にしたデモ用の例として使う。`content/` は取材・構成の設計メモ置き場であり import せず、実装者が目視して `app/` に手で反映する。
 
 ## Getting Started
 
@@ -58,52 +41,111 @@ pnpm lint             # oxlint
 pnpm test:run         # Vitest
 ```
 
-## Configuration
-
-- Pages プロジェクト名など: `package.json` の `deploy` スクリプトと `wrangler.jsonc` を、環境に合わせて変更する。
-
-## Content and implementation (`content/`)
-
-`content/` は取材結果・設計メモのみ。コードから自動 import せず、人間やエージェントが「ページに何を載せるか」を決めるときの参照材料とする。
-
-### Current content
-
-- `interview.md`: 案件ごとの取材整理（デモは BAR KAGETSUKI NAKASU。テンプレに既存メモを当てはめた版）。
-- `structure.md`: ルートと blocks（`role` / `pattern`）、header・footer パターンの設計メモ。
-
-### Header / footer
-
-パターン名（`standard` / `compact` / `minimal` / `none` 等）は設計メモとして `structure.md` に寄せ、実装は `app/shell/` と `c.render` のオプションで直接指定する。
-
-## App responsibilities (`app/`)
-
-- Shell（`app/shell/`）: header、footer、drawer-nav。型は各コンポーネントが持ち、`content/` から型を import しない。
-- Renderer（`app/routes/_renderer.tsx`）: タイトル・description・lang 等を直接記述。`content/site.ts` のような確定コピー層は持たない。
-- Route: `c.render` の第2引数で `headerPattern` / `footerPattern` を指定。`shellLayoutForRoute` のような共通 helper は持たない。
-
-## Goals and non-goals
+## Concept & Goals
 
 ### Goals
 
-- 中小コーポレで必要になりやすいセクション・shell のパーツセット
-- GitHub Pages やレンタルサーバーへ載せやすい静的 `dist/`
-- interview / presentation / structure のメモを手作業で実装へ繋ぐワークフロー
+- 保守や高頻度更新を前提としない中小企業サイトを、静的 HTML + 最小限のバックエンド（お問い合わせのみ）で構築する
+- CMSを持たないことでセキュリティリスクと運用コストを下げる
+- 公式の一次情報置き場として、ユーザーがストレスなく情報にたどり着け、かつモダンでブランドイメージを醸成できるサイトを目指す
+- `sections` と能力コンポーネントの組み替えで複数案件へ流用できる型にする
 - GTM、sitemap 等の基盤、顧客レビュー用の確認環境（Cloudflare 等）
 
 ### Non-goals
 
-- LP 特化・animation 主目的の表現、ブラウザからの API 直叩き、上記「Concept & Goals」の境界と重なるものは同様に扱う。
+- LP 特化の過剰演出・animation 主目的の表現
+- CMS 直結・高頻度記事運用の内蔵
+- `content/` からコードへの自動データ連携（手動確認が原則）
+- ブラウザから直接 API を叩く構成（API key 隠蔽・cache・CORS は別システム側）
+- webサイト単体の明確なKPI設定（流入元はGoogleMap・SNS・検索など多岐にわたり、そこのマーケティングはスコープ外）
 
-## Operational assumptions
+### Operational assumptions
 
-- 本番の主軸は静的配信。
-- GitHub Pages は本番候補、Cloudflare は確認用として扱う想定。
-- CMS が必要でも、ブラウザから直接 API を叩く構成は採らない。API key 隠蔽・cache・CORS は別システム側。
+- 本番の主軸は静的配信。`dist/` をレンタルサーバーや静的ホスティングに置くだけで動作する
+- GitHub Pages は本番候補、Cloudflare は確認用として扱う想定
+- CMS が必要でも、ブラウザから直接 API を叩く構成は採らない
 
-## Direction and open questions
+## Stack
 
-- shell / section の組み替えで複数案件へ流用。
-- Pencil と実装の順番、お問い合わせ機能の library、UI library の採否は Issues で整理。
+- **App / SSG**: Honox + Hono + Vite。静的ビルド、`app/` が実装の自己完結領域
+- **Styling**: Tailwind CSS 4 + DaisyUI。トークン・テーマは `app/style.css` 側
+- **Package manager**: pnpm
+- **Deploy**: Wrangler（`preview:pages` 等）。GitHub Pages も本番候補
+- **Design**: Pencil（`pencil/*.pen`）。運用は未確定論点として Issues 側で追う
+
+## App Architecture
+
+`app/components/`（能力単位）と `app/sections/`（ページ上の役割・共通枠）の組み替えで案件 variation を出す。
+
+- `app/components/` は「何ができるか」で名付けたブロック。ルートや `content/` の語彙に依存しない
+- `app/sections/frame/` にヘッダー・フッター・ドロワー・全ページ共通レイアウトを置く（旧 `app/shell/` の後継）
+- `app/sections/<name>/` はページ上の役割単位の合成。各フォルダの `index.ts` がそのフォルダのカタログ（コンポーネントと定数の export をここに寄せる。別 `config.ts` は必須にしない）
+- ルートの `sections/index.ts` は任意で薄い再 export 用
+
+```text
+app/
+├── components/
+│   ├── section.tsx
+│   ├── visual-lead.tsx
+│   ├── rich-text.tsx
+│   ├── map-with-info.tsx
+│   └── cta-band.tsx
+│
+├── sections/
+│   ├── index.ts                    # catalogと再エクスポート
+│   ├── frame/                      # 全ページ共通
+│   │   ├── index.ts                # catalog: Header, Footer, DrawerNav, SiteLayout + 定数
+│   │   ├── site-layout.tsx
+│   │   ├── header.tsx
+│   │   ├── footer.tsx
+│   │   └── drawer-nav.tsx
+│   └── home/
+│       ├── index.ts                # catalog: HomeLead, HomeExplanation, HomeFacts, HomeConversion
+│       ├── lead.tsx
+│       ├── explanation.tsx
+│       ├── facts.tsx
+│       └── conversion.tsx
+│
+├── routes/
+│   ├── _renderer.tsx               # html/head/body + SiteLayout のみ
+│   ├── index.tsx                   # sections/home から役割を並べるだけ
+│   ├── _404.tsx
+│   └── _error.tsx
+│
+├── client.ts
+├── server.ts
+└── style.css
+
+# 将来: 他ページも同じパターンで sections/ 配下に追加
+app/sections/contact/
+├── index.ts
+├── context.tsx
+├── form-area.tsx
+└── conversion.tsx
+```
+
+> 移行途中ではリポジトリ内に `app/shell/` が残っている場合がある。上記ツリーは目標構成。
+
+### Routes and renderer
+
+- `_renderer.tsx`: タイトル・description・lang 等を直接記述。`content/site.ts` のような確定コピー層は持たない
+- Route: `c.render` の第2引数で `headerPattern` / `footerPattern` を指定。共通 helper は持たない
+
+## Content Workflow
+
+`content/` は取材結果・設計メモのみ。コードから自動 import せず、実装者やエージェントが「ページに何を載せるか」を決めるときの参照材料とする。
+
+| ファイル        | 内容                                                                 |
+| --------------- | -------------------------------------------------------------------- |
+| `interview.md`  | 案件ごとの取材整理                                                   |
+| `structure.md`  | ルートと blocks（role / pattern）、header・footer パターンの設計メモ |
+| `pre_survey.md` | 事前調査（GoogleMap・レビュー・競合分析）と仮説                      |
+
+Header / footer のパターン名（`standard` / `compact` / `minimal` / `none` 等）は `structure.md` に寄せ、実装は `app/sections/frame/` のコンポーネントと `c.render` のオプションで直接指定する。
+
+## Configuration
+
+Pages プロジェクト名など: `package.json` の `deploy` スクリプトと `wrangler.jsonc` を、環境に合わせて変更する。
 
 ## Contributing
 
