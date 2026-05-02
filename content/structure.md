@@ -1,104 +1,74 @@
-# サイト構成の設計メモ
-
-## Header / Footer の見せ方パターン
-
-インタビュー時の「どんなヘッダー・フッターにするか」の選択肢としてまとめておくもの。実際のコンポーネント実装（`app/shell/`）とは独立しており、数や名称が一致する保証はない。
-
-### header: standard
-
-サイト名、グローバルナビ、主要 CTA の 3 要素が並ぶ。
-
-### header: compact
-
-同じ要素を詰めたバリエーション。上下の余白が狭く、フォントサイズが一段階小さい。
-
-### footer: standard
-
-4 カラム構成。店舗情報、連絡先、法務・ポリシー、コピーライト。
-
-### footer: minimal
-
-コピーライト＋連絡先の 1 行だけ。ページ数が少ないサイトやランディングページ向き。
-
-### パターン名一覧（設計メモ用）
-
-**header**: `standard` | `compact` | `none`
-
-**footer**: `standard` | `minimal` | `none`
-
+---
+updated: 2026-05-01
+mode: redesign
+source:
+  - content/pre_survey.md
+  - content/investigate.md
 ---
 
-## role と pattern
+# Site Structure
 
-- **role** — ブロックが担う「役割」
-- **pattern** — その役割を「どう見せるか」の UI バリエーション
+## Design rationale
 
-インタビューでは「トップページに何を置きたいか」から逆算して、適切な role を選び、さらにその中から pattern を決めていく。
+README の Concept & Goals にある「公式の一次情報置き場としてストレスなくたどり着ける」「静的 HTML + お問い合わせのみ」「CMS を持たない」方針に合わせ、現状の長尺シングルページ＋アンカー中心の IA と、制作基盤に閉じた予約フォーム URL は採らない。代わりに、ホームは意味の塊ごとに role を分けて読み順を固定し、予約・問い合わせは `/contact` に集約して外部フォーム／予約媒体への導線だけを明示する（ブラウザから直接 API を叩く構成は README Non-goals の外に置く）。
 
-### contentRoles（役割の語彙）
+ページ数はホームと問い合わせの2本に絞る。事前調査で指摘されている「メニュー・料金の目安・アクセス動線・信頼の根拠」は、ホーム内の explanation / strengths / facts に収め、更新頻度が高い Instagram やイベント告知はサイト本体ではリンク程度に留め、高頻度更新を要する仕組み（CMS 内蔵、記事運用）は README Non-goals から除外する。
 
-| role          | 意味                                                                   |
-| ------------- | ---------------------------------------------------------------------- |
-| `lead`        | 第一印象を作る導入。主メッセージ、ブランドの顔、ファーストビュー。     |
-| `explanation` | 内容や背景を説明する役。サービス説明、想い、会社紹介、ストーリー。     |
-| `catalog`     | 選択肢を並べて比較させる役。商品一覧、メニュー、プラン、サービス一覧。 |
-| `proof`       | 信頼を補強する役。実績、導入事例、レビュー、数字、受賞歴。             |
-| `facts`       | 客観情報を整理して見せる役。住所、営業時間、料金、会社概要、スペック。 |
-| `conversion`  | 行動につなげる役。問い合わせ、予約、資料請求、応募、購入導線。         |
-| `support`     | 理解や意思決定を補助する役。FAQ、利用フロー、注意事項、比較の補助。    |
-| `updates`     | 継続的な更新を伝える役。お知らせ、ニュース、ブログ、イベント情報。     |
-| `utility`     | サイト運用上必要な補助情報。規約、ポリシー、法務表記、補助ナビ。       |
+フレームはナビで「ホーム」と「お問い合わせ」が迷子にならない `standard` ヘッダーと、店舗・連絡先・法務導線を載せられる `standard` フッターを前提とする（コンパクト化はビジュアル実装段階の判断に委ねる）。
 
-### blockPatterns（見せ方の語彙）
+## Diff summary
 
-`visual-lead`, `carousel`, `split-media`, `rich-text`, `card-grid`, `proof-grid`, `info-list`, `faq`, `article-list`, `cta-band`, `legal-text`, `map-with-info`
+### Drop
 
-### role ごとのおすすめ pattern（ガイド。型としての強制ではない）
+- 同一 URL の `#sec*` アンカー章立て。最短動線に対し長尺スクロールとフラグメント依存の負荷が高いため、意味単位のページとセクションへ再編する。
+- FoodConnection / FCMailer 依存の予約専用 HTML。CMS に閉じた依存を避け、予約は外部サービスと埋め込みまたはリンクへ置き換える。
+- トップ1ファイルの縦積み肥大 MPA。静的配信と保守容易性のため情報設計で分割し、表示の軽量化は実装側で行う。
 
-| role          | おすすめ pattern                   |
-| ------------- | ---------------------------------- |
-| `lead`        | visual-lead, carousel, split-media |
-| `explanation` | rich-text, split-media             |
-| `catalog`     | card-grid, info-list               |
-| `proof`       | proof-grid, card-grid              |
-| `facts`       | info-list, map-with-info           |
-| `conversion`  | cta-band, rich-text                |
-| `support`     | faq, rich-text                     |
-| `updates`     | article-list, card-grid            |
-| `utility`     | legal-text, info-list              |
+### Transform
 
----
+- 長尺 LP 内ブロック（沿革・品揃え・協会・雰囲気・写真帯など）を、home の `lead` / `explanation` / `strengths` / `facts` に再配置する。目的は維持し、README の役割単位の sections に沿って再グルーピングする。
+- 予約フォーム専用 URL（`/e-mailform-demo/reservation.html` 想定）を、`/contact` の `form-area`（外部フォームまたはバックエンド API）と電話・外部予約への CTA に置き換える。お問い合わせのみのバックエンド境界に揃える。
+- ヘッダの同一ページスクロールを、ルート間ナビ（`/` と `/contact`）へ。ホーム内の in-page は必要最小限に留める。主要導線はルートで完結させる。
 
-## 現在このサイトで採用している structure の実値
+### Keep
 
-### routes.home
+- 店名・業態・電話・住所・営業時間。一次情報として必須。`facts` とフッターの重複は実装で整理する。
+- Instagram 等 SNS への外部導線。定休とイベント告知の更新頻度が高いため、本体はリンク中心で静的運用を維持する。
+- 電話と外部予約への CTA。有効な導線のため残す。`conversion` と `contact` の役割が重なりすぎないようコピーで調整する。
 
-**layout**
+## Structure
 
-- header: `standard`
-- footer: `standard`
+```yaml
+frame:
+  header: standard
+  footer: standard
 
-**blocks**（順序どおり）
+pages:
+  - route: /
+    label: home
+    sections:
+      - role: lead
+        note: 「カジュアルに入れる本格バー」というコアメッセージと、夜の中洲で寛げるトーンの視覚的導入
+      - role: explanation
+        note: 誰向けか、どんな時間の過ごし方ができるか（一人・少人数・二次会など）。営業時間帯の型は facts へ参照
+      - role: strengths
+        note: 老舗性、品揃えの規模感、協会・技術の証拠、女性バーテンダー文化の誤解のない説明。レビューで繰り返す安心材料を静的に要約
+      - role: facts
+        note: 住所、複合ビル内の動線ヒント、電話、営業時間・定休、料金の目安、混雑時の扱い、車椅子非対応などの事実ベース表現
+      - role: conversion
+        note: 電話・外部予約・お問い合わせページへの明確な次アクション（重複 CTA は実装で一本化可能）
 
-| #   | role        | pattern       |
-| --- | ----------- | ------------- |
-| 1   | lead        | visual-lead   |
-| 2   | explanation | rich-text     |
-| 3   | facts       | map-with-info |
-| 4   | conversion  | cta-band      |
+  - route: /contact
+    label: contact
+    sections:
+      - role: context
+        note: フォームの用途（予約相談、取材、その他）と返信目安・定休に関する注意の静的説明
+      - role: form-area
+        note: 外部フォーム埋め込み（例: Google フォーム、予約 SaaS）または README 想定の最小バックエンド API。送信先はコードに直書きしない
+```
 
-### routes.contact
+## Open questions
 
-**layout**
-
-- header: `compact`
-- footer: `minimal`
-
-**blocks**（順序どおり）
-
-| #   | role       | pattern    |
-| --- | ---------- | ---------- |
-| 1   | conversion | rich-text  |
-| 2   | facts      | info-list  |
-| 3   | support    | faq        |
-| 4   | utility    | legal-text |
+- 取材メモ `content/interview.md` は未作成のため、オーナー意向の優先順位は未確定。作成後に strengths / facts の粒度を見直す。
+- メニュー一覧をホーム内に静的でどこまで載せるか（カテゴリのみか、代表銘柄までか）はデザイン負荷とのトレードオフのため、実装前に決める。
+- 計測（GTM / GA 等）は README Goals の基盤に含まれるが、本 structure にはページ role として含めない。実装は `_renderer` 側の方針に委ねる。

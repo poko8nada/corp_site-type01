@@ -4,7 +4,7 @@ description: >
   Conduct a pre-survey for a client and fill in the template.
   Browsing Google Maps directly is mandatory.
   Use when receiving a /pre-survey command, or a client name, industry, and area.
-  Output as pre_survey_YYYYMMDD_<client>.md.
+  Output as pre_survey.md.
 ---
 
 # Pre-survey Skill
@@ -274,10 +274,8 @@ If you considered and rejected other directions, note them briefly with reasons.
 ### Output path
 
 ```
-content/pre_survey_<client_name_in_snake_case>.md
+content/pre_survey.md
 ```
-
-Example: `content/pre_survey_sakura_cafe.md`
 
 ### Rules for filling the template
 
