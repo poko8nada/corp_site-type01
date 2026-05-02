@@ -1,4 +1,4 @@
-import type { ShellNavEntry } from './config';
+import type { FrameNavEntry } from './index';
 
 export type HeaderPattern = 'standard' | 'compact' | 'none';
 
@@ -6,7 +6,7 @@ export interface HeaderProps {
   pattern: HeaderPattern;
   brandText: string;
   drawerId: string;
-  navEntries: readonly ShellNavEntry[];
+  navEntries: readonly FrameNavEntry[];
   primaryCta: { readonly label: string; readonly href: string };
 }
 
@@ -84,7 +84,7 @@ export function Header(props: HeaderProps) {
                 ) : (
                   <span
                     class='text-base-content/50 inline-flex min-h-11 cursor-not-allowed items-center px-1 py-2'
-                    data-shell-link-state='placeholder'
+                    data-frame-link-state='placeholder'
                     title={entry.reason}
                   >
                     {entry.label}

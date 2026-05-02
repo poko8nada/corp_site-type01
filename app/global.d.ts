@@ -1,9 +1,9 @@
 import 'hono';
-import type { ShellRenderProps } from './routes/_renderer';
+import type { SiteRenderProps } from './routes/_renderer';
 
 declare module 'hono' {
   interface ContextRenderer {
-    (content: string | Promise<string>, props?: ShellRenderProps): Response | Promise<Response>;
+    (content: string | Promise<string>, props?: SiteRenderProps): Response | Promise<Response>;
   }
 
   interface Env {

@@ -1,10 +1,10 @@
-export const SITE_SHELL_DRAWER_ID = 'site-shell-drawer' as const;
+export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
-export type ShellNavEntry =
+export type FrameNavEntry =
   | { kind: 'link'; label: string; href: string }
   | { kind: 'placeholder'; label: string; reason: string };
 
-export const shellNavEntries: readonly ShellNavEntry[] = [
+export const frameNavEntries: readonly FrameNavEntry[] = [
   { kind: 'link', label: 'ホーム', href: '/' },
   { kind: 'link', label: 'お問い合わせ', href: '/contact' },
   {
@@ -14,26 +14,26 @@ export const shellNavEntries: readonly ShellNavEntry[] = [
   },
 ] as const;
 
-export const shellPrimaryCta = {
+export const framePrimaryCta = {
   label: 'お問い合わせ',
   href: '/contact',
 } as const;
 
-export type ShellLegalEntry =
+export type FrameLegalEntry =
   | { kind: 'link'; label: string; href: string }
   | { kind: 'placeholder'; label: string; reason: string };
 
-export interface ShellFooterCopy {
+export interface FrameFooterCopy {
   companyHeading: string;
   companyLines: readonly string[];
   contactHeading: string;
   contactLines: readonly string[];
   legalHeading: string;
-  legalEntries: readonly ShellLegalEntry[];
+  legalEntries: readonly FrameLegalEntry[];
   copyrightName: string;
 }
 
-export const shellFooterCopy: ShellFooterCopy = {
+export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
   companyLines: ['BAR KAGETSUKI NAKASU', 'Gate Stage Nakasu 5F'],
   contactHeading: '連絡先',
@@ -53,3 +53,12 @@ export const shellFooterCopy: ShellFooterCopy = {
   ],
   copyrightName: 'BAR KAGETSUKI NAKASU',
 } as const;
+
+export { DrawerNav } from './drawer-nav';
+export type { DrawerNavProps } from './drawer-nav';
+export { Footer } from './footer';
+export type { FooterPattern, FooterProps } from './footer';
+export { Header } from './header';
+export type { HeaderPattern, HeaderProps } from './header';
+export { SiteLayout } from './site-layout';
+export type { SiteLayoutProps } from './site-layout';

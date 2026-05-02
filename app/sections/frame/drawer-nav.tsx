@@ -1,7 +1,7 @@
-import type { ShellNavEntry } from './config';
+import type { FrameNavEntry } from './index';
 
 export interface DrawerNavProps {
-  entries: readonly ShellNavEntry[];
+  entries: readonly FrameNavEntry[];
 }
 
 export function DrawerNav(props: DrawerNavProps) {
@@ -18,7 +18,7 @@ export function DrawerNav(props: DrawerNavProps) {
           ) : (
             <span
               class='text-base-content/50 block cursor-not-allowed px-4 py-3'
-              data-shell-link-state='placeholder'
+              data-frame-link-state='placeholder'
               title={entry.reason}
             >
               {entry.label}
