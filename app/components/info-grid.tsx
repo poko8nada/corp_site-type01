@@ -31,7 +31,7 @@ export function InfoGrid(props: InfoGridProps) {
             <dl class='mt-4 space-y-0'>
               {group.items.map((item) => (
                 <div
-                  class='border-b border-base-300/40 py-3.5 first:pt-0 last:border-0 last:pb-0'
+                  class='border-b border-base-300/30 py-3.5 first:pt-0 last:border-0 last:pb-0'
                   key={item.label}
                 >
                   <dt class='text-xs font-medium text-base-content/45'>{item.label}</dt>

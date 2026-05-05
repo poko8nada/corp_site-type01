@@ -18,10 +18,10 @@ export function TextCardGrid(props: TextCardGridProps) {
       <h3 class='font-display text-base-content text-2xl leading-snug tracking-tight sm:text-3xl'>
         {sectionHeading}
       </h3>
-      <div class={`mt-12 grid gap-0 border-t border-base-300/40 ${gridCols}`}>
+      <div class={`mt-12 grid gap-5 sm:gap-6 ${gridCols}`}>
         {items.map((item, index) => (
           <div
-            class='reveal-on-scroll border-b border-base-300/40 py-8 sm:py-10 md:border-b-0 md:border-l md:first:border-l-0 md:px-8 md:py-0 lg:px-10'
+            class='reveal-on-scroll card-elevate p-6 sm:p-8 lg:p-10 cursor-pointer'
             key={`${item.heading ?? ''}${index}`}
           >
             {item.heading ? (

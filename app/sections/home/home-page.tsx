@@ -19,7 +19,11 @@ const SECTION_LABEL: Record<HomeSectionRole, string> = {
   conversion: 'お問い合わせ',
 };
 
-const container = 'mx-auto w-full px-6 sm:px-8 lg:px-10';
+const container = 'mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10';
+
+function SectionLabel(props: { children: string }) {
+  return <p class='section-eyebrow mb-10'>{props.children}</p>;
+}
 
 export function HomePage() {
   return (
@@ -28,9 +32,10 @@ export function HomePage() {
         <HomeLeadBlock />
       </Section>
 
-      <Section class='w-full' id='home-section-explanation' label={SECTION_LABEL.explanation}>
-        <div class={`${container} max-w-4xl`}>
-          <div class='reveal-on-scroll py-28 sm:py-36'>
+      <Section class='w-full section-pad-relaxed' id='home-section-explanation' label={SECTION_LABEL.explanation}>
+        <div class={container}>
+          <div class='reveal-on-scroll'>
+            <SectionLabel>{SECTION_LABEL.explanation}</SectionLabel>
             <HomeExplanationBlock />
           </div>
         </div>
@@ -39,43 +44,44 @@ export function HomePage() {
       <ImageBreak {...homeImageBreaks[0]} />
 
       <Section
-        class='w-full bg-base-200/50'
+        class='w-full bg-surface-warm section-fade-t'
         id='home-section-strengths'
         label={SECTION_LABEL.strengths}
       >
-        <div class={`${container} max-w-5xl`}>
-          <div class='py-20 sm:py-28'>
+        <div class={container}>
+          <div class='section-pad-relaxed'>
+            <SectionLabel>{SECTION_LABEL.strengths}</SectionLabel>
             <HomeStrengthsBlock />
           </div>
         </div>
       </Section>
 
-      <Section class='w-full' id='home-section-facts' label={SECTION_LABEL.facts}>
-        <div class={`${container} max-w-5xl`}>
-          <div class='reveal-on-scroll py-28 sm:py-36'>
+      <Section class='w-full section-pad-relaxed' id='home-section-facts' label={SECTION_LABEL.facts}>
+        <div class={container}>
+          <div class='reveal-on-scroll'>
+            <SectionLabel>{SECTION_LABEL.facts}</SectionLabel>
             <HomeFactsBlock />
           </div>
         </div>
       </Section>
 
-      <Section class='w-full bg-base-200/50' id='home-section-info' label={SECTION_LABEL.info}>
-        <div class={`${container} max-w-5xl`}>
-          <div class='reveal-on-scroll py-20 sm:py-28'>
+      <Section class='w-full bg-surface-soft section-pad-compact section-fade-b' id='home-section-info' label={SECTION_LABEL.info}>
+        <div class={container}>
+          <div class='reveal-on-scroll'>
+            <SectionLabel>{SECTION_LABEL.info}</SectionLabel>
             <HomeInfoBlock />
           </div>
         </div>
       </Section>
 
       <Section
-        class='relative w-full'
+        class='relative w-full section-pad-relaxed overflow-hidden'
         id='home-section-conversion'
         label={SECTION_LABEL.conversion}
       >
-        <div class='absolute inset-0 bg-radial-[ellipse_at_center] from-primary/6 to-transparent' />
+        <div class='absolute inset-0 cta-surface' />
         <div class={`${container} relative max-w-lg`}>
-          <div class='py-32 sm:py-40'>
-            <HomeConversionBlock />
-          </div>
+          <HomeConversionBlock />
         </div>
       </Section>
     </div>

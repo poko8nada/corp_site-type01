@@ -18,7 +18,7 @@ export function MediaBlock(props: MediaBlockProps) {
       <div class={imageOrder}>
         <img
           alt={imageAlt}
-          class='w-full rounded-lg object-cover shadow-sm'
+          class='w-full rounded-lg object-cover img-ambient'
           decoding='async'
           loading='lazy'
           src={imageSrc}

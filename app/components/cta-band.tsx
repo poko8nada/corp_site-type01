@@ -15,7 +15,7 @@ export function CtaBand(props: CtaBandProps) {
       </h3>
       <p class='text-base-content/50 max-w-sm text-base leading-relaxed'>{description}</p>
       <a
-        class='btn btn-primary mt-4 px-10 tracking-widest uppercase shadow-md transition-shadow duration-500 hover:shadow-lg hover:shadow-primary/15'
+        class='btn btn-primary mt-4 px-10 tracking-widest uppercase shadow-md transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/15'
         href={ctaHref}
       >
         {ctaLabel}
