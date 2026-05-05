@@ -77,9 +77,21 @@ pnpm test:run         # Vitest
 
 `app/components/`（能力単位）と `app/sections/`（ページ上の役割・共通枠）の組み替えで案件 variation を出す。
 
+### Site IA（正: `content/structure.md`）
+
+ルート、各ページの section `role` の並び、`frame` の header / footer パターンは `content/structure.md` の YAML を正とする。コードは自動 import せず、実装が追従する。
+
+現案件（抜粋）:
+
+- `frame`: `header: standard`, `footer: standard`
+- `/`（home）: `lead` → `explanation` → `strengths` → `facts` → `conversion`
+- `/contact`: `context` → `form-area`
+
+未確定や後から変える点は同ファイルの「Open questions」を参照する。
+
 - `app/components/` は「何ができるか」で名付けたブロック。ルートや `content/` の語彙に依存しない
-- `app/sections/frame/` にヘッダー・フッター・ドロワー・全ページ共通レイアウトを置く（旧 `app/shell/` の後継）
-- `app/sections/<name>/` はページ上の役割単位の合成。各フォルダの `index.ts` がそのフォルダのカタログ（コンポーネントと定数の export をここに寄せる。別 `config.ts` は必須にしない）
+- `app/sections/frame/` にヘッダー・フッター・ドロワー・全ページ共通レイアウトを置く
+- `app/sections/<name>/` はページ上の役割単位の合成。各フォルダの `index.ts` がそのフォルダのカタログ（コンポーネントと定数の export をここに寄せる。）
 - ルートの `sections/index.ts` は任意で薄い再 export 用
 
 ```text
@@ -93,38 +105,36 @@ app/
 │
 ├── sections/
 │   ├── index.ts                    # catalogと再エクスポート
-│   ├── frame/                      # 全ページ共通
+│   ├── frame/                      # 全ページ共通（structure の frame に対応）
 │   │   ├── index.ts                # catalog: Header, Footer, DrawerNav, SiteLayout + 定数
 │   │   ├── site-layout.tsx
 │   │   ├── header.tsx
 │   │   ├── footer.tsx
 │   │   └── drawer-nav.tsx
-│   └── home/
-│       ├── index.ts                # catalog: HomeLead, HomeExplanation, HomeFacts, HomeConversion
-│       ├── lead.tsx
-│       ├── explanation.tsx
-│       ├── facts.tsx
-│       └── conversion.tsx
+│   ├── home/                       # structure の routes.home に対応
+│   │   ├── index.ts                # catalog: lead / explanation / strengths / facts / conversion
+│   │   ├── lead.tsx
+│   │   ├── explanation.tsx
+│   │   ├── strengths.tsx
+│   │   ├── facts.tsx
+│   │   └── conversion.tsx
+│   └── contact/                    # structure の routes.contact に対応
+│       ├── index.ts                # catalog: context, form-area
+│       ├── context.tsx
+│       └── form-area.tsx
 │
 ├── routes/
 │   ├── _renderer.tsx               # html/head/body + SiteLayout のみ
-│   ├── index.tsx                   # sections/home から役割を並べるだけ
+│   ├── index.tsx                   # ホーム: structure の role 順に沿ってセクションを並べる
+│   ├── contact/
+│   │   └── index.tsx               # /contact（structure の contact）
 │   ├── _404.tsx
 │   └── _error.tsx
 │
 ├── client.ts
 ├── server.ts
 └── style.css
-
-# 将来: 他ページも同じパターンで sections/ 配下に追加
-app/sections/contact/
-├── index.ts
-├── context.tsx
-├── form-area.tsx
-└── conversion.tsx
 ```
-
-> 移行途中ではリポジトリ内に `app/shell/` が残っている場合がある。上記ツリーは目標構成。
 
 ### Routes and renderer
 
@@ -135,11 +145,12 @@ app/sections/contact/
 
 `content/` は取材結果・設計メモのみ。コードから自動 import せず、実装者やエージェントが「ページに何を載せるか」を決めるときの参照材料とする。
 
-| ファイル        | 内容                                                                 |
-| --------------- | -------------------------------------------------------------------- |
-| `interview.md`  | 案件ごとの取材整理                                                   |
-| `structure.md`  | ルートと blocks（role / pattern）、header・footer パターンの設計メモ |
-| `pre_survey.md` | 事前調査（GoogleMap・レビュー・競合分析）と仮説                      |
+| ファイル                                | 内容                                                 |
+| --------------------------------------- | ---------------------------------------------------- |
+| `interview.md`                          | 案件ごとの取材整理                                   |
+| `structure.md`                          | サイト IA・frame の正。詳細は YAML と Open questions |
+| `pre_survey.md`                         | 事前調査（GoogleMap・レビュー・競合分析）と仮説      |
+| `home-implementation-open-questions.md` | home の未確定一覧（議論用）。import しない           |
 
 Header / footer のパターン名（`standard` / `compact` / `minimal` / `none` 等）は `structure.md` に寄せ、実装は `app/sections/frame/` のコンポーネントと `c.render` のオプションで直接指定する。
 

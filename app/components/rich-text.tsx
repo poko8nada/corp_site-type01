@@ -7,14 +7,14 @@ export function RichText(props: RichTextProps) {
   const { heading, paragraphs } = props;
 
   return (
-    <div class='card bg-base-100 border-base-300/60 mx-auto max-w-3xl border shadow-sm'>
-      <div class='card-body gap-6 sm:gap-8'>
-        <h3 class='card-title font-display text-2xl tracking-tight sm:text-3xl'>{heading}</h3>
-        <div class='text-base-content/85 space-y-5 text-base leading-relaxed sm:text-lg'>
-          {paragraphs.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
-        </div>
+    <div>
+      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
+        {heading}
+      </h3>
+      <div class='text-base-content/60 mt-8 space-y-6 text-base leading-[1.95] sm:text-lg sm:leading-[1.95]'>
+        {paragraphs.map((p) => (
+          <p key={p}>{p}</p>
+        ))}
       </div>
     </div>
   );

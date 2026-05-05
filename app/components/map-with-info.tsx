@@ -6,49 +6,44 @@ export interface MapInfoRow {
 
 export interface MapWithInfoProps {
   heading: string;
+  mapNote: string;
   rows: readonly MapInfoRow[];
-  /** 地図埋め込み前の短い注記 */
-  mapNote?: string;
 }
 
 export function MapWithInfo(props: MapWithInfoProps) {
-  const { heading, rows, mapNote } = props;
+  const { heading, mapNote, rows } = props;
 
   return (
-    <div class='grid gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:gap-8'>
-      <div class='card bg-base-100 border-base-300/60 border shadow-sm'>
-        <div class='card-body gap-6'>
-          <h3 class='card-title font-display text-2xl tracking-tight sm:text-3xl'>{heading}</h3>
-          <dl class='divide-base-300/80 border-base-300/80 divide-y border-y'>
-            {rows.map((row) => (
-              <div
-                class='grid gap-1 py-4 sm:grid-cols-[minmax(0,7.5rem)_minmax(0,1fr)] sm:gap-6'
-                key={row.label}
-              >
-                <dt class='text-base-content/55 text-sm font-semibold'>{row.label}</dt>
-                <dd class='text-base-content/90 text-sm leading-relaxed sm:text-base'>
-                  {row.valueHref ? (
-                    <a class='link link-hover' href={row.valueHref}>
-                      {row.value}
-                    </a>
-                  ) : (
-                    row.value
-                  )}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </div>
-
-      <div class='card bg-base-200/80 border border-dashed border-base-300 shadow-none'>
+    <div>
+      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
+        {heading}
+      </h3>
+      <div class='mt-12 grid gap-12 lg:grid-cols-[1fr_1fr] lg:gap-16'>
+        <dl class='space-y-0'>
+          {rows.map((row) => (
+            <div
+              class='border-b border-base-300/30 flex gap-4 py-4 first:pt-0 last:border-0 last:pb-0'
+              key={row.label}
+            >
+              <dt class='text-base-content/40 w-28 shrink-0 text-sm'>{row.label}</dt>
+              <dd class='text-base-content/80 text-sm'>
+                {row.valueHref ? (
+                  <a class='text-primary hover:underline' href={row.valueHref}>
+                    {row.value}
+                  </a>
+                ) : (
+                  row.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
         <div
-          aria-label='地図プレースホルダー'
-          class='card-body text-base-content/45 flex aspect-4/3 flex-col items-center justify-center gap-2 py-10 text-center text-sm lg:aspect-auto lg:min-h-72'
+          aria-label={mapNote}
+          class='bg-base-200 text-base-content/30 flex aspect-4/3 w-full items-center justify-center text-center text-sm lg:aspect-auto lg:min-h-80'
           role='img'
         >
-          <span class='font-medium'>地図プレースホルダー</span>
-          {mapNote ? <span class='text-xs opacity-80'>{mapNote}</span> : null}
+          <span class='max-w-48 px-4'>{mapNote}</span>
         </div>
       </div>
     </div>

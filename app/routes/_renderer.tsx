@@ -1,6 +1,8 @@
 import {
   SITE_FRAME_DRAWER_ID,
   SiteLayout,
+  frameBrandText,
+  frameDefaultMetaDescription,
   frameFooterCopy,
   frameNavEntries,
   framePrimaryCta,
@@ -26,14 +28,10 @@ export type SiteRenderProps = {
 
 export default jsxRenderer((props) => {
   const { children, Layout } = props;
-  const title = props.title ?? 'BAR KAGETSUKI NAKASU';
-  const description =
-    props.description ??
-    '福岡・中洲の夜に、静かに寄り添うオーセンティックバー。ウイスキーとカクテルを落ち着いた空間で楽しめます。';
+  const title = props.title ?? frameBrandText;
+  const description = props.description ?? frameDefaultMetaDescription;
   const headerPattern = props.headerPattern ?? 'standard';
   const footerPattern = props.footerPattern ?? 'standard';
-
-  const brandText = 'BAR KAGETSUKI NAKASU';
 
   return (
     <html lang='ja'>
@@ -50,7 +48,7 @@ export default jsxRenderer((props) => {
       <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden'>
         {raw('<!-- site-frame:analytics-body-open (e.g. GTM noscript iframe) -->')}
         <SiteLayout
-          brandText={brandText}
+          brandText={frameBrandText}
           drawerId={SITE_FRAME_DRAWER_ID}
           footerCopy={frameFooterCopy}
           footerPattern={footerPattern}

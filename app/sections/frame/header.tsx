@@ -33,7 +33,7 @@ export function Header(props: HeaderProps) {
   const navText = compact ? 'text-sm' : 'text-sm sm:text-base';
 
   return (
-    <header class='border-base-300 bg-base-100 border-b'>
+    <header class='sticky top-0 z-40 border-b border-base-300/80 bg-base-100/90 shadow-sm backdrop-blur'>
       <div
         class={`mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:gap-x-8 lg:px-8 ${barMinH} ${barPad}`}
       >

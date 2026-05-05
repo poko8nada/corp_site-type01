@@ -1,5 +1,10 @@
 export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
+export const frameBrandText = 'CASUAL BAR Lyra' as const;
+
+export const frameDefaultMetaDescription =
+  '中洲のカジュアルバー CASUAL BAR Lyra。女性バーテンダーの気配りと本格的なカクテル・ウイスキーを、落ち着いた空間で楽しめます。' as const;
+
 export type FrameNavEntry =
   | { kind: 'link'; label: string; href: string }
   | { kind: 'placeholder'; label: string; reason: string };
@@ -7,11 +12,6 @@ export type FrameNavEntry =
 export const frameNavEntries: readonly FrameNavEntry[] = [
   { kind: 'link', label: 'ホーム', href: '/' },
   { kind: 'link', label: 'お問い合わせ', href: '/contact' },
-  {
-    kind: 'placeholder',
-    label: 'お知らせ',
-    reason: '掲載ページ未作成のためリンクなし（後で URL を接続）',
-  },
 ] as const;
 
 export const framePrimaryCta = {
@@ -35,23 +35,30 @@ export interface FrameFooterCopy {
 
 export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
-  companyLines: ['BAR KAGETSUKI NAKASU', 'Gate Stage Nakasu 5F'],
+  companyLines: [
+    'CASUAL BAR Lyra',
+    '〒810-0801 福岡県福岡市博多区中洲3丁目8-12',
+    'ナイトゲートビル 2階',
+  ],
   contactHeading: '連絡先',
-  contactLines: ['Tel 092-555-0137'],
+  contactLines: [
+    'Tel 092-555-0142',
+    '営業: 月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00（日曜定休）',
+  ],
   legalHeading: '法務・ポリシー',
   legalEntries: [
     {
       kind: 'placeholder',
       label: 'プライバシーポリシー',
-      reason: 'ページ未作成のためリンクなし（後で URL を接続）',
+      reason: '公開準備中',
     },
     {
       kind: 'placeholder',
       label: '特定商取引法に基づく表記',
-      reason: 'ページ未作成のためリンクなし（後で URL を接続）',
+      reason: '公開準備中',
     },
   ],
-  copyrightName: 'BAR KAGETSUKI NAKASU',
+  copyrightName: frameBrandText,
 } as const;
 
 export { DrawerNav } from './drawer-nav';
