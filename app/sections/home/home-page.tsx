@@ -21,10 +21,6 @@ const SECTION_LABEL: Record<HomeSectionRole, string> = {
 
 const container = 'mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10';
 
-function SectionLabel(props: { children: string }) {
-  return <p class='section-eyebrow mb-10'>{props.children}</p>;
-}
-
 export function HomePage() {
   return (
     <div class='text-base-content flex flex-col'>
@@ -33,61 +29,59 @@ export function HomePage() {
       </Section>
 
       <Section
-        class='w-full section-pad-relaxed'
+        class='w-full home-divider section-pad-relaxed'
         id='home-section-explanation'
         label={SECTION_LABEL.explanation}
       >
         <div class={container}>
-          <div class='reveal-on-scroll'>
-            <SectionLabel>{SECTION_LABEL.explanation}</SectionLabel>
+          <div class='reveal-on-scroll [--reveal-delay:40ms]'>
             <HomeExplanationBlock />
           </div>
         </div>
       </Section>
 
-      <ImageBreak {...homeImageBreaks[0]} />
+      <div class='home-divider'>
+        <ImageBreak {...homeImageBreaks[0]} />
+      </div>
 
       <Section
-        class='w-full bg-surface-warm section-fade-t'
+        class='w-full bg-surface-warm home-divider section-pad-relaxed'
         id='home-section-strengths'
         label={SECTION_LABEL.strengths}
       >
         <div class={container}>
-          <div class='section-pad-relaxed'>
-            <SectionLabel>{SECTION_LABEL.strengths}</SectionLabel>
+          <div class='reveal-on-scroll [--reveal-delay:60ms]'>
             <HomeStrengthsBlock />
           </div>
         </div>
       </Section>
 
       <Section
-        class='w-full section-pad-relaxed'
+        class='w-full home-divider section-pad-relaxed'
         id='home-section-facts'
         label={SECTION_LABEL.facts}
       >
         <div class={container}>
-          <div class='reveal-on-scroll'>
-            <SectionLabel>{SECTION_LABEL.facts}</SectionLabel>
+          <div class='reveal-on-scroll [--reveal-delay:60ms]'>
             <HomeFactsBlock />
           </div>
         </div>
       </Section>
 
       <Section
-        class='w-full bg-surface-soft section-pad-compact section-fade-b'
+        class='w-full bg-surface-soft home-divider section-pad-compact'
         id='home-section-info'
         label={SECTION_LABEL.info}
       >
         <div class={container}>
-          <div class='reveal-on-scroll'>
-            <SectionLabel>{SECTION_LABEL.info}</SectionLabel>
+          <div class='reveal-on-scroll [--reveal-delay:80ms]'>
             <HomeInfoBlock />
           </div>
         </div>
       </Section>
 
       <Section
-        class='relative w-full section-pad-relaxed overflow-hidden'
+        class='relative w-full home-divider section-pad-relaxed overflow-hidden'
         id='home-section-conversion'
         label={SECTION_LABEL.conversion}
       >

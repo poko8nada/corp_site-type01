@@ -8,10 +8,10 @@ export function RichText(props: RichTextProps) {
 
   return (
     <div>
-      <h3 class='font-display text-base-content text-2xl leading-snug tracking-tight sm:text-3xl'>
+      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
         {heading}
       </h3>
-      <div class='text-base-content/60 mt-8 space-y-6 text-base leading-[1.85] sm:text-lg sm:leading-[1.85]'>
+      <div class='text-base-content/86 mt-8 space-y-6 text-base leading-[1.85] sm:text-lg sm:leading-[1.85]'>
         {paragraphs.map((p) => (
           <p key={p}>{p}</p>
         ))}

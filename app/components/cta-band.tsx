@@ -9,13 +9,13 @@ export function CtaBand(props: CtaBandProps) {
   const { heading, description, ctaLabel, ctaHref } = props;
 
   return (
-    <div class='reveal-on-scroll flex flex-col items-center gap-6 text-center'>
-      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tighter sm:text-4xl'>
+    <div class='reveal-on-scroll [--reveal-delay:80ms] flex flex-col items-center gap-6 text-center'>
+      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
         {heading}
       </h3>
-      <p class='text-base-content/50 max-w-sm text-base leading-relaxed'>{description}</p>
+      <p class='text-base-content/80 max-w-md text-base leading-relaxed'>{description}</p>
       <a
-        class='btn btn-primary mt-4 px-10 tracking-widest uppercase shadow-md transition-all duration-500 ease-out hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/15'
+        class='btn btn-primary mt-4 px-10 tracking-[0.16em] uppercase shadow-md transition-all duration-200 ease-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary/45'
         href={ctaHref}
       >
         {ctaLabel}

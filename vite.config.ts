@@ -18,6 +18,9 @@ export default defineConfig(({ mode }) => {
       build: {
         rollupOptions: {
           input: ['./app/client.ts', './app/style.css'],
+          output: {
+            entryFileNames: 'static/[name].js',
+          },
         },
         manifest: true,
         emptyOutDir: false,

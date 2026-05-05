@@ -11,7 +11,7 @@ export function VisualLead(props: VisualLeadProps) {
   const { eyebrow, headline, description, imageSrc, imageAlt, highlights = [] } = props;
 
   return (
-    <div class='relative flex min-h-svh items-end'>
+    <div class='relative flex min-h-[88svh] items-end sm:min-h-svh'>
       <img
         alt={imageAlt}
         class='absolute inset-0 h-full w-full object-cover'
@@ -20,22 +20,24 @@ export function VisualLead(props: VisualLeadProps) {
         src={imageSrc}
       />
       <div class='pointer-events-none absolute inset-0' aria-hidden='true'>
-        <div class='absolute inset-0 bg-linear-to-t from-black/75 via-black/40 to-black/15' />
-        <div class='absolute inset-0 bg-radial-[ellipse_60%_50%_at_50%_75%] from-primary/20 to-transparent' />
-        <div class='absolute inset-0 bg-radial-[ellipse_50%_35%_at_30%_90%] from-secondary/10 to-transparent' />
-        <div class='absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-base-100 via-base-100/70 to-transparent' />
+        <div class='absolute inset-0 bg-linear-to-t from-black/80 via-black/38 to-black/10' />
+        <div class='absolute inset-0 bg-radial-[ellipse_65%_55%_at_50%_78%] from-primary/22 to-transparent' />
+        <div class='absolute inset-0 bg-radial-[ellipse_55%_38%_at_30%_92%] from-secondary/12 to-transparent' />
+        <div class='absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-base-100 via-base-100/78 to-transparent' />
       </div>
 
       <div class='relative mx-auto w-full max-w-5xl px-6 pb-24 sm:px-8 sm:pb-32 lg:px-10 lg:pb-36'>
-        <p class='text-xs font-medium tracking-[0.28em] uppercase text-white/50'>{eyebrow}</p>
-        <h1 class='font-display mt-4 text-5xl leading-none tracking-tighter text-white sm:text-7xl lg:text-8xl'>
+        <p class='lead-reveal text-sm font-semibold tracking-[0.2em] uppercase text-white/78'>
+          {eyebrow}
+        </p>
+        <h1 class='lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight text-white sm:text-7xl lg:text-8xl'>
           {headline}
         </h1>
-        <p class='mt-8 max-w-md text-base leading-relaxed text-white/60 sm:text-lg'>
+        <p class='lead-reveal [--lead-delay:220ms] mt-7 max-w-xl text-base leading-relaxed text-white/78 sm:text-lg'>
           {description}
         </p>
         {highlights.length > 0 ? (
-          <ul class='mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide text-white/40 sm:text-sm'>
+          <ul class='lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide text-white/68 sm:text-sm'>
             {highlights.map((item) => (
               <li key={item}>{item}</li>
             ))}
@@ -45,7 +47,7 @@ export function VisualLead(props: VisualLeadProps) {
 
       <div class='absolute inset-x-0 bottom-8 flex justify-center' aria-hidden='true'>
         <svg
-          class='scroll-indicator h-5 w-5 text-white/30'
+          class='scroll-indicator h-7 w-7 rounded-full border border-white/35 p-1 text-white/75'
           fill='none'
           stroke='currentColor'
           stroke-width='1.5'

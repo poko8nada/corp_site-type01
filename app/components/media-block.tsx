@@ -10,15 +10,15 @@ export interface MediaBlockProps {
 export function MediaBlock(props: MediaBlockProps) {
   const { imageSrc, imageAlt, imagePosition = 'right', children } = props;
 
-  const imageOrder = imagePosition === 'left' ? 'lg:order-first' : 'lg:order-last';
+  const imageOrder = imagePosition === 'left' ? 'xl:order-first' : 'xl:order-last';
 
   return (
-    <div class='grid items-center gap-12 lg:grid-cols-2 lg:gap-16'>
-      <div>{children}</div>
-      <div class={imageOrder}>
+    <div class='grid items-center gap-10 md:gap-12 xl:grid-cols-2 xl:gap-16'>
+      <div class='reveal-on-scroll [--reveal-delay:120ms]'>{children}</div>
+      <div class={`${imageOrder} reveal-on-scroll [--reveal-delay:40ms]`}>
         <img
           alt={imageAlt}
-          class='w-full rounded-lg object-cover img-ambient'
+          class='img-ambient aspect-4/3 w-full object-cover'
           decoding='async'
           loading='lazy'
           src={imageSrc}

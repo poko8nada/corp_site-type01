@@ -56,7 +56,7 @@ body {
   color: var(--color-base-content);
 }
 
-/* --- Lv3: Noise texture overlay --- */
+/* --- Ambient texture --- */
 
 body::after {
   content: '';
@@ -70,149 +70,150 @@ body::after {
   background-size: 256px 256px;
 }
 
-/* --- Lv3: Section background surfaces --- */
+/* --- Section surfaces --- */
 
 .bg-surface-warm {
   background:
-    radial-gradient(ellipse 80% 60% at 0% 50%, oklch(45% 0.09 45 / 0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 70% at 100% 50%, oklch(62% 0.08 80 / 0.03) 0%, transparent 50%),
-    oklch(95% 0.01 80);
+    radial-gradient(ellipse 85% 62% at 0% 50%, oklch(45% 0.09 45 / 0.055) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 72% at 100% 50%, oklch(62% 0.08 80 / 0.04) 0%, transparent 52%),
+    oklch(95.2% 0.01 80);
 }
 
 .bg-surface-soft {
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, oklch(45% 0.09 45 / 0.03) 0%, transparent 50%),
-    radial-gradient(ellipse 60% 60% at 80% 100%, oklch(55% 0.06 350 / 0.02) 0%, transparent 40%),
+    radial-gradient(ellipse 72% 52% at 50% 0%, oklch(45% 0.09 45 / 0.04) 0%, transparent 52%),
+    radial-gradient(ellipse 62% 62% at 80% 100%, oklch(55% 0.06 350 / 0.03) 0%, transparent 42%),
     oklch(96.5% 0.008 78);
 }
 
-/* --- Lv3: Section fade masks --- */
+/* --- Home section framing --- */
 
-.section-fade-t {
-  mask-image: linear-gradient(to bottom, transparent 0%, black 5rem);
+.home-divider {
+  border-top: 1px solid oklch(88% 0.015 70 / 0.75);
 }
 
-.section-fade-b {
-  mask-image: linear-gradient(to top, transparent 0%, black 5rem);
-}
-
-/* --- Lv2: Section eyebrow label --- */
-
-.section-eyebrow {
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: oklch(25% 0.02 55 / 0.35);
-}
-
-/* --- Lv2: Card with hover --- */
+/* --- Cards --- */
 
 .card-elevate {
-  background: oklch(98% 0.005 80);
-  border: 1px solid oklch(88% 0.015 70 / 0.5);
+  background: oklch(98.8% 0.004 80);
+  border: 1px solid oklch(84% 0.016 70 / 0.8);
   border-radius: 0.75rem;
   transition:
-    transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.35s ease,
-    background 0.35s ease;
+    transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 260ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 220ms ease,
+    background-color 220ms ease;
 }
 
 .card-elevate:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   background: oklch(100% 0 0);
-  border-color: oklch(62% 0.08 80 / 0.4);
+  border-color: oklch(62% 0.08 80 / 0.55);
   box-shadow:
-    0 8px 30px -6px oklch(25% 0.02 55 / 0.08),
-    0 2px 8px -2px oklch(25% 0.02 55 / 0.05);
+    0 10px 34px -10px oklch(25% 0.02 55 / 0.14),
+    0 3px 10px -3px oklch(25% 0.02 55 / 0.09);
 }
 
-/* --- Lv3: Image ambient glow --- */
+/* --- Images --- */
 
 .img-ambient {
   border-radius: 0.75rem;
+  border: 1px solid oklch(84% 0.016 70 / 0.7);
   box-shadow:
-    0 4px 24px -6px oklch(45% 0.09 45 / 0.12),
-    0 1px 4px -1px oklch(25% 0.02 55 / 0.06);
+    0 16px 40px -22px oklch(25% 0.02 55 / 0.25),
+    0 2px 6px -2px oklch(25% 0.02 55 / 0.12);
 }
 
-/* --- Lv3: Scroll indicator --- */
+/* --- Lead intro motion --- */
+
+@keyframes lead-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.lead-reveal {
+  opacity: 0;
+  animation: lead-fade-up 780ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--lead-delay, 0ms);
+}
+
+/* --- Scroll indicator --- */
 
 @keyframes scroll-pulse {
   0%, 100% {
-    opacity: 0.25;
+    opacity: 0.2;
     transform: translateY(0);
   }
   50% {
-    opacity: 0.7;
-    transform: translateY(8px);
+    opacity: 0.72;
+    transform: translateY(6px);
   }
 }
 
 .scroll-indicator {
-  animation: scroll-pulse 2.4s ease-in-out infinite;
+  animation: scroll-pulse 2s ease-in-out infinite;
 }
 
-/* --- Lv3: Staggered reveal --- */
+/* --- Scroll reveal --- */
 
-[data-reveal] .reveal-on-scroll {
+[data-reveal='ready'] .reveal-on-scroll {
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(var(--reveal-offset, 18px));
+  filter: blur(2px);
   transition:
-    opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 640ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
 }
 
-[data-reveal] .reveal-on-scroll.is-visible {
+[data-reveal='ready'] .reveal-on-scroll.is-visible {
   opacity: 1;
   transform: translateY(0);
+  filter: blur(0);
 }
 
-[data-reveal] .reveal-on-scroll:nth-child(2) {
-  transition-delay: 0.1s;
-}
-[data-reveal] .reveal-on-scroll:nth-child(3) {
-  transition-delay: 0.2s;
-}
-[data-reveal] .reveal-on-scroll:nth-child(4) {
-  transition-delay: 0.3s;
-}
-[data-reveal] .reveal-on-scroll:nth-child(5) {
-  transition-delay: 0.4s;
-}
-[data-reveal] .reveal-on-scroll:nth-child(6) {
-  transition-delay: 0.5s;
-}
-
-/* --- Lv1: Section padding rhythm --- */
+/* --- Section spacing --- */
 
 .section-pad-relaxed {
-  padding-block: clamp(5rem, 10vw, 8rem);
+  padding-block: clamp(4.5rem, 9vw, 7.5rem);
 }
 
 .section-pad-compact {
-  padding-block: clamp(3rem, 6vw, 4.5rem);
+  padding-block: clamp(3rem, 5.5vw, 4.25rem);
 }
 
-/* --- Lv3: CTA ambient --- */
+/* --- CTA ambient --- */
 
 .cta-surface {
   background:
-    radial-gradient(ellipse 60% 80% at 50% 50%, oklch(45% 0.09 45 / 0.08) 0%, transparent 65%),
-    radial-gradient(ellipse 80% 60% at 30% 60%, oklch(55% 0.06 350 / 0.04) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 80% at 50% 50%, oklch(45% 0.09 45 / 0.09) 0%, transparent 66%),
+    radial-gradient(ellipse 80% 60% at 30% 60%, oklch(55% 0.06 350 / 0.05) 0%, transparent 56%),
     oklch(96% 0.008 78);
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .lead-reveal,
   .scroll-indicator,
   .card-elevate {
     animation: none;
     transition: none;
     transform: none;
+    filter: none;
+    opacity: 1;
   }
-  [data-reveal] .reveal-on-scroll {
+  [data-reveal='ready'] .reveal-on-scroll {
     opacity: 1;
     transform: none;
+    filter: none;
   }
 }
