@@ -32,7 +32,11 @@ export function HomePage() {
         <HomeLeadBlock />
       </Section>
 
-      <Section class='w-full section-pad-relaxed' id='home-section-explanation' label={SECTION_LABEL.explanation}>
+      <Section
+        class='w-full section-pad-relaxed'
+        id='home-section-explanation'
+        label={SECTION_LABEL.explanation}
+      >
         <div class={container}>
           <div class='reveal-on-scroll'>
             <SectionLabel>{SECTION_LABEL.explanation}</SectionLabel>
@@ -56,7 +60,11 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section class='w-full section-pad-relaxed' id='home-section-facts' label={SECTION_LABEL.facts}>
+      <Section
+        class='w-full section-pad-relaxed'
+        id='home-section-facts'
+        label={SECTION_LABEL.facts}
+      >
         <div class={container}>
           <div class='reveal-on-scroll'>
             <SectionLabel>{SECTION_LABEL.facts}</SectionLabel>
@@ -65,7 +73,11 @@ export function HomePage() {
         </div>
       </Section>
 
-      <Section class='w-full bg-surface-soft section-pad-compact section-fade-b' id='home-section-info' label={SECTION_LABEL.info}>
+      <Section
+        class='w-full bg-surface-soft section-pad-compact section-fade-b'
+        id='home-section-info'
+        label={SECTION_LABEL.info}
+      >
         <div class={container}>
           <div class='reveal-on-scroll'>
             <SectionLabel>{SECTION_LABEL.info}</SectionLabel>
