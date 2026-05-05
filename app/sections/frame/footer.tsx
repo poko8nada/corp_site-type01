@@ -15,7 +15,7 @@ function legalRow(entry: FrameLegalEntry) {
   if (entry.kind === 'link') {
     return (
       <a
-        class='link link-hover inline-flex min-h-9 items-center rounded-sm py-0.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
+        class='link link-hover inline-flex min-h-9 items-center rounded-sm py-0.5 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
         href={entry.href}
       >
         {entry.label}

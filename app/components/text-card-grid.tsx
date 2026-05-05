@@ -15,18 +15,23 @@ export function TextCardGrid(props: TextCardGridProps) {
 
   return (
     <div>
-      <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
+      <h3 class='font-display text-base-content text-2xl leading-snug tracking-tight sm:text-3xl'>
         {sectionHeading}
       </h3>
-      <div class={`mt-12 grid gap-12 md:gap-10 ${gridCols}`}>
+      <div class={`mt-12 grid gap-0 border-t border-base-300/40 ${gridCols}`}>
         {items.map((item, index) => (
-          <div key={`${item.heading ?? ''}${index}`}>
+          <div
+            class='reveal-on-scroll border-b border-base-300/40 py-8 sm:py-10 md:border-b-0 md:border-l md:first:border-l-0 md:px-8 md:py-0 lg:px-10'
+            key={`${item.heading ?? ''}${index}`}
+          >
             {item.heading ? (
-              <p class='text-primary text-xs font-medium tracking-[0.2em] uppercase'>
+              <p class='font-display text-lg tracking-tight text-base-content sm:text-xl'>
                 {item.heading}
               </p>
             ) : null}
-            <p class={`text-base-content/60 leading-relaxed ${item.heading ? 'mt-3' : ''}`}>
+            <p
+              class={`text-base-content/55 text-sm leading-relaxed sm:text-base ${item.heading ? 'mt-4' : ''}`}
+            >
               {item.body}
             </p>
           </div>

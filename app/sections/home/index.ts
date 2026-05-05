@@ -2,11 +2,13 @@ export { HomeConversionBlock } from './conversion';
 export { HomeExplanationBlock } from './explanation';
 export { HomeFactsBlock } from './facts';
 export { HomePage } from './home-page';
+export { HomeInfoBlock } from './info';
 export { HomeLeadBlock } from './lead';
 export { HomeStrengthsBlock } from './strengths';
 
 import type { CtaBandProps } from '@/components/cta-band';
 import type { ImageBreakProps } from '@/components/image-break';
+import type { InfoGridProps } from '@/components/info-grid';
 import type { MapInfoRow } from '@/components/map-with-info';
 import type { MediaBlockProps } from '@/components/media-block';
 import type { RichTextProps } from '@/components/rich-text';
@@ -69,26 +71,30 @@ export const homeFactsRows: readonly MapInfoRow[] = [
     label: 'アクセス',
     value: '中洲の那珂川沿いエリア。ビル入口の位置は地図アプリでご確認ください。',
   },
-  {
-    label: '営業時間',
-    value: '月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00',
-  },
-  { label: '定休日', value: '日曜（臨時休業・時間変更は Instagram でご案内）' },
-  {
-    label: '料金の目安',
-    value: 'お一人さま 5,000円前後（ご注文内容により変動）',
-  },
-  {
-    label: 'ご予約',
-    value: '混雑しやすい時間帯は事前予約をおすすめします。',
-  },
-  { label: '電話', value: '092-555-0142', valueHref: 'tel:0925550142' },
-  { label: 'Instagram', value: '営業日変更・イベント情報を掲載しています' },
-  {
-    label: 'バリアフリー',
-    value: 'ビル構造上、車椅子でのご来店が難しい場合があります。',
-  },
 ];
+
+export const homeInfoCatalog: InfoGridProps = {
+  sectionHeading: '営業・ご利用案内',
+  groups: [
+    {
+      heading: '営業案内',
+      items: [
+        { label: '営業時間', value: '月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00' },
+        { label: '定休日', value: '日曜（臨時休業・時間変更は Instagram でご案内）' },
+        { label: '料金の目安', value: 'お一人さま 5,000円前後（ご注文内容により変動）' },
+      ],
+    },
+    {
+      heading: '連絡先・ご案内',
+      items: [
+        { label: 'ご予約', value: '混雑しやすい時間帯は事前予約をおすすめします。' },
+        { label: '電話', value: '092-555-0142', href: 'tel:0925550142' },
+        { label: 'Instagram', value: '営業日変更・イベント情報を掲載しています' },
+        { label: 'バリアフリー', value: 'ビル構造上、車椅子でのご来店が難しい場合があります。' },
+      ],
+    },
+  ],
+};
 
 export const homeImageBreaks: readonly ImageBreakProps[] = [
   { src: '/images/backbar-bottles.jpg', alt: 'バックバーに並ぶウイスキーやリキュールのボトル' },

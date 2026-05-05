@@ -76,7 +76,7 @@ export function Header(props: HeaderProps) {
               <li class='shrink-0' key={entry.label}>
                 {entry.kind === 'link' ? (
                   <a
-                    class='link link-hover text-base-content inline-flex min-h-11 items-center rounded-sm px-1 py-2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
+                    class='link link-hover text-base-content inline-flex min-h-11 items-center rounded-sm px-1 py-2 transition-colors duration-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current'
                     href={entry.href}
                   >
                     {entry.label}

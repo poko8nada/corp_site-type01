@@ -10,8 +10,9 @@ export type FrameNavEntry =
   | { kind: 'placeholder'; label: string; reason: string };
 
 export const frameNavEntries: readonly FrameNavEntry[] = [
-  { kind: 'link', label: 'ホーム', href: '/' },
-  { kind: 'link', label: 'お問い合わせ', href: '/contact' },
+  { kind: 'link', label: 'ご案内', href: '/#home-section-explanation' },
+  { kind: 'link', label: '強み', href: '/#home-section-strengths' },
+  { kind: 'link', label: '店舗情報', href: '/#home-section-facts' },
 ] as const;
 
 export const framePrimaryCta = {
