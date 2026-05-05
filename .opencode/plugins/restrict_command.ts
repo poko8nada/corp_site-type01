@@ -33,6 +33,8 @@ const ALLOWED_COMMANDS = new Set([
   // Project-specific
   'oxlint',
   'oxfmt',
+  // python 3
+  'python3',
 ]);
 
 // git subcommands that are explicitly blocked
