@@ -1,7 +1,7 @@
-import { InfoGrid } from '@/components/info-grid';
+import { FaqList } from '@/components/faq-list';
 
-import { homeInfoCatalog } from './index';
+import { homeInfoFaq } from './index';
 
 export function HomeInfoBlock() {
-  return <InfoGrid {...homeInfoCatalog} />;
+  return <FaqList {...homeInfoFaq} />;
 }

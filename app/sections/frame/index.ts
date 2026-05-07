@@ -13,7 +13,7 @@ export const frameNavEntries: readonly FrameNavEntry[] = [
   { kind: 'link', label: '当店について', href: '/#home-section-explanation' },
   { kind: 'link', label: 'こだわり', href: '/#home-section-strengths' },
   { kind: 'link', label: 'アクセス', href: '/#home-section-facts' },
-  { kind: 'link', label: '営業案内', href: '/#home-section-info' },
+  { kind: 'link', label: 'よくある質問', href: '/#home-section-info' },
 ] as const;
 
 export const framePrimaryCta = {

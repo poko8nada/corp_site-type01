@@ -7,8 +7,8 @@ export { HomeLeadBlock } from './lead';
 export { HomeStrengthsBlock } from './strengths';
 
 import type { CtaBandProps } from '@/components/cta-band';
+import type { FaqListProps } from '@/components/faq-list';
 import type { ImageBreakProps } from '@/components/image-break';
-import type { InfoGridProps } from '@/components/info-grid';
 import type { MapInfoRow } from '@/components/map-with-info';
 import type { MediaBlockProps } from '@/components/media-block';
 import type { RichTextProps } from '@/components/rich-text';
@@ -18,9 +18,10 @@ import type { VisualLeadProps } from '@/components/visual-lead';
 export const homeLeadCatalog: VisualLeadProps = {
   eyebrow: 'カジュアルバー',
   headline: 'CASUAL BAR Lyra',
+  subhead: '中洲のリラックスした夜に、本格的な一杯を。',
   description: [
-    '“中洲の夜に、肩ひじ張らず本格的な一杯を。”',
-    '女性バーテンダーならではの気配りと、クラシックから季節のカクテルまで楽しめる品揃え。初めての方にも、安心して過ごせる時間をお届けします。',
+    '女性バーテンダーならではの気配りと、クラシックから季節のカクテルまで楽しめる品揃え。',
+    '初めての方にも、安心して過ごせる時間をお届けします。',
   ],
   imageSrc: '/images/counter-seats.jpg',
   imageAlt: '落ち着いた照明の店内とカウンター席',
@@ -83,27 +84,39 @@ export const homeFactsRows: readonly MapInfoRow[] = [
     label: 'アクセス',
     value: '中洲の那珂川沿いエリア。ビル入口の位置は地図アプリでご確認ください。',
   },
+  {
+    label: '営業時間',
+    value: '月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00',
+  },
+  {
+    label: '定休日',
+    value: '日曜（臨時休業・時間変更は Instagram でご案内）',
+  },
+  {
+    label: '電話',
+    value: '092-555-0142',
+    valueHref: 'tel:0925550142',
+  },
 ];
 
-export const homeInfoCatalog: InfoGridProps = {
-  sectionHeading: '営業・ご利用案内',
-  groups: [
+export const homeInfoFaq: FaqListProps = {
+  sectionHeading: 'よくあるご質問',
+  items: [
     {
-      heading: '営業案内',
-      items: [
-        { label: '営業時間', value: '月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00' },
-        { label: '定休日', value: '日曜（臨時休業・時間変更は Instagram でご案内）' },
-        { label: '料金の目安', value: 'お一人さま 5,000円前後（ご注文内容により変動）' },
-      ],
+      question: '料金の目安を教えてください',
+      answer: 'お一人さま 5,000円前後（ご注文内容により変動）',
     },
     {
-      heading: '連絡先・ご案内',
-      items: [
-        { label: 'ご予約', value: '混雑しやすい時間帯は事前予約をおすすめします。' },
-        { label: '電話', value: '092-555-0142', href: 'tel:0925550142' },
-        { label: 'Instagram', value: '営業日変更・イベント情報を掲載しています' },
-        { label: 'バリアフリー', value: 'ビル構造上、車椅子でのご来店が難しい場合があります。' },
-      ],
+      question: '予約は必要ですか？',
+      answer: '混雑しやすい時間帯は事前予約をおすすめします。',
+    },
+    {
+      question: '最新情報はどこで確認できますか？',
+      answer: 'Instagramで営業日変更・イベント情報を掲載しています',
+    },
+    {
+      question: '車椅子での来店は可能ですか？',
+      answer: 'ビル構造上、車椅子でのご来店が難しい場合があります。',
     },
   ],
 };

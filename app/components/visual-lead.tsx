@@ -1,6 +1,7 @@
 export interface VisualLeadProps {
   eyebrow: string;
   headline: string;
+  subhead?: string;
   description: readonly string[];
   imageSrc: string;
   imageAlt: string;
@@ -8,7 +9,7 @@ export interface VisualLeadProps {
 }
 
 export function VisualLead(props: VisualLeadProps) {
-  const { eyebrow, headline, description, imageSrc, imageAlt, highlights = [] } = props;
+  const { eyebrow, headline, subhead, description, imageSrc, imageAlt, highlights = [] } = props;
 
   return (
     <div class='relative flex min-h-[88svh] items-end sm:min-h-svh'>
@@ -26,14 +27,19 @@ export function VisualLead(props: VisualLeadProps) {
         <div class='absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-base-100 via-base-100/78 to-transparent' />
       </div>
 
-      <div class='relative mx-auto w-full max-w-5xl px-6 pb-32 sm:px-8 sm:pb-40 lg:px-10 lg:pb-44'>
+      <div class='relative mx-auto w-full max-w-5xl px-6 pb-32 sm:px-8 sm:pb-48 lg:px-10 lg:pb-50'>
         <p class='lead-reveal text-sm font-semibold tracking-[0.2em] uppercase text-white/78'>
           {eyebrow}
         </p>
         <h1 class='lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight text-white sm:text-7xl lg:text-8xl'>
           {headline}
         </h1>
-        <div class='lead-reveal [--lead-delay:220ms] mt-7 max-w-xl space-y-3 text-base leading-relaxed text-white/78 sm:text-lg'>
+        {subhead ? (
+          <p class='lead-reveal [--lead-delay:160ms] mt-5 font-display text-xl tracking-wide text-white sm:text-2xl lg:text-3xl'>
+            {subhead}
+          </p>
+        ) : null}
+        <div class='lead-reveal [--lead-delay:220ms] mt-12 pl-2 max-w-xl space-y-3 text-base leading-relaxed text-white/70 sm:text-lg'>
           {description.map((p) => (
             <p key={p}>{p}</p>
           ))}
