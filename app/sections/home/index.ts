@@ -18,13 +18,16 @@ import type { VisualLeadProps } from '@/components/visual-lead';
 export const homeLeadCatalog: VisualLeadProps = {
   eyebrow: 'カジュアルバー',
   headline: 'CASUAL BAR Lyra',
-  description:
-    '中洲の夜に、肩ひじ張らず本格的な一杯を。女性バーテンダーならではの気配りと、クラシックから季節のカクテルまで楽しめる品揃えで、初めての方にも安心して過ごせる時間をお届けします。',
+  description: [
+    '“中洲の夜に、肩ひじ張らず本格的な一杯を。”',
+    '女性バーテンダーならではの気配りと、クラシックから季節のカクテルまで楽しめる品揃え。初めての方にも、安心して過ごせる時間をお届けします。',
+  ],
   imageSrc: '/images/counter-seats.jpg',
   imageAlt: '落ち着いた照明の店内とカウンター席',
 };
 
-export const homeExplanationImage: Pick<MediaBlockProps, 'imageSrc' | 'imageAlt'> = {
+export const homeExplanationImage: Omit<MediaBlockProps, 'children'> = {
+  variant: 'wall',
   imageSrc: '/images/bartools-closeup.jpg',
   imageAlt: 'カウンターに並ぶシェイカーやジガー',
 };
@@ -44,15 +47,24 @@ export const homeStrengthsCatalog: TextCardGridProps = {
   items: [
     {
       heading: 'Trust',
-      body: '2000年代前半の開業以来、中洲で長く愛されるバーとして、安心して過ごせる接客と落ち着いた空間づくりを続けてきました。',
+      body: [
+        '2000年代前半の開業以来、中洲で長く愛されるバーとして営業を続けてきました。',
+        '安心して過ごせる接客と落ち着いた空間づくりを大切にしています。',
+      ],
     },
     {
       heading: 'Craft',
-      body: 'ウイスキー約50種以上、カクテル100種以上の幅広いラインアップに加え、日本バーテンダー協会所属の技術を活かし、定番から季節の一杯まで丁寧にお作りします。',
+      body: [
+        'ウイスキー約50種以上、カクテル100種以上の幅広いラインアップ。',
+        '日本バーテンダー協会所属の技術を活かし、定番から季節の一杯まで丁寧にお作りします。',
+      ],
     },
     {
       heading: 'Comfort',
-      body: '「カジュアルに入れるのに、味は本格的」。このバランスを大切に、初めての方にも常連の方にも心地よい時間を届けることを目指しています。',
+      body: [
+        '「カジュアルに入れるのに、味は本格的」。',
+        'このバランスを大切に、初めての方にも常連の方にも心地よい時間を届けることを目指しています。',
+      ],
     },
   ],
 };
@@ -104,8 +116,8 @@ export const homeImageBreaks: readonly ImageBreakProps[] = [
 
 export const homeConversionCatalog: CtaBandProps = {
   heading: 'ご予約・お問い合わせ',
-  description:
-    'ご来店予約、貸切のご相談、取材のお問い合わせは専用ページから受け付けています。お急ぎの方はお電話でもご連絡ください。',
+  description: 'ご来店予約、貸切のご相談、取材のお問い合わせは専用ページから受け付けています。',
   ctaLabel: 'お問い合わせ',
   ctaHref: '/contact',
+  tel: '092-555-0142',
 };

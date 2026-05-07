@@ -19,7 +19,7 @@ const SECTION_LABEL: Record<HomeSectionRole, string> = {
   conversion: 'お問い合わせ',
 };
 
-const container = 'mx-auto w-full max-w-5xl px-6 sm:px-8 lg:px-10';
+const container = 'mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8';
 
 export function HomePage() {
   return (
@@ -40,10 +40,6 @@ export function HomePage() {
         </div>
       </Section>
 
-      <div class='home-divider'>
-        <ImageBreak {...homeImageBreaks[0]} />
-      </div>
-
       <Section
         class='w-full bg-surface-warm home-divider section-pad-relaxed'
         id='home-section-strengths'
@@ -55,6 +51,10 @@ export function HomePage() {
           </div>
         </div>
       </Section>
+
+      <div class='home-divider'>
+        <ImageBreak {...homeImageBreaks[0]} />
+      </div>
 
       <Section
         class='w-full home-divider section-pad-relaxed'
@@ -79,6 +79,10 @@ export function HomePage() {
           </div>
         </div>
       </Section>
+
+      <div class='home-divider'>
+        <ImageBreak {...homeImageBreaks[1]} />
+      </div>
 
       <Section
         class='relative w-full home-divider section-pad-relaxed overflow-hidden'

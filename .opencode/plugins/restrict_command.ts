@@ -13,6 +13,8 @@ const ALLOWED_COMMANDS = new Set([
   'echo',
   'pwd',
   'which',
+  'sleep',
+  'pgrep',
   // Git (subcommands checked separately)
   'git',
   // Runtime / package managers
@@ -33,6 +35,7 @@ const ALLOWED_COMMANDS = new Set([
   // Project-specific
   'oxlint',
   'oxfmt',
+  'browser-use',
   // python 3
   'python3',
 ]);

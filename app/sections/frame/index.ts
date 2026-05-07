@@ -10,9 +10,10 @@ export type FrameNavEntry =
   | { kind: 'placeholder'; label: string; reason: string };
 
 export const frameNavEntries: readonly FrameNavEntry[] = [
-  { kind: 'link', label: 'ご案内', href: '/#home-section-explanation' },
-  { kind: 'link', label: '強み', href: '/#home-section-strengths' },
-  { kind: 'link', label: '店舗情報', href: '/#home-section-facts' },
+  { kind: 'link', label: '当店について', href: '/#home-section-explanation' },
+  { kind: 'link', label: 'こだわり', href: '/#home-section-strengths' },
+  { kind: 'link', label: 'アクセス', href: '/#home-section-facts' },
+  { kind: 'link', label: '営業案内', href: '/#home-section-info' },
 ] as const;
 
 export const framePrimaryCta = {

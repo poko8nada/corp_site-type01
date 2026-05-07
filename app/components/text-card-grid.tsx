@@ -1,6 +1,6 @@
 export interface TextCardGridItem {
   heading?: string;
-  body: string;
+  body: readonly string[];
 }
 
 export interface TextCardGridProps {
@@ -27,7 +27,7 @@ export function TextCardGrid(props: TextCardGridProps) {
       <div class={`mt-10 grid gap-5 sm:mt-12 sm:gap-6 ${gridCols}`}>
         {items.map((item, index) => (
           <div
-            class={`reveal-on-scroll card-elevate p-6 sm:p-8 lg:p-10 ${
+            class={`reveal-on-scroll card-elevate px-6 py-6 sm:py-8 lg:py-10 ${
               revealDelayByIndex[Math.min(index, revealDelayByIndex.length - 1)]
             }`}
             key={`${item.heading ?? ''}${index}`}
@@ -37,11 +37,13 @@ export function TextCardGrid(props: TextCardGridProps) {
                 {item.heading}
               </p>
             ) : null}
-            <p
-              class={`text-base-content/82 text-sm leading-relaxed sm:text-base ${item.heading ? 'mt-3' : ''}`}
+            <div
+              class={`text-base-content/82 space-y-4 text-sm leading-relaxed sm:text-base ${item.heading ? 'mt-5' : ''}`}
             >
-              {item.body}
-            </p>
+              {item.body.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
           </div>
         ))}
       </div>

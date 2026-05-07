@@ -10,7 +10,7 @@ export function ImageBreak(props: ImageBreakProps) {
     <div aria-hidden='true' class='w-full overflow-hidden'>
       <img
         alt={alt}
-        class='reveal-on-scroll [--reveal-delay:20ms] h-64 w-full object-cover sm:h-80 lg:h-96'
+        class='reveal-on-scroll [--reveal-delay:20ms] h-48 w-full object-cover sm:h-64 lg:h-72'
         decoding='async'
         loading='lazy'
         src={src}

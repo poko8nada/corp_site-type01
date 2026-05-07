@@ -3,10 +3,11 @@ export interface CtaBandProps {
   description: string;
   ctaLabel: string;
   ctaHref: string;
+  tel?: string;
 }
 
 export function CtaBand(props: CtaBandProps) {
-  const { heading, description, ctaLabel, ctaHref } = props;
+  const { heading, description, ctaLabel, ctaHref, tel } = props;
 
   return (
     <div class='reveal-on-scroll [--reveal-delay:80ms] flex flex-col items-center gap-6 text-center'>
@@ -20,6 +21,18 @@ export function CtaBand(props: CtaBandProps) {
       >
         {ctaLabel}
       </a>
+      {tel ? (
+        <p class='text-sm text-base-content/70'>
+          お電話でのご連絡は{' '}
+          <a
+            class='link link-hover text-primary transition-colors duration-200 hover:text-primary/78'
+            href={`tel:${tel.replaceAll('-', '')}`}
+          >
+            {tel}
+          </a>{' '}
+          まで
+        </p>
+      ) : null}
     </div>
   );
 }

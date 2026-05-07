@@ -1,7 +1,7 @@
 export interface VisualLeadProps {
   eyebrow: string;
   headline: string;
-  description: string;
+  description: readonly string[];
   imageSrc: string;
   imageAlt: string;
   highlights?: readonly string[];
@@ -26,16 +26,18 @@ export function VisualLead(props: VisualLeadProps) {
         <div class='absolute inset-x-0 bottom-0 h-56 bg-linear-to-t from-base-100 via-base-100/78 to-transparent' />
       </div>
 
-      <div class='relative mx-auto w-full max-w-5xl px-6 pb-24 sm:px-8 sm:pb-32 lg:px-10 lg:pb-36'>
+      <div class='relative mx-auto w-full max-w-5xl px-6 pb-32 sm:px-8 sm:pb-40 lg:px-10 lg:pb-44'>
         <p class='lead-reveal text-sm font-semibold tracking-[0.2em] uppercase text-white/78'>
           {eyebrow}
         </p>
         <h1 class='lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight text-white sm:text-7xl lg:text-8xl'>
           {headline}
         </h1>
-        <p class='lead-reveal [--lead-delay:220ms] mt-7 max-w-xl text-base leading-relaxed text-white/78 sm:text-lg'>
-          {description}
-        </p>
+        <div class='lead-reveal [--lead-delay:220ms] mt-7 max-w-xl space-y-3 text-base leading-relaxed text-white/78 sm:text-lg'>
+          {description.map((p) => (
+            <p key={p}>{p}</p>
+          ))}
+        </div>
         {highlights.length > 0 ? (
           <ul class='lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide text-white/68 sm:text-sm'>
             {highlights.map((item) => (
