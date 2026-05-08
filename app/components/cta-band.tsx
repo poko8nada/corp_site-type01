@@ -19,7 +19,15 @@ const BTN_CLASS: Record<CtaButtonVariant, string> = {
 };
 
 export function CtaBand(props: CtaBandProps) {
-  const { heading, description, ctaLabel, ctaHref, tel, buttonVariant = 'primary', telLabel } = props;
+  const {
+    heading,
+    description,
+    ctaLabel,
+    ctaHref,
+    tel,
+    buttonVariant = 'primary',
+    telLabel,
+  } = props;
 
   return (
     <div class='reveal-on-scroll [--reveal-delay:80ms] flex flex-col items-center gap-6 text-center'>

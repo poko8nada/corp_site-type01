@@ -59,21 +59,29 @@ export function VisualLead(props: VisualLeadProps) {
         <p class={`lead-reveal text-sm font-semibold tracking-[0.2em] uppercase ${textClass}/78`}>
           {eyebrow}
         </p>
-        <h1 class={`lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight ${textClass} sm:text-7xl lg:text-8xl`}>
+        <h1
+          class={`lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight ${textClass} sm:text-7xl lg:text-8xl`}
+        >
           {headline}
         </h1>
         {subhead ? (
-          <p class={`lead-reveal [--lead-delay:160ms] mt-5 font-display text-xl tracking-wide ${textClass} sm:text-2xl lg:text-3xl`}>
+          <p
+            class={`lead-reveal [--lead-delay:160ms] mt-5 font-display text-xl tracking-wide ${textClass} sm:text-2xl lg:text-3xl`}
+          >
             {subhead}
           </p>
         ) : null}
-        <div class={`lead-reveal [--lead-delay:220ms] mt-12 pl-2 max-w-xl space-y-3 text-base leading-relaxed ${textClass}/70 sm:text-lg`}>
+        <div
+          class={`lead-reveal [--lead-delay:220ms] mt-12 pl-2 max-w-xl space-y-3 text-base leading-relaxed ${textClass}/70 sm:text-lg`}
+        >
           {description.map((p) => (
             <p key={p}>{p}</p>
           ))}
         </div>
         {highlights.length > 0 ? (
-          <ul class={`lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide ${textClass}/68 sm:text-sm`}>
+          <ul
+            class={`lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide ${textClass}/68 sm:text-sm`}
+          >
             {highlights.map((item) => (
               <li key={item}>{item}</li>
             ))}

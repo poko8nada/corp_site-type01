@@ -68,7 +68,11 @@ export function HomePage() {
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:60ms]'>
-            <MapWithInfo heading={homeFactsHeading} mapNote={homeFactsMapNote} rows={homeFactsRows} />
+            <MapWithInfo
+              heading={homeFactsHeading}
+              mapNote={homeFactsMapNote}
+              rows={homeFactsRows}
+            />
           </div>
         </div>
       </Section>

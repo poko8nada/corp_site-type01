@@ -33,7 +33,9 @@ export function Header(props: HeaderProps) {
 
   const navText = compact ? 'text-sm' : 'text-sm sm:text-base';
 
-  const headerBg = glass ? 'border-b border-base-300/80 bg-base-100/90 shadow-sm backdrop-blur' : 'border-b border-base-300 bg-base-100';
+  const headerBg = glass
+    ? 'border-b border-base-300/80 bg-base-100/90 shadow-sm backdrop-blur'
+    : 'border-b border-base-300 bg-base-100';
 
   return (
     <header class={headerBg}>
