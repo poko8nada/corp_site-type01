@@ -1,4 +1,12 @@
-import { SITE_BRAND, SITE_PHONE, SITE_ZIP, SITE_ADDRESS, SITE_BUILDING, SITE_HOURS, SITE_HOLIDAY } from '@/data';
+import {
+  SITE_BRAND,
+  SITE_PHONE,
+  SITE_ZIP,
+  SITE_ADDRESS,
+  SITE_BUILDING,
+  SITE_HOURS,
+  SITE_HOLIDAY,
+} from '@/data';
 
 export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
@@ -41,10 +49,7 @@ export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
   companyLines: [SITE_BRAND, `${SITE_ZIP} ${SITE_ADDRESS}`, SITE_BUILDING],
   contactHeading: '連絡先',
-  contactLines: [
-    `Tel ${SITE_PHONE}`,
-    `営業: ${SITE_HOURS}（${SITE_HOLIDAY}）`,
-  ],
+  contactLines: [`Tel ${SITE_PHONE}`, `営業: ${SITE_HOURS}（${SITE_HOLIDAY}）`],
   legalHeading: '法務・ポリシー',
   legalEntries: [{ kind: 'link', label: 'プライバシーポリシー', href: '/privacy' }],
   copyrightName: SITE_BRAND,

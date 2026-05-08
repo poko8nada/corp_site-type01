@@ -6,8 +6,9 @@ export const AgentsReminderPlugin: Plugin = async ({ directory }) => {
   const agentsPath = join(directory, 'agents.md');
   const hasAgentsMd = existsSync(agentsPath);
 
-  const reminder =
-    `First, explain user's intent and what user need. Then, list Skills that may be relevant`.trim();
+  const reminder = `Before responding, Never skip the following routine:
+    - First, explain user's intent and what user need.
+    - Then, list Skills that may be relevant.`.trim();
 
   return {
     'chat.message': async (input, output) => {

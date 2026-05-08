@@ -16,5 +16,3 @@ export const ROUTE_TITLES = {
   notFound: '404 Not Found',
   internalError: 'Internal Server Error',
 } as const;
-
-

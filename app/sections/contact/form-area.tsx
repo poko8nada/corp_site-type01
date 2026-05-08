@@ -41,7 +41,10 @@ export function ContactFormArea() {
           {fallbackLinkLabel}
         </a>
         {fallbackNoteAfter} {phoneCtaBefore}{' '}
-        <a href={`tel:${SITE_PHONE.replace(/-/g, '')}`} class='underline hover:text-base-content/80'>
+        <a
+          href={`tel:${SITE_PHONE.replace(/-/g, '')}`}
+          class='underline hover:text-base-content/80'
+        >
           {SITE_PHONE}
         </a>{' '}
         {phoneCtaAfter}
