@@ -43,13 +43,19 @@ export function MapWithInfo(props: MapWithInfoProps) {
             </div>
           ))}
         </dl>
-        <div
-          aria-label={mapNote}
-          class='reveal-on-scroll [--reveal-delay:140ms] flex aspect-4/3 w-full items-center justify-center rounded-lg border border-base-300/75 bg-base-200/65 text-center text-sm text-base-content/72 lg:aspect-auto lg:min-h-80'
-          role='img'
-        >
-          {children ?? <span class='max-w-48 px-4'>{mapNote}</span>}
-        </div>
+        {children ? (
+          <div class='reveal-on-scroll [--reveal-delay:140ms] w-full overflow-hidden rounded-lg border border-base-300/75'>
+            {children}
+          </div>
+        ) : (
+          <div
+            aria-label={mapNote}
+            class='reveal-on-scroll [--reveal-delay:140ms] flex aspect-4/3 w-full items-center justify-center rounded-lg border border-base-300/75 bg-base-200/65 text-center text-sm text-base-content/72 lg:aspect-auto lg:min-h-80'
+            role='img'
+          >
+            <span class='max-w-48 px-4'>{mapNote}</span>
+          </div>
+        )}
       </div>
     </div>
   );

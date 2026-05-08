@@ -1,6 +1,7 @@
 import { CtaBand } from '@/components/cta-band';
 import { FaqList } from '@/components/faq-list';
 import { ImageBreak } from '@/components/image-break';
+import { MapEmbed } from '@/components/map-embed';
 import { MapWithInfo } from '@/components/map-with-info';
 import { MediaBlock } from '@/components/media-block';
 import { RichText } from '@/components/rich-text';
@@ -68,11 +69,12 @@ export function HomePage() {
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:60ms]'>
-            <MapWithInfo
-              heading={homeFactsHeading}
-              mapNote={homeFactsMapNote}
-              rows={homeFactsRows}
-            />
+            <MapWithInfo heading={homeFactsHeading} mapNote={homeFactsMapNote} rows={homeFactsRows}>
+              <MapEmbed
+                src='https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d390.3166257149093!2d130.40607136339474!3d33.5915289406446!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sja!2sjp!4v1778229044226!5m2!1sja!2sjp'
+                title='Google Maps'
+              />
+            </MapWithInfo>
           </div>
         </div>
       </Section>
