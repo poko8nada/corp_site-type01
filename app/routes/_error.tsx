@@ -1,4 +1,5 @@
 import type { ErrorHandler } from 'hono';
+import { ROUTE_TITLES } from '@/data';
 
 const handler: ErrorHandler = (e, c) => {
   if ('getResponse' in e) {
@@ -14,7 +15,7 @@ const handler: ErrorHandler = (e, c) => {
         <span>サーバーで問題が発生しました。しばらくしてから再度お試しください。</span>
       </div>
     </div>,
-    { title: 'Internal Server Error' },
+    { title: ROUTE_TITLES.internalError },
   );
 };
 

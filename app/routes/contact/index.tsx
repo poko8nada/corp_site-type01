@@ -1,5 +1,5 @@
 import { Section } from '@/components/section';
-import { frameBrandText } from '@/sections/frame';
+import { ROUTE_TITLES } from '@/data';
 import { createRoute } from 'honox/factory';
 import { ContactContextBlock, ContactFormArea } from '@/sections/contact';
 
@@ -22,6 +22,6 @@ export default createRoute((c) => {
         <ContactFormArea />
       </Section>
     </div>,
-    { title: `お問い合わせ | ${frameBrandText}` },
+    { title: ROUTE_TITLES.contact },
   );
 });

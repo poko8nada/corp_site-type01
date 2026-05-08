@@ -1,7 +1,7 @@
+import { SITE_BRAND } from '@/data';
 import {
   SITE_FRAME_DRAWER_ID,
   SiteLayout,
-  frameBrandText,
   frameDefaultMetaDescription,
   frameFooterCopy,
   frameIsDemo,
@@ -29,7 +29,7 @@ export type SiteRenderProps = {
 
 export default jsxRenderer((props) => {
   const { children, Layout } = props;
-  const baseTitle = props.title ?? frameBrandText;
+  const baseTitle = props.title ?? SITE_BRAND;
   const title = frameIsDemo ? `[DEMO] ${baseTitle}` : baseTitle;
   const baseDescription = props.description ?? frameDefaultMetaDescription;
   const description = frameIsDemo ? `【架空のデモサイト】${baseDescription}` : baseDescription;
@@ -53,7 +53,7 @@ export default jsxRenderer((props) => {
       <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden'>
         {raw('<!-- site-frame:analytics-body-open (e.g. GTM noscript iframe) -->')}
         <SiteLayout
-          brandText={frameBrandText}
+          brandText={SITE_BRAND}
           drawerId={SITE_FRAME_DRAWER_ID}
           footerCopy={frameFooterCopy}
           footerPattern={footerPattern}

@@ -1,8 +1,8 @@
+import { SITE_BRAND, SITE_PHONE, SITE_ZIP, SITE_ADDRESS, SITE_BUILDING, SITE_HOURS, SITE_HOLIDAY } from '@/data';
+
 export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
 export const frameIsDemo = true as const;
-
-export const frameBrandText = 'CASUAL BAR Lyra' as const;
 
 export const frameDefaultMetaDescription =
   '中洲のカジュアルバー CASUAL BAR Lyra。女性バーテンダーの気配りと本格的なカクテル・ウイスキーを、落ち着いた空間で楽しめます。' as const;
@@ -39,18 +39,19 @@ export interface FrameFooterCopy {
 
 export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
-  companyLines: ['CASUAL BAR Lyra', '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X', 'デモビル X階'],
+  companyLines: [SITE_BRAND, `${SITE_ZIP} ${SITE_ADDRESS}`, SITE_BUILDING],
   contactHeading: '連絡先',
   contactLines: [
-    'Tel XXX-XXX-XXXX',
-    '営業: 月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00（日曜定休）',
+    `Tel ${SITE_PHONE}`,
+    `営業: ${SITE_HOURS}（${SITE_HOLIDAY}）`,
   ],
   legalHeading: '法務・ポリシー',
   legalEntries: [{ kind: 'link', label: 'プライバシーポリシー', href: '/privacy' }],
-  copyrightName: frameBrandText,
+  copyrightName: SITE_BRAND,
 } as const;
 
 export { DrawerNav } from './drawer-nav';
+
 export type { DrawerNavProps } from './drawer-nav';
 export { Footer } from './footer';
 export type { FooterPattern, FooterProps } from './footer';

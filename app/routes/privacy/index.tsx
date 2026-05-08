@@ -1,5 +1,5 @@
 import { Section } from '@/components/section';
-import { frameBrandText } from '@/sections/frame';
+import { ROUTE_TITLES } from '@/data';
 import { createRoute } from 'honox/factory';
 
 const PRIVACY_LINES = [
@@ -27,6 +27,6 @@ export default createRoute((c) => {
         <p class='text-base-content/50 mt-8 text-xs'>最終更新日: 2026年5月8日</p>
       </div>
     </Section>,
-    { title: `プライバシーポリシー | ${frameBrandText}`, footerPattern: 'minimal' },
+    { title: ROUTE_TITLES.privacy, footerPattern: 'minimal' },
   );
 });

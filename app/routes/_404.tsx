@@ -1,4 +1,5 @@
 import type { NotFoundHandler } from 'hono';
+import { ROUTE_TITLES } from '@/data';
 
 const handler: NotFoundHandler = (c) => {
   c.status(404);
@@ -9,7 +10,7 @@ const handler: NotFoundHandler = (c) => {
         <span>ページが見つかりません。</span>
       </div>
     </div>,
-    { title: '404 Not Found' },
+    { title: ROUTE_TITLES.notFound },
   );
 };
 

@@ -6,6 +6,7 @@ export { HomeInfoBlock } from './info';
 export { HomeLeadBlock } from './lead';
 export { HomeStrengthsBlock } from './strengths';
 
+import { SITE_BRAND, SITE_PHONE, SITE_ZIP, SITE_ADDRESS, SITE_BUILDING, SITE_HOURS } from '@/data';
 import type { CtaBandProps } from '@/components/cta-band';
 import type { FaqListProps } from '@/components/faq-list';
 import type { ImageBreakProps } from '@/components/image-break';
@@ -17,7 +18,7 @@ import type { VisualLeadProps } from '@/components/visual-lead';
 
 export const homeLeadCatalog: VisualLeadProps = {
   eyebrow: 'カジュアルバー',
-  headline: 'CASUAL BAR Lyra',
+  headline: SITE_BRAND,
   subhead: '中洲のリラックスした夜に、本格的な一杯を。',
   description: [
     '女性バーテンダーならではの気配りと、クラシックから季節のカクテルまで楽しめる品揃え。',
@@ -78,7 +79,7 @@ export const homeFactsMapNote =
 export const homeFactsRows: readonly MapInfoRow[] = [
   {
     label: '住所',
-    value: '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X デモビル X階',
+    value: `${SITE_ZIP} ${SITE_ADDRESS} ${SITE_BUILDING}`,
   },
   {
     label: 'アクセス',
@@ -86,7 +87,7 @@ export const homeFactsRows: readonly MapInfoRow[] = [
   },
   {
     label: '営業時間',
-    value: '月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00',
+    value: SITE_HOURS,
   },
   {
     label: '定休日',
@@ -94,8 +95,8 @@ export const homeFactsRows: readonly MapInfoRow[] = [
   },
   {
     label: '電話',
-    value: 'XXX-XXX-XXXX',
-    valueHref: 'tel:XXXXXXXXXXX',
+    value: SITE_PHONE,
+    valueHref: `tel:${SITE_PHONE.replace(/-/g, '')}`,
   },
 ];
 
@@ -132,5 +133,5 @@ export const homeConversionCatalog: CtaBandProps = {
   description: 'ご来店予約、貸切のご相談、取材のお問い合わせは専用ページから受け付けています。',
   ctaLabel: 'お問い合わせ',
   ctaHref: '/contact',
-  tel: 'XXX-XXX-XXXX',
+  tel: SITE_PHONE,
 };
