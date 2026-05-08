@@ -39,11 +39,7 @@ export interface FrameFooterCopy {
 
 export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
-  companyLines: [
-    'CASUAL BAR Lyra',
-    '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X',
-    'デモビル X階',
-  ],
+  companyLines: ['CASUAL BAR Lyra', '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X', 'デモビル X階'],
   contactHeading: '連絡先',
   contactLines: [
     'Tel XXX-XXX-XXXX',
