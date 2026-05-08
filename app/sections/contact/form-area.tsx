@@ -30,8 +30,11 @@ export function ContactFormArea() {
         >
           こちら
         </a>
-        から直接お進みください。
-        お急ぎの方は <a href={`tel:${PHONE.replace(/-/g, '')}`} class='underline hover:text-base-content/80'>{PHONE}</a> までお電話ください。
+        から直接お進みください。 お急ぎの方は{' '}
+        <a href={`tel:${PHONE.replace(/-/g, '')}`} class='underline hover:text-base-content/80'>
+          {PHONE}
+        </a>{' '}
+        までお電話ください。
       </p>
     </div>
   );

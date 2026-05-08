@@ -6,7 +6,11 @@ import { ContactContextBlock, ContactFormArea } from '@/sections/contact';
 export default createRoute((c) => {
   return c.render(
     <div class='text-base-content flex flex-col'>
-      <Section class='w-full section-pad-relaxed' id='contact-section-context' label='お問い合わせにあたって'>
+      <Section
+        class='w-full section-pad-relaxed'
+        id='contact-section-context'
+        label='お問い合わせにあたって'
+      >
         <ContactContextBlock />
       </Section>
 
