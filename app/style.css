@@ -50,6 +50,10 @@
   --font-display: 'Cormorant Variable', 'Noto Serif JP Variable', serif;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-base-100);
