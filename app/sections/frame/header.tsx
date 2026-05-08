@@ -2,6 +2,7 @@ import type { FrameNavEntry } from './index';
 
 export type HeaderPattern = 'standard' | 'compact' | 'none';
 
+/** Global header with responsive nav and CTA. Glass morphism can be toggled via the `glass` prop. */
 export interface HeaderProps {
   pattern: HeaderPattern;
   brandText: string;

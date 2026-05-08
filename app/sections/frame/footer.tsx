@@ -2,6 +2,7 @@ import type { FrameFooterCopy, FrameLegalEntry } from './index';
 
 export type FooterPattern = 'standard' | 'minimal' | 'none';
 
+/** Site footer with company, contact, legal columns. All text comes from `FrameFooterCopy`. */
 export interface FooterProps {
   pattern: FooterPattern;
   copy: FrameFooterCopy;

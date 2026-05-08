@@ -152,6 +152,18 @@ app/
 - `_renderer.tsx`: タイトル・description・lang 等を直接記述。`content/site.ts` のような確定コピー層は持たない
 - Route: `c.render` の第2引数で `headerPattern` / `footerPattern` を指定。共通 helper は持たない
 
+### 案件データと catalog
+
+案件切り替え時に編集する主要ファイル。コンポーネントのコードは触らず、これらの catalog を書き換えることで差し替えが完了する設計。
+
+| ファイル                        | 役割                                   | 主な編集項目                                                                          |
+| ------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------- |
+| `app/data.ts`                   | 全ページ共通の基本データ               | ブランド名・電話・住所・営業時間・route title・meta description                       |
+| `app/sections/frame/index.ts`   | frame 設定（ヘッダー・フッター・ナビ） | nav entries・CTA label・footer copy・`frameIsDemo` flag                               |
+| `app/sections/home/index.ts`    | ホームページ全セクションの catalog     | lead・explanation・strengths・facts・info・conversion の props 一式・section surfaces |
+| `app/sections/contact/index.ts` | お問い合わせページ catalog             | context block の電話/営業時間文言・フォーム埋め込み URL・iframe ID                    |
+| `app/style.css`                 | テーマ・トークン                       | DaisyUI theme カラー・semantic token・custom CSS クラス                               |
+
 ### お問い合わせフォーム
 
 Google Forms を iframe で埋め込み。送信検知は iframe の `load` イベントをカウントする方式（1回目 = フォーム表示、2回目 = 確認ページ）。確認ページ表示時に iframe 高さを縮め、ビューポート内に表示されるようスクロールする。

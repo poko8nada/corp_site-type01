@@ -7,6 +7,7 @@ import type { FooterPattern } from './footer';
 import { Header } from './header';
 import type { HeaderPattern } from './header';
 
+/** Top-level shell: demo banner → header → main → footer. All structure props flow down from _renderer. */
 export interface SiteLayoutProps {
   brandText: string;
   drawerId: string;

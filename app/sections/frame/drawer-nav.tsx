@@ -1,5 +1,6 @@
 import type { FrameNavEntry } from './index';
 
+/** Mobile drawer nav using DaisyUI menu. Placeholder entries show with `cursor-not-allowed`. */
 export interface DrawerNavProps {
   entries: readonly FrameNavEntry[];
 }
