@@ -156,13 +156,13 @@ app/
 
 案件切り替え時に編集する主要ファイル。コンポーネントのコードは触らず、これらの catalog を書き換えることで差し替えが完了する設計。
 
-| ファイル                        | 役割                                   | 主な編集項目                                                                          |
-| ------------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------- |
-| `app/data.ts`                   | 全ページ共通の基本データ               | ブランド名・電話・住所・営業時間・route title・meta description                       |
-| `app/sections/frame/index.ts`   | frame 設定（ヘッダー・フッター・ナビ） | nav entries・CTA label・footer copy・`frameIsDemo` flag                               |
-| `app/sections/home/index.ts`    | ホームページ全セクションの catalog     | lead・explanation・strengths・facts・info・conversion の props 一式・section surfaces |
-| `app/sections/contact/index.ts` | お問い合わせページ catalog             | context block の電話/営業時間文言・フォーム埋め込み URL・iframe ID                    |
-| `app/style.css`                 | テーマ・トークン                       | DaisyUI theme カラー・semantic token・custom CSS クラス                               |
+| ファイル                        | 役割                     | 主な編集項目                                                    |
+| ------------------------------- | ------------------------ | --------------------------------------------------------------- |
+| `app/data.ts`                   | 全ページ共通の基本データ | ブランド名・電話・住所・営業時間・route title・meta description |
+| `app/sections/frame/index.ts`   | frame 設定               | nav, footer copy, `frameIsDemo` flag                            |
+| `app/sections/home/index.ts`    | ホームページ catalog     | 全セクション props・section surfaces                            |
+| `app/sections/contact/index.ts` | お問い合わせ catalog     | 電話/営業時間文言・フォーム埋め込み URL                         |
+| `app/style.css`                 | テーマ・トークン         | DaisyUI theme カラー・semantic token・カスタムCSS               |
 
 ### お問い合わせフォーム
 
