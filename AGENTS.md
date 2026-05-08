@@ -37,6 +37,7 @@
 
 ## **Before** creating, modifying, or deleting
 
+- Always execute skills when they are applicable
 - Verify whether sufficient context has been shared with the user.
 - Be sure to **explain the scope of the work to the user** via chat and obtain their permission.
 - For matters such as correcting typos or making clear bug fixes that can be addressed in a single line, no confirmation is required.
