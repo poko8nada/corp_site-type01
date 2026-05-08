@@ -8,10 +8,11 @@ export interface HeaderProps {
   drawerId: string;
   navEntries: readonly FrameNavEntry[];
   primaryCta: { readonly label: string; readonly href: string };
+  glass?: boolean;
 }
 
 export function Header(props: HeaderProps) {
-  const { pattern, brandText, drawerId, navEntries, primaryCta } = props;
+  const { pattern, brandText, drawerId, navEntries, primaryCta, glass = true } = props;
 
   if (pattern === 'none') {
     return null;
@@ -32,8 +33,10 @@ export function Header(props: HeaderProps) {
 
   const navText = compact ? 'text-sm' : 'text-sm sm:text-base';
 
+  const headerBg = glass ? 'border-b border-base-300/80 bg-base-100/90 shadow-sm backdrop-blur' : 'border-b border-base-300 bg-base-100';
+
   return (
-    <header class='border-b border-base-300/80 bg-base-100/90 shadow-sm backdrop-blur'>
+    <header class={headerBg}>
       <div
         class={`mx-auto flex w-full max-w-6xl min-w-0 items-center justify-between gap-x-4 px-4 sm:gap-x-6 sm:px-6 lg:gap-x-8 lg:px-8 ${barMinH} ${barPad}`}
       >

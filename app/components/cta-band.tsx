@@ -8,6 +8,7 @@ export interface CtaBandProps {
   ctaHref: string;
   tel?: string;
   buttonVariant?: CtaButtonVariant;
+  telLabel?: string;
 }
 
 const BTN_CLASS: Record<CtaButtonVariant, string> = {
@@ -18,7 +19,7 @@ const BTN_CLASS: Record<CtaButtonVariant, string> = {
 };
 
 export function CtaBand(props: CtaBandProps) {
-  const { heading, description, ctaLabel, ctaHref, tel, buttonVariant = 'primary' } = props;
+  const { heading, description, ctaLabel, ctaHref, tel, buttonVariant = 'primary', telLabel } = props;
 
   return (
     <div class='reveal-on-scroll [--reveal-delay:80ms] flex flex-col items-center gap-6 text-center'>
@@ -31,14 +32,18 @@ export function CtaBand(props: CtaBandProps) {
       </a>
       {tel ? (
         <p class='text-sm text-base-content/70'>
-          お電話でのご連絡は{' '}
-          <a
-            class='link link-hover text-primary transition-colors duration-200 hover:text-primary/78'
-            href={`tel:${tel.replaceAll('-', '')}`}
-          >
-            {tel}
-          </a>{' '}
-          まで
+          {telLabel ?? (
+            <>
+              お電話でのご連絡は{' '}
+              <a
+                class='link link-hover text-primary transition-colors duration-200 hover:text-primary/78'
+                href={`tel:${tel.replaceAll('-', '')}`}
+              >
+                {tel}
+              </a>{' '}
+              まで
+            </>
+          )}
         </p>
       ) : null}
     </div>

@@ -1,41 +1,46 @@
+import { CtaBand } from '@/components/cta-band';
+import { FaqList } from '@/components/faq-list';
 import { ImageBreak } from '@/components/image-break';
+import { MapWithInfo } from '@/components/map-with-info';
+import { MediaBlock } from '@/components/media-block';
+import { RichText } from '@/components/rich-text';
 import { Section } from '@/components/section';
-import { HomeConversionBlock } from './conversion';
-import { HomeExplanationBlock } from './explanation';
-import { HomeFactsBlock } from './facts';
-import { homeImageBreaks, homeSectionSurfaces } from './index';
-import { HomeInfoBlock } from './info';
-import { HomeLeadBlock } from './lead';
-import { HomeStrengthsBlock } from './strengths';
+import { TextCardGrid } from '@/components/text-card-grid';
+import { VisualLead } from '@/components/visual-lead';
 
-type HomeSectionRole = 'lead' | 'explanation' | 'strengths' | 'facts' | 'info' | 'conversion';
-
-const SECTION_LABEL: Record<HomeSectionRole, string> = {
-  lead: '導入',
-  explanation: 'ご案内',
-  strengths: '強み・信頼',
-  facts: '店舗・アクセス',
-  info: '営業・ご利用案内',
-  conversion: 'お問い合わせ',
-};
+import {
+  homeConversionCatalog,
+  homeExplanationCatalog,
+  homeExplanationImage,
+  homeFactsHeading,
+  homeFactsMapNote,
+  homeFactsRows,
+  homeImageBreaks,
+  homeInfoFaq,
+  homeLeadCatalog,
+  homeSectionSurfaces,
+  homeStrengthsCatalog,
+} from './index';
 
 const container = 'mx-auto w-full max-w-5xl px-4 sm:px-6 lg:px-8';
 
 export function HomePage() {
   return (
     <div class='text-base-content flex flex-col'>
-      <Section class='w-full' id='home-section-lead' label={SECTION_LABEL.lead}>
-        <HomeLeadBlock />
+      <Section class='w-full' id='home-section-lead' label='リード'>
+        <VisualLead {...homeLeadCatalog} />
       </Section>
 
       <Section
         class='w-full home-divider section-pad-relaxed'
         id='home-section-explanation'
-        label={SECTION_LABEL.explanation}
+        label='ご案内'
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:40ms]'>
-            <HomeExplanationBlock />
+            <MediaBlock {...homeExplanationImage}>
+              <RichText {...homeExplanationCatalog} />
+            </MediaBlock>
           </div>
         </div>
       </Section>
@@ -43,11 +48,11 @@ export function HomePage() {
       <Section
         class={`w-full ${homeSectionSurfaces.strengths} home-divider section-pad-relaxed`}
         id='home-section-strengths'
-        label={SECTION_LABEL.strengths}
+        label='強み・信頼'
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:60ms]'>
-            <HomeStrengthsBlock />
+            <TextCardGrid {...homeStrengthsCatalog} />
           </div>
         </div>
       </Section>
@@ -59,11 +64,11 @@ export function HomePage() {
       <Section
         class='w-full home-divider section-pad-relaxed'
         id='home-section-facts'
-        label={SECTION_LABEL.facts}
+        label='店舗・アクセス'
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:60ms]'>
-            <HomeFactsBlock />
+            <MapWithInfo heading={homeFactsHeading} mapNote={homeFactsMapNote} rows={homeFactsRows} />
           </div>
         </div>
       </Section>
@@ -71,11 +76,11 @@ export function HomePage() {
       <Section
         class={`w-full ${homeSectionSurfaces.info} home-divider section-pad-compact`}
         id='home-section-info'
-        label={SECTION_LABEL.info}
+        label='営業・ご利用案内'
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:80ms]'>
-            <HomeInfoBlock />
+            <FaqList {...homeInfoFaq} />
           </div>
         </div>
       </Section>
@@ -87,11 +92,11 @@ export function HomePage() {
       <Section
         class='relative w-full home-divider section-pad-relaxed overflow-hidden'
         id='home-section-conversion'
-        label={SECTION_LABEL.conversion}
+        label='お問い合わせ'
       >
         <div class='absolute inset-0 cta-surface' />
         <div class={`${container} relative max-w-lg`}>
-          <HomeConversionBlock />
+          <CtaBand {...homeConversionCatalog} />
         </div>
       </Section>
     </div>

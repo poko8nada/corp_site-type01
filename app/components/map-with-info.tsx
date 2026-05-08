@@ -1,4 +1,4 @@
-/** Location info rows + map placeholder. Replace with real embed for production. */
+/** Location info rows + map placeholder. Provide `children` for a real map embed. */
 export interface MapInfoRow {
   label: string;
   value: string;
@@ -9,10 +9,11 @@ export interface MapWithInfoProps {
   heading: string;
   mapNote: string;
   rows: readonly MapInfoRow[];
+  children?: import('hono/jsx').Child;
 }
 
 export function MapWithInfo(props: MapWithInfoProps) {
-  const { heading, mapNote, rows } = props;
+  const { heading, mapNote, rows, children } = props;
 
   return (
     <div>
@@ -47,7 +48,7 @@ export function MapWithInfo(props: MapWithInfoProps) {
           class='reveal-on-scroll [--reveal-delay:140ms] flex aspect-4/3 w-full items-center justify-center rounded-lg border border-base-300/75 bg-base-200/65 text-center text-sm text-base-content/72 lg:aspect-auto lg:min-h-80'
           role='img'
         >
-          <span class='max-w-48 px-4'>{mapNote}</span>
+          {children ?? <span class='max-w-48 px-4'>{mapNote}</span>}
         </div>
       </div>
     </div>

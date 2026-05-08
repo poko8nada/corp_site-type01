@@ -8,10 +8,12 @@ export interface FaqItem {
 export interface FaqListProps {
   sectionHeading: string;
   items: readonly FaqItem[];
+  columns?: 1 | 2;
 }
 
 export function FaqList(props: FaqListProps) {
-  const { sectionHeading, items } = props;
+  const { sectionHeading, items, columns = 2 } = props;
+  const dlCols = columns === 2 ? 'lg:grid-cols-2 lg:gap-x-10' : '';
   const revealDelayByIndex = [
     '[--reveal-delay:0ms]',
     '[--reveal-delay:60ms]',
@@ -27,7 +29,7 @@ export function FaqList(props: FaqListProps) {
       <h3 class='font-display text-base-content text-3xl leading-snug tracking-tight sm:text-4xl'>
         {sectionHeading}
       </h3>
-      <dl class='mt-10 grid md:mt-12 lg:grid-cols-2 lg:gap-x-10'>
+      <dl class={`mt-10 grid md:mt-12 ${dlCols}`}>
         {items.map((item, index) => (
           <div
             class={`reveal-on-scroll border-b border-base-300/60 py-4 ${revealDelayByIndex[Math.min(index, revealDelayByIndex.length - 1)]}`}

@@ -9,6 +9,7 @@ export interface MediaBlockProps {
   imagePosition?: 'left' | 'right';
   variant: MediaBlockVariant;
   children: Child;
+  decorativeImage?: boolean;
 }
 
 function renderWall(props: MediaBlockProps) {
@@ -59,18 +60,15 @@ function renderWall(props: MediaBlockProps) {
   );
 }
 
-function renderOverlay(props: MediaBlockProps) {
+function renderOverlay(props: MediaBlockProps, decorative: boolean) {
   const { imageSrc, imageAlt, imagePosition = 'right', children } = props;
   const isRight = imagePosition === 'right';
+  const imgClass = decorative
+    ? `absolute bottom-1 ${isRight ? 'right-1' : 'left-1'} w-3/5 aspect-4/3 object-cover opacity-20 sepia`
+    : `absolute inset-0 w-full h-full object-cover opacity-10`;
   return (
     <div class='relative overflow-hidden border border-base-300/20'>
-      <img
-        alt={imageAlt}
-        class={`absolute bottom-1 ${isRight ? 'right-1' : 'left-1'} w-3/5 aspect-4/3 object-cover opacity-20 sepia`}
-        decoding='async'
-        loading='lazy'
-        src={imageSrc}
-      />
+      <img alt={imageAlt} class={imgClass} decoding='async' loading='lazy' src={imageSrc} />
       <div class='relative z-10 px-6 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-18'>
         <div class='max-w-2xl reveal-on-scroll [--reveal-delay:80ms]'>{children}</div>
       </div>
@@ -78,18 +76,15 @@ function renderOverlay(props: MediaBlockProps) {
   );
 }
 
-function renderFloat(props: MediaBlockProps) {
+function renderFloat(props: MediaBlockProps, decorative: boolean) {
   const { imageSrc, imageAlt, imagePosition = 'right', children } = props;
   const isRight = imagePosition === 'right';
+  const imgClass = decorative
+    ? `absolute top-0 ${isRight ? 'right-0' : 'left-0'} w-1/3 aspect-square rounded-full object-cover opacity-40`
+    : `absolute inset-0 w-full h-full object-cover opacity-10`;
   return (
     <div class='relative overflow-hidden border border-base-300/20 rounded-xl'>
-      <img
-        alt={imageAlt}
-        class={`absolute top-0 ${isRight ? 'right-0' : 'left-0'} w-1/3 aspect-square rounded-full object-cover opacity-40`}
-        decoding='async'
-        loading='lazy'
-        src={imageSrc}
-      />
+      <img alt={imageAlt} class={imgClass} decoding='async' loading='lazy' src={imageSrc} />
       <div class='relative z-10 px-6 py-10 sm:px-8 sm:py-14 lg:px-12 lg:py-18'>
         <div class='max-w-2xl reveal-on-scroll [--reveal-delay:120ms]'>{children}</div>
       </div>
@@ -117,14 +112,14 @@ function renderStandard(props: MediaBlockProps) {
 }
 
 export function MediaBlock(props: MediaBlockProps) {
-  const { variant } = props;
+  const { variant, decorativeImage = true } = props;
   switch (variant) {
     case 'overlay':
-      return renderOverlay(props);
+      return renderOverlay(props, decorativeImage);
     case 'wall':
       return renderWall(props);
     case 'float':
-      return renderFloat(props);
+      return renderFloat(props, decorativeImage);
     default:
       return renderStandard(props);
   }

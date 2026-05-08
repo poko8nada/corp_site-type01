@@ -1,10 +1,15 @@
 import { contactFormAreaCatalog } from './index';
 
-export function initContactForm(): void {
-  const iframe = document.getElementById(
-    contactFormAreaCatalog.iframeId,
-  ) as HTMLIFrameElement | null;
-  if (!iframe) return;
+export interface ContactFormInitConfig {
+  iframeId?: string;
+  googleFormsAutoResize?: boolean;
+}
+
+export function initContactForm(config?: ContactFormInitConfig): void {
+  const iframeId = config?.iframeId ?? contactFormAreaCatalog.iframeId;
+  const autoResize = config?.googleFormsAutoResize ?? true;
+  const iframe = document.getElementById(iframeId) as HTMLIFrameElement | null;
+  if (!iframe || !autoResize) return;
 
   let loadCount = 0;
   iframe.addEventListener('load', () => {

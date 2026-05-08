@@ -1,11 +1,5 @@
 /** Home page catalog: all section data lives here. Edit props to change copy without touching components. */
-export { HomeConversionBlock } from './conversion';
-export { HomeExplanationBlock } from './explanation';
-export { HomeFactsBlock } from './facts';
 export { HomePage } from './home-page';
-export { HomeInfoBlock } from './info';
-export { HomeLeadBlock } from './lead';
-export { HomeStrengthsBlock } from './strengths';
 
 import { SITE_BRAND, SITE_PHONE, SITE_ZIP, SITE_ADDRESS, SITE_BUILDING, SITE_HOURS } from '@/data';
 import type { CtaBandProps } from '@/components/cta-band';
