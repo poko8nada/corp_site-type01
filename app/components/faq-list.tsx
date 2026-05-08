@@ -1,3 +1,4 @@
+/** FAQ accordion list. Items rendered as <dl>. */
 export interface FaqItem {
   question: string;
   answer: string;

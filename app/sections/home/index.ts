@@ -1,3 +1,4 @@
+/** Home page catalog: all section data lives here. Edit props to change copy without touching components. */
 export { HomeConversionBlock } from './conversion';
 export { HomeExplanationBlock } from './explanation';
 export { HomeFactsBlock } from './facts';

@@ -1,3 +1,4 @@
+/** Contact page catalog: context text and form area settings. */
 export { ContactContextBlock } from './context';
 export { ContactFormArea } from './form-area';
 

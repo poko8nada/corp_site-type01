@@ -1,3 +1,4 @@
+/** Card grid with configurable cardStyle ('elevated'|'flat'|'outline'). */
 export interface TextCardGridItem {
   heading?: string;
   body: readonly string[];

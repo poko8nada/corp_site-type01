@@ -1,3 +1,4 @@
+/** Frame config: nav, footer, demo flag. Edit `SITE_*` imports from `@/data` to rebrand. */
 import {
   SITE_BRAND,
   SITE_PHONE,

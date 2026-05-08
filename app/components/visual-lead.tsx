@@ -1,3 +1,4 @@
+/** Full-bleed hero with gradient overlay and scroll indicator. Content layer on dark gradient. */
 export interface VisualLeadProps {
   eyebrow: string;
   headline: string;

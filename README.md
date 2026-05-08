@@ -174,6 +174,51 @@ Header / footer のパターン名（`standard` / `compact` / `minimal` / `none`
 
 Pages プロジェクト名など: `package.json` の `deploy` スクリプトと `wrangler.jsonc` を、環境に合わせて変更する。
 
+## 案件切替手順
+
+このリポジトリを実案件で再利用する際の最小手順。
+
+### 1. デモ表示をオフにする
+
+`app/sections/frame/index.ts` で `frameIsDemo` を `false` に変更する。これで noindex・`[DEMO]` タイトル・デモバナーが全て消える。
+
+### 2. 案件データを書き換える
+
+`app/data.ts` を編集 — ブランド名・電話・住所・営業時間をクライアントのものに変更する。このファイルだけ変えれば全ページの基本情報が差し変わる。
+
+### 3. ページコピーを調整する（必要に応じて）
+
+- **home**: `app/sections/home/index.ts` の各 catalog 定数（lead・explanation・strengths・facts・info・conversion）を編集
+- **frame**: `app/sections/frame/index.ts` の `frameNavEntries`（ナビ）・`frameDefaultMetaDescription`（SEO）を編集
+- **contact**: `app/sections/contact/index.ts` の `contactContextCatalog`・`contactFormAreaCatalog` を編集（フォーム埋め込みURLもここ）
+
+### 4. スタイルを案件に合わせる
+
+- **カラーテーマ**: `app/style.css` の DaisyUI theme `soft-craft` の OKLCH 値を変更
+- **セマンティックトークン**: 同じく `@theme inline` 内の `--color-surface-*` / `--color-border-*` / `--color-shadow-*` を編集
+- **セクション surface**: `app/sections/home/index.ts` の `homeSectionSurfaces` で各セクションの background class を選択（`surface-warm` / `surface-soft` / 空文字）
+
+### 5. 画像を差し替える
+
+`public/images/` 配下の画像をクライアントのものに置き換える。各 section の catalog で `imageSrc` / `imageAlt` を更新する。
+
+### 6. robots.txt を削除する
+
+`public/robots.txt` には `Disallow: /` が書かれている。実案件では削除するか内容を書き換える。
+
+### 7. 動作確認
+
+```bash
+pnpm typecheck
+pnpm lint
+pnpm build
+pnpm preview    # ブラウザで確認
+```
+
+### 8. content/ を更新する
+
+`content/` 配下の設計ドキュメント（pre_survey.md・structure.md・investigate.md）を実案件の内容に書き換える。コードから import されないため、任意。`structure.md` を要件に合わせて編集したら、それを元に `app/` 側を整える。
+
 ## Contributing
 
 変更の単位と受け入れ条件は GitHub Issues に合わせる。PR では再現手順と関連 Issue の参照を書く。

@@ -1,3 +1,4 @@
+/** Full-width image separator between sections. `aria-hidden` so alt is decorative only. */
 export interface ImageBreakProps {
   src: string;
   alt: string;

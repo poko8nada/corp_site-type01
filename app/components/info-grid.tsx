@@ -1,3 +1,4 @@
+/** Two-column info grid with groups. Each item can link. */
 export interface InfoItem {
   label: string;
   value: string;

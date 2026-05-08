@@ -1,5 +1,6 @@
 import type { Child } from 'hono/jsx';
 
+/** Text + image composition. Variant picks the layout shape. */
 export type MediaBlockVariant = 'standard' | 'overlay' | 'wall' | 'float';
 
 export interface MediaBlockProps {

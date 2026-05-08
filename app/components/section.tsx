@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'hono/jsx';
 
+/** Wrapper that provides an sr-only heading for accessibility. Add a surface class for visual distinction. */
 export interface SectionProps extends PropsWithChildren {
   /** sr-only 見出しに使うテキスト */
   label: string;

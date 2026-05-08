@@ -1,3 +1,4 @@
+/** CTA band with heading, description, button (variant-selectable), and optional tel link. */
 export type CtaButtonVariant = 'primary' | 'outline';
 
 export interface CtaBandProps {

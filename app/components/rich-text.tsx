@@ -1,5 +1,6 @@
+/** Heading + paragraph stack. Used as child of MediaBlock or standalone. */
 export interface RichTextProps {
-  heading: string;
+  heading?: string;
   paragraphs: readonly string[];
 }
 

@@ -1,3 +1,4 @@
+/** Location info rows + map placeholder. Replace with real embed for production. */
 export interface MapInfoRow {
   label: string;
   value: string;

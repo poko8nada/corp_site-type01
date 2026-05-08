@@ -1,3 +1,4 @@
+/** Warning ribbon shown when `isDemo` is true. Remove or flip flag for real projects. */
 export interface DemoBannerProps {
   isDemo: boolean;
 }
