@@ -9,6 +9,9 @@ export const SITE_HOLIDAY = '日曜定休' as const;
 export const SITE_FULL_ADDRESS = `${SITE_ZIP} ${SITE_ADDRESS} ${SITE_BUILDING}` as const;
 export const SITE_HOURS_WITH_HOLIDAY = `${SITE_HOURS}（${SITE_HOLIDAY}）` as const;
 
+export const SITE_DEFAULT_META_DESCRIPTION =
+  '中洲のカジュアルバー CASUAL BAR Lyra。女性バーテンダーの気配りと本格的なカクテル・ウイスキーを、落ち着いた空間で楽しめます。' as const;
+
 export const ROUTE_TITLES = {
   home: SITE_BRAND,
   contact: `お問い合わせ | ${SITE_BRAND}`,

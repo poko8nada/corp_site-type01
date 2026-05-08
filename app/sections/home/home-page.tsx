@@ -32,7 +32,7 @@ export function HomePage() {
       </Section>
 
       <Section
-        class='w-full home-divider section-pad-relaxed'
+        class='w-full section-divider section-pad-relaxed'
         id='home-section-explanation'
         label='ご案内'
       >
@@ -46,7 +46,7 @@ export function HomePage() {
       </Section>
 
       <Section
-        class={`w-full ${homeSectionSurfaces.strengths} home-divider section-pad-relaxed`}
+        class={`w-full ${homeSectionSurfaces.strengths} section-divider section-pad-relaxed`}
         id='home-section-strengths'
         label='強み・信頼'
       >
@@ -57,12 +57,12 @@ export function HomePage() {
         </div>
       </Section>
 
-      <div class='home-divider'>
+      <div class='section-divider'>
         <ImageBreak {...homeImageBreaks[0]} />
       </div>
 
       <Section
-        class='w-full home-divider section-pad-relaxed'
+        class='w-full section-divider section-pad-relaxed'
         id='home-section-facts'
         label='店舗・アクセス'
       >
@@ -78,7 +78,7 @@ export function HomePage() {
       </Section>
 
       <Section
-        class={`w-full ${homeSectionSurfaces.info} home-divider section-pad-compact`}
+        class={`w-full ${homeSectionSurfaces.info} section-divider section-pad-compact`}
         id='home-section-info'
         label='営業・ご利用案内'
       >
@@ -89,12 +89,12 @@ export function HomePage() {
         </div>
       </Section>
 
-      <div class='home-divider'>
+      <div class='section-divider'>
         <ImageBreak {...homeImageBreaks[1]} />
       </div>
 
       <Section
-        class='relative w-full home-divider section-pad-relaxed overflow-hidden'
+        class='relative w-full section-divider section-pad-relaxed overflow-hidden'
         id='home-section-conversion'
         label='お問い合わせ'
       >

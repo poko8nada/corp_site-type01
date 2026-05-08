@@ -26,7 +26,13 @@ export function VisualLead(props: VisualLeadProps) {
     showScrollIndicator = true,
   } = props;
 
-  const textClass = overlayStyle === 'dark' ? 'text-white' : 'text-base-content';
+  const isDark = overlayStyle === 'dark';
+  const textMuted = isDark ? 'text-white/78' : 'text-base-content/78';
+  const textBody = isDark ? 'text-white/70' : 'text-base-content/70';
+  const textDim = isDark ? 'text-white/68' : 'text-base-content/68';
+  const textFull = isDark ? 'text-white' : 'text-base-content';
+  const scrollBorder = isDark ? 'border-white/35' : 'border-base-content/25';
+  const scrollColor = isDark ? 'text-white/75' : 'text-base-content/60';
 
   return (
     <div class='relative flex min-h-[88svh] items-end sm:min-h-svh'>
@@ -56,23 +62,23 @@ export function VisualLead(props: VisualLeadProps) {
       )}
 
       <div class='relative mx-auto w-full max-w-5xl px-6 pb-32 sm:px-8 sm:pb-48 lg:px-10 lg:pb-50'>
-        <p class={`lead-reveal text-sm font-semibold tracking-[0.2em] uppercase ${textClass}/78`}>
+        <p class={`lead-reveal text-sm font-semibold tracking-[0.2em] uppercase ${textMuted}`}>
           {eyebrow}
         </p>
         <h1
-          class={`lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight ${textClass} sm:text-7xl lg:text-8xl`}
+          class={`lead-reveal [--lead-delay:100ms] font-display mt-4 text-5xl leading-[0.95] tracking-tight ${textFull} sm:text-7xl lg:text-8xl`}
         >
           {headline}
         </h1>
         {subhead ? (
           <p
-            class={`lead-reveal [--lead-delay:160ms] mt-5 font-display text-xl tracking-wide ${textClass} sm:text-2xl lg:text-3xl`}
+            class={`lead-reveal [--lead-delay:160ms] mt-5 font-display text-xl tracking-wide ${textFull} sm:text-2xl lg:text-3xl`}
           >
             {subhead}
           </p>
         ) : null}
         <div
-          class={`lead-reveal [--lead-delay:220ms] mt-12 pl-2 max-w-xl space-y-3 text-base leading-relaxed ${textClass}/70 sm:text-lg`}
+          class={`lead-reveal [--lead-delay:220ms] mt-12 pl-2 max-w-xl space-y-3 text-base leading-relaxed ${textBody} sm:text-lg`}
         >
           {description.map((p) => (
             <p key={p}>{p}</p>
@@ -80,7 +86,7 @@ export function VisualLead(props: VisualLeadProps) {
         </div>
         {highlights.length > 0 ? (
           <ul
-            class={`lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide ${textClass}/68 sm:text-sm`}
+            class={`lead-reveal [--lead-delay:300ms] mt-10 flex flex-wrap gap-x-8 gap-y-2 text-xs tracking-wide ${textDim} sm:text-sm`}
           >
             {highlights.map((item) => (
               <li key={item}>{item}</li>
@@ -92,7 +98,7 @@ export function VisualLead(props: VisualLeadProps) {
       {showScrollIndicator && (
         <div class='absolute inset-x-0 bottom-8 flex justify-center' aria-hidden='true'>
           <svg
-            class={`scroll-indicator h-7 w-7 rounded-full border p-1 ${overlayStyle === 'dark' ? 'border-white/35 text-white/75' : 'border-base-content/25 text-base-content/60'}`}
+            class={`scroll-indicator h-7 w-7 rounded-full border p-1 ${scrollBorder} ${scrollColor}`}
             fill='none'
             stroke='currentColor'
             stroke-width='1.5'

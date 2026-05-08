@@ -13,9 +13,6 @@ export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
 export const frameIsDemo = true as const;
 
-export const frameDefaultMetaDescription =
-  '中洲のカジュアルバー CASUAL BAR Lyra。女性バーテンダーの気配りと本格的なカクテル・ウイスキーを、落ち着いた空間で楽しめます。' as const;
-
 export type FrameNavEntry =
   | { kind: 'link'; label: string; href: string }
   | { kind: 'placeholder'; label: string; reason: string };

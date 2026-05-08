@@ -1,8 +1,7 @@
-import { SITE_BRAND } from '@/data';
+import { SITE_BRAND, SITE_DEFAULT_META_DESCRIPTION } from '@/data';
 import {
   SITE_FRAME_DRAWER_ID,
   SiteLayout,
-  frameDefaultMetaDescription,
   frameFooterCopy,
   frameIsDemo,
   frameNavEntries,
@@ -31,7 +30,7 @@ export default jsxRenderer((props) => {
   const { children, Layout } = props;
   const baseTitle = props.title ?? SITE_BRAND;
   const title = frameIsDemo ? `[DEMO] ${baseTitle}` : baseTitle;
-  const baseDescription = props.description ?? frameDefaultMetaDescription;
+  const baseDescription = props.description ?? SITE_DEFAULT_META_DESCRIPTION;
   const description = frameIsDemo ? `【架空のデモサイト】${baseDescription}` : baseDescription;
   const headerPattern = props.headerPattern ?? 'standard';
   const footerPattern = props.footerPattern ?? 'standard';
@@ -50,7 +49,7 @@ export default jsxRenderer((props) => {
         <Link href='/app/style.css' rel='stylesheet' />
         <script src={clientScriptSrc} type='module'></script>
       </head>
-      <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden'>
+      <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden use-noise'>
         {raw('<!-- site-frame:analytics-body-open (e.g. GTM noscript iframe) -->')}
         <SiteLayout
           brandText={SITE_BRAND}

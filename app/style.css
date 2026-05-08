@@ -77,7 +77,7 @@ body {
 
 /* --- Ambient texture --- */
 
-body::after {
+.use-noise::after {
   content: '';
   position: fixed;
   inset: 0;
@@ -107,7 +107,7 @@ body::after {
 
 /* --- Home section framing --- */
 
-.home-divider {
+.section-divider {
   border-top: 1px solid var(--color-border-divider);
 }
 
@@ -135,7 +135,7 @@ body::after {
 
 /* --- Images --- */
 
-.img-ambient {
+.img-framed {
   border-radius: 0.75rem;
   border: 1px solid var(--color-border-image);
   box-shadow:
@@ -148,8 +148,8 @@ body::after {
 @keyframes lead-fade-up {
   from {
     opacity: 0;
-    transform: translateY(24px);
-    filter: blur(6px);
+    transform: translateY(var(--lead-offset, 24px));
+    filter: blur(var(--lead-blur, 6px));
   }
   to {
     opacity: 1;
@@ -160,7 +160,7 @@ body::after {
 
 .lead-reveal {
   opacity: 0;
-  animation: lead-fade-up 780ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: lead-fade-up var(--lead-duration, 780ms) var(--lead-easing, cubic-bezier(0.22, 1, 0.36, 1)) forwards;
   animation-delay: var(--lead-delay, 0ms);
 }
 
@@ -173,12 +173,12 @@ body::after {
   }
   50% {
     opacity: 0.72;
-    transform: translateY(6px);
+    transform: translateY(var(--scroll-pulse-offset, 6px));
   }
 }
 
 .scroll-indicator {
-  animation: scroll-pulse 2s ease-in-out infinite;
+  animation: scroll-pulse var(--scroll-pulse-duration, 2s) ease-in-out infinite;
 }
 
 /* --- Scroll reveal --- */
@@ -186,11 +186,11 @@ body::after {
 [data-reveal='ready'] .reveal-on-scroll {
   opacity: 0;
   transform: translateY(var(--reveal-offset, 18px));
-  filter: blur(2px);
+  filter: blur(var(--reveal-blur, 2px));
   transition:
-    opacity 640ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 640ms cubic-bezier(0.22, 1, 0.36, 1),
-    filter 640ms cubic-bezier(0.22, 1, 0.36, 1);
+    opacity var(--reveal-duration, 640ms) var(--reveal-easing, cubic-bezier(0.22, 1, 0.36, 1)),
+    transform var(--reveal-duration, 640ms) var(--reveal-easing, cubic-bezier(0.22, 1, 0.36, 1)),
+    filter var(--reveal-duration, 640ms) var(--reveal-easing, cubic-bezier(0.22, 1, 0.36, 1));
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform, filter;
 }
@@ -203,12 +203,17 @@ body::after {
 
 /* --- Section spacing --- */
 
+:root {
+  --section-padding-relaxed: clamp(4.5rem, 9vw, 7.5rem);
+  --section-padding-compact: clamp(3rem, 5.5vw, 4.25rem);
+}
+
 .section-pad-relaxed {
-  padding-block: clamp(4.5rem, 9vw, 7.5rem);
+  padding-block: var(--section-padding-relaxed);
 }
 
 .section-pad-compact {
-  padding-block: clamp(3rem, 5.5vw, 4.25rem);
+  padding-block: var(--section-padding-compact);
 }
 
 /* --- CTA ambient --- */
