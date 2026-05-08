@@ -1,7 +1,7 @@
 export { ContactContextBlock } from './context';
 export { ContactFormArea } from './form-area';
 
-export const PHONE = '092-555-0142';
+export const PHONE = 'XXX-XXX-XXXX';
 
 export const contactContextCatalog = {
   phoneHeading: 'お電話でのお問い合わせ',

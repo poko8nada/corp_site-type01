@@ -78,7 +78,7 @@ export const homeFactsMapNote =
 export const homeFactsRows: readonly MapInfoRow[] = [
   {
     label: '住所',
-    value: '〒810-0801 福岡県福岡市博多区中洲3丁目8-12 ナイトゲートビル 2階',
+    value: '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X デモビル X階',
   },
   {
     label: 'アクセス',
@@ -94,8 +94,8 @@ export const homeFactsRows: readonly MapInfoRow[] = [
   },
   {
     label: '電話',
-    value: '092-555-0142',
-    valueHref: 'tel:0925550142',
+    value: 'XXX-XXX-XXXX',
+    valueHref: 'tel:XXXXXXXXXXX',
   },
 ];
 
@@ -132,5 +132,5 @@ export const homeConversionCatalog: CtaBandProps = {
   description: 'ご来店予約、貸切のご相談、取材のお問い合わせは専用ページから受け付けています。',
   ctaLabel: 'お問い合わせ',
   ctaHref: '/contact',
-  tel: '092-555-0142',
+  tel: 'XXX-XXX-XXXX',
 };

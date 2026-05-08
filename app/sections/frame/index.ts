@@ -1,5 +1,7 @@
 export const SITE_FRAME_DRAWER_ID = 'site-frame-drawer' as const;
 
+export const frameIsDemo = true as const;
+
 export const frameBrandText = 'CASUAL BAR Lyra' as const;
 
 export const frameDefaultMetaDescription =
@@ -39,12 +41,12 @@ export const frameFooterCopy: FrameFooterCopy = {
   companyHeading: '店舗情報',
   companyLines: [
     'CASUAL BAR Lyra',
-    '〒810-0801 福岡県福岡市博多区中洲3丁目8-12',
-    'ナイトゲートビル 2階',
+    '〒XXX-XXXX 福岡県福岡市博多区デモ町X-X-X',
+    'デモビル X階',
   ],
   contactHeading: '連絡先',
   contactLines: [
-    'Tel 092-555-0142',
+    'Tel XXX-XXX-XXXX',
     '営業: 月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00（日曜定休）',
   ],
   legalHeading: '法務・ポリシー',

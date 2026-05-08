@@ -4,6 +4,7 @@ import {
   frameBrandText,
   frameDefaultMetaDescription,
   frameFooterCopy,
+  frameIsDemo,
   frameNavEntries,
   framePrimaryCta,
 } from '@/sections/frame';
@@ -28,8 +29,10 @@ export type SiteRenderProps = {
 
 export default jsxRenderer((props) => {
   const { children, Layout } = props;
-  const title = props.title ?? frameBrandText;
-  const description = props.description ?? frameDefaultMetaDescription;
+  const baseTitle = props.title ?? frameBrandText;
+  const title = frameIsDemo ? `[DEMO] ${baseTitle}` : baseTitle;
+  const baseDescription = props.description ?? frameDefaultMetaDescription;
+  const description = frameIsDemo ? `【架空のデモサイト】${baseDescription}` : baseDescription;
   const headerPattern = props.headerPattern ?? 'standard';
   const footerPattern = props.footerPattern ?? 'standard';
   const clientScriptSrc = import.meta.env.PROD ? '/static/client.js' : '/app/client.ts';
@@ -40,6 +43,7 @@ export default jsxRenderer((props) => {
         {raw('<!-- site-frame:analytics-head (e.g. GTM container snippet) -->')}
         <meta charset='utf-8' />
         <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+        {frameIsDemo && <meta content='noindex, nofollow' name='robots' />}
         <title>{title}</title>
         <meta name='description' content={escapeHtmlAttr(description)} />
         <link rel='icon' href='/favicon.ico' />
@@ -54,6 +58,7 @@ export default jsxRenderer((props) => {
           footerCopy={frameFooterCopy}
           footerPattern={footerPattern}
           headerPattern={headerPattern}
+          isDemo={frameIsDemo}
           main={<Layout>{children}</Layout>}
           navEntries={frameNavEntries}
           primaryCta={framePrimaryCta}

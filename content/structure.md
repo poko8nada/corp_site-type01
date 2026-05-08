@@ -62,7 +62,7 @@ pages:
     label: contact
     sections:
       - role: context
-        note: 電話CTA（092-555-0142）とフォーム案内の1カラム。当日予約は電話、相談・取材はフォームへ誘導
+        note: 電話CTA（XXX-XXX-XXXX）とフォーム案内の1カラム。当日予約は電話、相談・取材はフォームへ誘導
       - role: form-area
         note: Google Forms iframe 埋め込み。送信検知は onload カウンター（1回目=表示、2回目=確認ページ）で行い、高さ縮小＋スクロール調整
       - role: legal-note

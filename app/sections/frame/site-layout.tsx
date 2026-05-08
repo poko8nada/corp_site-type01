@@ -1,5 +1,6 @@
 import type { Child } from 'hono/jsx';
 import type { FrameFooterCopy, FrameNavEntry } from './index';
+import { DemoBanner } from '@/components/demo-banner';
 import { DrawerNav } from './drawer-nav';
 import { Footer } from './footer';
 import type { FooterPattern } from './footer';
@@ -11,6 +12,7 @@ export interface SiteLayoutProps {
   drawerId: string;
   headerPattern: HeaderPattern;
   footerPattern: FooterPattern;
+  isDemo: boolean;
   navEntries: readonly FrameNavEntry[];
   primaryCta: { readonly label: string; readonly href: string };
   footerCopy: FrameFooterCopy;
@@ -24,6 +26,7 @@ export function SiteLayout(props: SiteLayoutProps) {
     drawerId,
     headerPattern,
     footerPattern,
+    isDemo,
     navEntries,
     primaryCta,
     footerCopy,
@@ -41,13 +44,16 @@ export function SiteLayout(props: SiteLayoutProps) {
           メインコンテンツへスキップ
         </a>
         <div class='flex min-h-screen flex-1 flex-col'>
-          <Header
-            brandText={brandText}
-            drawerId={drawerId}
-            navEntries={navEntries}
-            pattern={headerPattern}
-            primaryCta={primaryCta}
-          />
+          <div class='sticky top-0 z-40'>
+            <DemoBanner isDemo={isDemo} />
+            <Header
+              brandText={brandText}
+              drawerId={drawerId}
+              navEntries={navEntries}
+              pattern={headerPattern}
+              primaryCta={primaryCta}
+            />
+          </div>
           <main class='flex flex-1 flex-col' id='main-content'>
             {main}
           </main>

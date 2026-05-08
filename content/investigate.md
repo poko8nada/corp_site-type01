@@ -101,7 +101,7 @@ focus: full
 ### UX Patterns
 
 - Navigation: ヘッダ固定リンク + 同一ページ内アンカー。モバイル側でリンク列の重複を確認。
-- CTAs: 電話はダミー番号（例: `092-555-0199`）。「WEB予約はこちら」→ 予約フォーム、Instagram は外部導線として存在想定。
+- CTAs: 電話はダミー番号（例: `XXX-XXX-XXXX`）。「WEB予約はこちら」→ 予約フォーム、Instagram は外部導線として存在想定。
 - Interactions: ScrollMagic、Slick、Remodal、予約ページで Magnific Popup（jQuery プラグイン系）。
 
 ### Third-party Integrations
