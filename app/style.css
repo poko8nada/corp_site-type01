@@ -48,6 +48,21 @@
   --font-sans: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
   --font-serif: 'Noto Serif JP Variable', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   --font-display: 'Cormorant Variable', 'Noto Serif JP Variable', serif;
+
+  --color-surface-warm: oklch(95.2% 0.01 80);
+  --color-surface-soft: oklch(96.5% 0.008 78);
+  --color-surface-cta: oklch(96% 0.008 78);
+  --color-surface-card: oklch(98.8% 0.004 80);
+  --color-surface-card-hover: oklch(100% 0 0);
+
+  --color-border-divider: oklch(88% 0.015 70 / 0.75);
+  --color-border-card: oklch(84% 0.016 70 / 0.8);
+  --color-border-card-hover: oklch(62% 0.08 80 / 0.55);
+  --color-border-image: oklch(84% 0.016 70 / 0.7);
+
+  --color-shadow-card: oklch(25% 0.02 55 / 0.14);
+  --color-shadow-card-ambient: oklch(25% 0.02 55 / 0.25);
+  --color-shadow-card-small: oklch(25% 0.02 55 / 0.12);
 }
 
 html {
@@ -76,31 +91,31 @@ body::after {
 
 /* --- Section surfaces --- */
 
-.bg-surface-warm {
+.surface-warm {
   background:
     radial-gradient(ellipse 85% 62% at 0% 50%, oklch(45% 0.09 45 / 0.055) 0%, transparent 62%),
     radial-gradient(ellipse 65% 72% at 100% 50%, oklch(62% 0.08 80 / 0.04) 0%, transparent 52%),
-    oklch(95.2% 0.01 80);
+    var(--color-surface-warm);
 }
 
-.bg-surface-soft {
+.surface-soft {
   background:
     radial-gradient(ellipse 72% 52% at 50% 0%, oklch(45% 0.09 45 / 0.04) 0%, transparent 52%),
     radial-gradient(ellipse 62% 62% at 80% 100%, oklch(55% 0.06 350 / 0.03) 0%, transparent 42%),
-    oklch(96.5% 0.008 78);
+    var(--color-surface-soft);
 }
 
 /* --- Home section framing --- */
 
 .home-divider {
-  border-top: 1px solid oklch(88% 0.015 70 / 0.75);
+  border-top: 1px solid var(--color-border-divider);
 }
 
 /* --- Cards --- */
 
 .card-elevate {
-  background: oklch(98.8% 0.004 80);
-  border: 1px solid oklch(84% 0.016 70 / 0.8);
+  background: var(--color-surface-card);
+  border: 1px solid var(--color-border-card);
   border-radius: 0.75rem;
   transition:
     transform 260ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -111,21 +126,21 @@ body::after {
 
 .card-elevate:hover {
   transform: translateY(-3px);
-  background: oklch(100% 0 0);
-  border-color: oklch(62% 0.08 80 / 0.55);
+  background: var(--color-surface-card-hover);
+  border-color: var(--color-border-card-hover);
   box-shadow:
-    0 10px 34px -10px oklch(25% 0.02 55 / 0.14),
-    0 3px 10px -3px oklch(25% 0.02 55 / 0.09);
+    0 10px 34px -10px var(--color-shadow-card),
+    0 3px 10px -3px var(--color-shadow-card-small);
 }
 
 /* --- Images --- */
 
 .img-ambient {
   border-radius: 0.75rem;
-  border: 1px solid oklch(84% 0.016 70 / 0.7);
+  border: 1px solid var(--color-border-image);
   box-shadow:
-    0 16px 40px -22px oklch(25% 0.02 55 / 0.25),
-    0 2px 6px -2px oklch(25% 0.02 55 / 0.12);
+    0 16px 40px -22px var(--color-shadow-card-ambient),
+    0 2px 6px -2px var(--color-shadow-card-small);
 }
 
 /* --- Lead intro motion --- */
@@ -202,7 +217,7 @@ body::after {
   background:
     radial-gradient(ellipse 60% 80% at 50% 50%, oklch(45% 0.09 45 / 0.09) 0%, transparent 66%),
     radial-gradient(ellipse 80% 60% at 30% 60%, oklch(55% 0.06 350 / 0.05) 0%, transparent 56%),
-    oklch(96% 0.008 78);
+    var(--color-surface-cta);
 }
 
 @media (prefers-reduced-motion: reduce) {

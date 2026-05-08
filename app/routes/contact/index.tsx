@@ -15,7 +15,7 @@ export default createRoute((c) => {
       </Section>
 
       <Section
-        class='w-full bg-surface-warm section-pad-relaxed home-divider'
+        class='w-full surface-warm section-pad-relaxed home-divider'
         id='contact-section-form'
         label='お問い合わせフォーム'
       >

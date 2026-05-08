@@ -3,7 +3,7 @@ import { Section } from '@/components/section';
 import { HomeConversionBlock } from './conversion';
 import { HomeExplanationBlock } from './explanation';
 import { HomeFactsBlock } from './facts';
-import { homeImageBreaks } from './index';
+import { homeImageBreaks, homeSectionSurfaces } from './index';
 import { HomeInfoBlock } from './info';
 import { HomeLeadBlock } from './lead';
 import { HomeStrengthsBlock } from './strengths';
@@ -41,7 +41,7 @@ export function HomePage() {
       </Section>
 
       <Section
-        class='w-full bg-surface-warm home-divider section-pad-relaxed'
+        class={`w-full ${homeSectionSurfaces.strengths} home-divider section-pad-relaxed`}
         id='home-section-strengths'
         label={SECTION_LABEL.strengths}
       >
@@ -69,7 +69,7 @@ export function HomePage() {
       </Section>
 
       <Section
-        class='w-full bg-surface-soft home-divider section-pad-compact'
+        class={`w-full ${homeSectionSurfaces.info} home-divider section-pad-compact`}
         id='home-section-info'
         label={SECTION_LABEL.info}
       >

@@ -128,6 +128,14 @@ export const homeImageBreaks: readonly ImageBreakProps[] = [
   { src: '/images/backbar-wide.jpg', alt: 'ボトル棚の全景' },
 ];
 
+export const homeSectionSurfaces = {
+  lead: '',
+  explanation: '',
+  strengths: 'surface-warm',
+  facts: '',
+  info: 'surface-soft',
+} as const;
+
 export const homeConversionCatalog: CtaBandProps = {
   heading: 'ご予約・お問い合わせ',
   description: 'ご来店予約、貸切のご相談、取材のお問い合わせは専用ページから受け付けています。',
