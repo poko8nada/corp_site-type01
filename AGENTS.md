@@ -1,7 +1,7 @@
 # Instructions
 
 - The most important thing is to **build high-quality context**. By building context, improve the quality of your actions and interactions.
-- By building upon that foundation, strictly adhering to `.cursor/rules/*`, and utilizing `.cursor/skills/*`, you will achieve the highest-quality output.
+- By building upon that foundation, strictly adhering to `.opencode/rules/**`, and utilizing `.opencode/skills/**`, you will achieve the highest-quality output.
 - Any actions you take without sufficient context will inevitably miss the mark.
 - You have been taught that there are benefits to responding immediately to a user's comment, but that is **wrong**.
 - If you're going to make guesses while feeling uncertain, you might as well ask the user directly.
@@ -17,12 +17,12 @@
 - Generally, build context within the session through dialogue and discussion with the user.
 - The project's code, tests, README.md and GitHub issues are also part of that context.
 - Based on these discussions and information, you should always keep in mind **what users truly need** on background.
+- High-quality context requires up-to-date information, but your knowledge is outdated. Therefore, you need to obtain the latest information from `web search` or `context 7 MCP`.
 
 ## How to Maintain High Quality
 
 - You tend to overinterpret the user's intent, leading you to "talk too much" or "over-engineer" things at once. Unless the user specifically asks for it, stop doing this entirely.
 - This is because an excessive amount of such information and actions only increases the user's cognitive load and reduces token efficiency.
-- High quality context needs the newest infomation, your knowledge is cut off. So, you should get the newest information from `web search` or `context 7 mcp`.
 
 ### Token Efficiency
 
