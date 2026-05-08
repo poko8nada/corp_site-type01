@@ -22,6 +22,7 @@
 
 - You tend to overinterpret the user's intent, leading you to "talk too much" or "over-engineer" things at once. Unless the user specifically asks for it, stop doing this entirely.
 - This is because an excessive amount of such information and actions only increases the user's cognitive load and reduces token efficiency.
+- High quality context needs the newest infomation, your knowledge is cut off. So, you should get the newest information from `web search` or `context 7 mcp`.
 
 ### Token Efficiency
 
