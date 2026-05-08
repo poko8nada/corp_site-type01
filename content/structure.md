@@ -1,5 +1,5 @@
 ---
-updated: 2026-05-01
+updated: 2026-05-08
 mode: redesign
 source:
   - content/pre_survey.md
@@ -12,7 +12,7 @@ source:
 
 README の Concept & Goals にある「公式の一次情報置き場としてストレスなくたどり着ける」「静的 HTML + お問い合わせのみ」「CMS を持たない」方針に合わせ、現状の長尺シングルページ＋アンカー中心の IA と、制作基盤に閉じた予約フォーム URL は採らない。代わりに、ホームは意味の塊ごとに role を分けて読み順を固定し、予約・問い合わせは `/contact` に集約して外部フォーム／予約媒体への導線だけを明示する（ブラウザから直接 API を叩く構成は README Non-goals の外に置く）。
 
-ページ数はホームと問い合わせの2本に絞る。事前調査で指摘されている「メニュー・料金の目安・アクセス動線・信頼の根拠」は、ホーム内の explanation / strengths / facts に収め、更新頻度が高い Instagram やイベント告知はサイト本体ではリンク程度に留め、高頻度更新を要する仕組み（CMS 内蔵、記事運用）は README Non-goals から除外する。
+ページ数はホームと問い合わせの2本に絞る。プライバシーポリシー（`/privacy`）はお問い合わせフォームで個人情報を収集するための法的補完として、最小構成の静的ページを別途設ける。事前調査で指摘されている「メニュー・料金の目安・アクセス動線・信頼の根拠」は、ホーム内の explanation / strengths / facts に収め、更新頻度が高い Instagram やイベント告知はサイト本体ではリンク程度に留め、高頻度更新を要する仕組み（CMS 内蔵、記事運用）は README Non-goals から除外する。
 
 フレームはナビで「ホーム」と「お問い合わせ」が迷子にならない `standard` ヘッダーと、店舗・連絡先・法務導線を載せられる `standard` フッターを前提とする（コンパクト化はビジュアル実装段階の判断に委ねる）。
 
@@ -62,9 +62,17 @@ pages:
     label: contact
     sections:
       - role: context
-        note: フォームの用途（予約相談、取材、その他）と返信目安・定休に関する注意の静的説明
+        note: 電話CTA（092-555-0142）とフォーム案内の1カラム。当日予約は電話、相談・取材はフォームへ誘導
       - role: form-area
-        note: 外部フォーム埋め込み（例: Google フォーム、予約 SaaS）または README 想定の最小バックエンド API。送信先はコードに直書きしない
+        note: Google Forms iframe 埋め込み。送信検知は onload カウンター（1回目=表示、2回目=確認ページ）で行い、高さ縮小＋スクロール調整
+      - role: legal-note
+        note: フッター法務欄。プライバシーポリシーのみ
+
+  - route: /privacy
+    label: privacy
+    sections:
+      - role: policy-text
+        note: フォーム収集する個人情報の利用目的・第三者非開示・管理方針。5段落の簡潔なポリシー文
 ```
 
 ## Open questions

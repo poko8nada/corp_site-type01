@@ -75,65 +75,76 @@ pnpm test:run         # Vitest
 
 ## App Architecture
 
-`app/components/`（能力単位）と `app/sections/`（ページ上の役割・共通枠）の組み替えで案件 variation を出す。
+### ページ構成
 
-### Site IA（正: `content/structure.md`）
-
-ルート、各ページの section `role` の並び、`frame` の header / footer パターンは `content/structure.md` の YAML を正とする。コードは自動 import せず、実装が追従する。
-
-現案件（抜粋）:
-
-- `frame`: `header: standard`, `footer: standard`
 - `/`（home）: `lead` → `explanation` → `strengths` → `facts` → `conversion`
-- `/contact`: `context` → `form-area`
+- `/contact`: `context`（電話CTA + フォーム案内）→ `form-area`（Google Forms iframe 埋め込み）
+- `/privacy`: プライバシーポリシー
 
-未確定や後から変える点は同ファイルの「Open questions」を参照する。
+フッターの法務欄はプライバシーポリシーのみ（特定商取引法表記は飲食店に不要なため除外）。
 
-- `app/components/` は「何ができるか」で名付けたブロック。ルートや `content/` の語彙に依存しない
-- `app/sections/frame/` にヘッダー・フッター・ドロワー・全ページ共通レイアウトを置く
-- `app/sections/<name>/` はページ上の役割単位の合成。各フォルダの `index.ts` がそのフォルダのカタログ（コンポーネントと定数の export をここに寄せる。）
-- ルートの `sections/index.ts` は任意で薄い再 export 用
+### クライアントサイド初期化パターン
+
+`client.ts` はエントリーポイント。ページ固有の初期化ロジズムジュールをセクション内にコロケーションし、`client.ts` から import して呼び出す。
+
+- **`app/sections/home/scroll-reveal.ts`** — IntersectionObserver によるスクロール表示アニメーション
+- **`app/sections/contact/form-init.ts`** — Google Forms iframe の送信検知（load カウンター）。確認ページ表示時に高さを縮め、スクロール位置を調整
+
+### Directory structure
+
+`app/components/`（能力単位）と `app/sections/`（ページ上の役割・共通枠）の組み替えで案件 variation を出す。
 
 ```text
 app/
 ├── components/
-│   ├── section.tsx
-│   ├── visual-lead.tsx
-│   ├── rich-text.tsx
+│   ├── cta-band.tsx
+│   ├── faq-list.tsx
+│   ├── image-break.tsx
+│   ├── info-grid.tsx
 │   ├── map-with-info.tsx
-│   └── cta-band.tsx
+│   ├── media-block.tsx
+│   ├── rich-text.tsx
+│   ├── section.tsx
+│   ├── text-card-grid.tsx
+│   └── visual-lead.tsx
 │
 ├── sections/
-│   ├── index.ts                    # catalogと再エクスポート
+│   ├── index.ts                    # catalog と再エクスポート
 │   ├── frame/                      # 全ページ共通（structure の frame に対応）
-│   │   ├── index.ts                # catalog: Header, Footer, DrawerNav, SiteLayout + 定数
+│   │   ├── index.ts                # catalog + 定数（brandText, nav, footer copy 等）
 │   │   ├── site-layout.tsx
 │   │   ├── header.tsx
 │   │   ├── footer.tsx
 │   │   └── drawer-nav.tsx
-│   ├── home/                       # structure の routes.home に対応
-│   │   ├── index.ts                # catalog: lead / explanation / strengths / facts / conversion
+│   ├── home/
+│   │   ├── index.ts                # catalog + 各セクションの props 定数
+│   │   ├── scroll-reveal.ts       # スクロール表示アニメ（client-side init）
 │   │   ├── lead.tsx
 │   │   ├── explanation.tsx
 │   │   ├── strengths.tsx
 │   │   ├── facts.tsx
-│   │   └── conversion.tsx
-│   └── contact/                    # structure の routes.contact に対応
-│       ├── index.ts                # catalog: context, form-area
-│       ├── context.tsx
-│       └── form-area.tsx
+│   │   ├── info.tsx
+│   │   ├── conversion.tsx
+│   │   └── home-page.tsx           # セクション集合
+│   └── contact/
+│       ├── index.ts                # catalog + 定数（電話番号, context テキスト）
+│       ├── context.tsx              # 電話CTA + フォーム案内
+│       ├── form-area.tsx           # Google Forms iframe 埋め込み
+│       └── form-init.ts            # 送信検知 onload カウンター（client-side init）
 │
 ├── routes/
-│   ├── _renderer.tsx               # html/head/body + SiteLayout のみ
-│   ├── index.tsx                   # ホーム: structure の role 順に沿ってセクションを並べる
+│   ├── _renderer.tsx               # html/head/body + SiteLayout
+│   ├── index.tsx                   # /
 │   ├── contact/
-│   │   └── index.tsx               # /contact（structure の contact）
+│   │   └── index.tsx               # /contact
+│   ├── privacy/
+│   │   └── index.tsx               # /privacy
 │   ├── _404.tsx
 │   └── _error.tsx
 │
-├── client.ts
+├── client.ts                       # entry: createClient() + init モジュール呼び出し
 ├── server.ts
-└── style.css
+└── style.css                       # Tailwind v4 @import + テーマ + カスタムCSS
 ```
 
 ### Routes and renderer
@@ -141,16 +152,21 @@ app/
 - `_renderer.tsx`: タイトル・description・lang 等を直接記述。`content/site.ts` のような確定コピー層は持たない
 - Route: `c.render` の第2引数で `headerPattern` / `footerPattern` を指定。共通 helper は持たない
 
+### お問い合わせフォーム
+
+Google Forms を iframe で埋め込み。送信検知は iframe の `load` イベントをカウントする方式（1回目 = フォーム表示、2回目 = 確認ページ）。確認ページ表示時に iframe 高さを縮め、ビューポート内に表示されるようスクロールする。
+
+フォーム送信内容は Google スプレッドシートに蓄積される。クライアント（店舗運営者）は Google フォームの「回答」タブまたはスプレッドシートで確認する。
+
 ## Content Workflow
 
 `content/` は取材結果・設計メモのみ。コードから自動 import せず、実装者やエージェントが「ページに何を載せるか」を決めるときの参照材料とする。
 
-| ファイル                                | 内容                                                 |
-| --------------------------------------- | ---------------------------------------------------- |
-| `interview.md`                          | 案件ごとの取材整理                                   |
-| `structure.md`                          | サイト IA・frame の正。詳細は YAML と Open questions |
-| `pre_survey.md`                         | 事前調査（GoogleMap・レビュー・競合分析）と仮説      |
-| `home-implementation-open-questions.md` | home の未確定一覧（議論用）。import しない           |
+| ファイル        | 内容                                                 |
+| --------------- | ---------------------------------------------------- |
+| `interview.md`  | 案件ごとの取材整理                                   |
+| `structure.md`  | サイト IA・frame の正。詳細は YAML と Open questions |
+| `pre_survey.md` | 事前調査（GoogleMap・レビュー・競合分析）と仮説      |
 
 Header / footer のパターン名（`standard` / `compact` / `minimal` / `none` 等）は `structure.md` に寄せ、実装は `app/sections/frame/` のコンポーネントと `c.render` のオプションで直接指定する。
 

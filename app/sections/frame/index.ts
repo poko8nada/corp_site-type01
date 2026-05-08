@@ -48,18 +48,7 @@ export const frameFooterCopy: FrameFooterCopy = {
     '営業: 月〜木 18:30〜翌2:00／金・土 18:30〜翌3:00（日曜定休）',
   ],
   legalHeading: '法務・ポリシー',
-  legalEntries: [
-    {
-      kind: 'placeholder',
-      label: 'プライバシーポリシー',
-      reason: '公開準備中',
-    },
-    {
-      kind: 'placeholder',
-      label: '特定商取引法に基づく表記',
-      reason: '公開準備中',
-    },
-  ],
+  legalEntries: [{ kind: 'link', label: 'プライバシーポリシー', href: '/privacy' }],
   copyrightName: frameBrandText,
 } as const;
 
