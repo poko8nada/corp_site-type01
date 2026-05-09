@@ -1,3 +1,4 @@
+import { LogoIcon } from '@/components/logo-icon';
 import type { FrameNavEntry } from './index';
 
 export type HeaderPattern = 'standard' | 'compact' | 'none';
@@ -66,10 +67,11 @@ export function Header(props: HeaderProps) {
             </svg>
           </label>
           <a
-            class={`font-display text-base-content min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-left tracking-tight ${brandSize}`}
+            class={`font-display text-base-content inline-flex min-w-0 items-center gap-1.5 overflow-hidden text-ellipsis whitespace-nowrap text-left tracking-tight ${brandSize}`}
             href='/'
             title={brandText}
           >
+            <LogoIcon class='inline-block h-[1.1em] w-[1.1em] shrink-0' />
             {brandText}
           </a>
         </div>
