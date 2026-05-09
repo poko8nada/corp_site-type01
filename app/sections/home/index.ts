@@ -126,9 +126,9 @@ export const homeImageBreaks: readonly ImageBreakProps[] = [
 export const homeSectionSurfaces = {
   lead: '',
   explanation: '',
-  strengths: 'surface-warm',
+  strengths: 'surface-emphasis section-pattern-dots',
   facts: '',
-  info: 'surface-soft',
+  info: 'surface-subtle section-pattern-stripe-v',
 } as const;
 
 export const homeConversionCatalog: CtaBandProps = {

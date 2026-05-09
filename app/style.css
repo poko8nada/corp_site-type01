@@ -49,8 +49,8 @@
   --font-serif: 'Noto Serif JP Variable', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
   --font-display: 'Cormorant Variable', 'Noto Serif JP Variable', serif;
 
-  --color-surface-warm: oklch(95.2% 0.01 80);
-  --color-surface-soft: oklch(96.5% 0.008 78);
+  --color-surface-emphasis: oklch(95.2% 0.01 80);
+  --color-surface-subtle: oklch(96.5% 0.008 78);
   --color-surface-cta: oklch(96% 0.008 78);
   --color-surface-card: oklch(98.8% 0.004 80);
   --color-surface-card-hover: oklch(100% 0 0);
@@ -71,38 +71,45 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-base-100);
   color: var(--color-base-content);
 }
 
-/* --- Ambient texture --- */
+/* --- Section pattern slot defaults --- */
 
-.use-noise::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  pointer-events: none;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
+:root {
+  --_pat-1: none;
+  --_pat-2: none;
+  --_pat-1-size: auto;
+  --_pat-2-size: auto;
+  --_pat-c: 25% 0.02 55;
 }
 
 /* --- Section surfaces --- */
 
-.surface-warm {
-  background:
-    radial-gradient(ellipse 85% 62% at 0% 50%, oklch(45% 0.09 45 / 0.055) 0%, transparent 62%),
-    radial-gradient(ellipse 65% 72% at 100% 50%, oklch(62% 0.08 80 / 0.04) 0%, transparent 52%),
-    var(--color-surface-warm);
+.surface-emphasis {
+  --_pat-c: 25% 0.02 55;
+  background-image:
+    var(--_pat-1),
+    var(--_pat-2),
+    radial-gradient(ellipse 85% 62% at 0% 50%, color-mix(in oklch, var(--color-primary) 5.5%, transparent) 0%, transparent 62%),
+    radial-gradient(ellipse 65% 72% at 100% 50%, color-mix(in oklch, var(--color-accent) 4%, transparent) 0%, transparent 52%);
+  background-color: var(--color-surface-emphasis);
+  background-size: var(--_pat-1-size), var(--_pat-2-size), auto, auto;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0;
 }
 
-.surface-soft {
-  background:
-    radial-gradient(ellipse 72% 52% at 50% 0%, oklch(45% 0.09 45 / 0.04) 0%, transparent 52%),
-    radial-gradient(ellipse 62% 62% at 80% 100%, oklch(55% 0.06 350 / 0.03) 0%, transparent 42%),
-    var(--color-surface-soft);
+.surface-subtle {
+  --_pat-c: 25% 0.02 55;
+  background-image:
+    var(--_pat-1),
+    var(--_pat-2),
+    radial-gradient(ellipse 72% 52% at 50% 0%, color-mix(in oklch, var(--color-primary) 4%, transparent) 0%, transparent 52%),
+    radial-gradient(ellipse 62% 62% at 80% 100%, color-mix(in oklch, var(--color-secondary) 3%, transparent) 0%, transparent 42%);
+  background-color: var(--color-surface-subtle);
+  background-size: var(--_pat-1-size), var(--_pat-2-size), auto, auto;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0;
 }
 
 /* --- Home section framing --- */
@@ -219,10 +226,51 @@ body {
 /* --- CTA ambient --- */
 
 .cta-surface {
-  background:
-    radial-gradient(ellipse 60% 80% at 50% 50%, oklch(45% 0.09 45 / 0.09) 0%, transparent 66%),
-    radial-gradient(ellipse 80% 60% at 30% 60%, oklch(55% 0.06 350 / 0.05) 0%, transparent 56%),
-    var(--color-surface-cta);
+  --_pat-c: 25% 0.02 55;
+  background-image:
+    var(--_pat-1),
+    var(--_pat-2),
+    radial-gradient(ellipse 60% 80% at 50% 50%, color-mix(in oklch, var(--color-primary) 9%, transparent) 0%, transparent 66%),
+    radial-gradient(ellipse 80% 60% at 30% 60%, color-mix(in oklch, var(--color-secondary) 5%, transparent) 0%, transparent 56%);
+  background-color: var(--color-surface-cta);
+  background-size: var(--_pat-1-size), var(--_pat-2-size), auto, auto;
+  background-repeat: repeat, repeat, no-repeat, no-repeat;
+  background-position: 0 0, 0 0, 0 0, 0 0;
+}
+
+/* --- Section patterns --- */
+/*  surface-* クラスと組み合わせて使う。パターンクラスのみで単体動作はしない。 */
+
+.section-pattern-dots {
+  --_pat-1: radial-gradient(circle, oklch(var(--_pat-c) / 0.06) 1.5px, transparent 1.5px);
+  --_pat-1-size: 20px 20px;
+}
+
+.section-pattern-grid {
+  --_pat-1: repeating-linear-gradient(90deg, oklch(var(--_pat-c) / 0.04) 0 1px, transparent 0 24px);
+  --_pat-2: repeating-linear-gradient(0deg, oklch(var(--_pat-c) / 0.04) 0 1px, transparent 0 24px);
+}
+
+.section-pattern-stripe-v {
+  --_pat-1: repeating-linear-gradient(90deg, oklch(var(--_pat-c) / 0.04) 0 2px, transparent 0 24px);
+}
+
+.section-pattern-stripe-h {
+  --_pat-1: repeating-linear-gradient(180deg, oklch(var(--_pat-c) / 0.04) 0 2px, transparent 0 24px);
+}
+
+.section-pattern-diagonal {
+  --_pat-1: repeating-linear-gradient(45deg, oklch(var(--_pat-c) / 0.04) 0 1px, transparent 0 20px);
+}
+
+.section-pattern-cross {
+  --_pat-1: repeating-linear-gradient(45deg, oklch(var(--_pat-c) / 0.04) 0 1px, transparent 0 20px);
+  --_pat-2: repeating-linear-gradient(-45deg, oklch(var(--_pat-c) / 0.04) 0 1px, transparent 0 20px);
+}
+
+.section-pattern-checker {
+  --_pat-1: repeating-conic-gradient(oklch(var(--_pat-c) / 0.04) 0% 25%, transparent 0% 50%);
+  --_pat-1-size: 20px 20px;
 }
 
 @media (prefers-reduced-motion: reduce) {

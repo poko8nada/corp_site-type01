@@ -100,7 +100,7 @@ export function HomePage() {
         id='home-section-conversion'
         label='お問い合わせ'
       >
-        <div class='absolute inset-0 cta-surface' />
+        <div class='absolute inset-0 cta-surface section-pattern-cross' />
         <div class={`${container} relative max-w-lg`}>
           <CtaBand {...homeConversionCatalog} />
         </div>

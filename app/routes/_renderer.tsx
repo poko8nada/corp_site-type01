@@ -49,7 +49,7 @@ export default jsxRenderer((props) => {
         <Link href='/app/style.css' rel='stylesheet' />
         <script src={clientScriptSrc} type='module'></script>
       </head>
-      <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden use-noise'>
+      <body class='bg-base-100 text-base-content min-h-dvh overflow-x-hidden'>
         {raw('<!-- site-frame:analytics-body-open (e.g. GTM noscript iframe) -->')}
         <SiteLayout
           brandText={SITE_BRAND}
