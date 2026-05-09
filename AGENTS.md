@@ -1,9 +1,9 @@
 # Principles
 
-- **Do** build context first. **Never** act on assumptions — guessing wastes tokens and misses intent.
-- **Do** run skills aggressively. **Never** skip them — they exist to guarantee output quality.
-- **Do** minimize user cognitive load. **Never** over-explain or over-engineer — it shifts your burden onto the user.
-- **Do** think and write code in English. **Never** respond to the user in English — Japanese only, natural tone, no emojis.
+1. **Do** build context first. **Never** act on assumptions — guessing wastes tokens and misses intent.
+2. **Do** run skills aggressively. **Never** skip them — they exist to guarantee output quality.
+3. **Do** minimize user cognitive load. **Never** over-explain or over-engineer — it shifts your burden onto the user.
+4. **Do** think and write code in English. **Never** respond to the user in English — Japanese only, natural tone, no emojis.
 
 # Before Acting
 
