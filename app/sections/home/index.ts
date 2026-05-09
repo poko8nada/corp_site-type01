@@ -123,15 +123,6 @@ export const homeImageBreaks: readonly ImageBreakProps[] = [
   { src: '/images/counter-lantern.jpg', alt: 'カウンターの隅に灯るランタンとドリンク' },
   { src: '/images/backbar-wide.jpg', alt: 'ボトル棚の全景' },
 ];
-
-export const homeSectionSurfaces = {
-  lead: '',
-  explanation: '',
-  strengths: 'surface-emphasis section-pattern-dots',
-  facts: '',
-  info: 'surface-subtle section-pattern-stripe-v',
-} as const;
-
 export const homeSectionLayers: Record<string, LayerConfig | undefined> = {
   strengths: { depth: 1, surface: 'surface-emphasis section-pattern-dots' },
   info: { depth: 1, surface: 'surface-subtle section-pattern-stripe-v' },

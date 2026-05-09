@@ -26,7 +26,6 @@
   },
   "devDependencies": {
     "@fontsource-variable/cormorant": "^5.2.8",
-    "@fontsource-variable/noto-serif-jp": "^5.2.9",
     "@hono/vite-dev-server": "^0.18.2",
     "@hono/vite-ssg": "^0.3.3",
     "@tailwindcss/vite": "^4.0.9",

@@ -1,4 +1,3 @@
-@import '@fontsource-variable/noto-serif-jp/index.css';
 @import '@fontsource-variable/cormorant/index.css';
 
 @import 'tailwindcss' source('../app');
@@ -46,8 +45,7 @@
 
 @theme inline {
   --font-sans: 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
-  --font-serif: 'Noto Serif JP Variable', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
-  --font-display: 'Cormorant Variable', 'Noto Serif JP Variable', serif;
+  --font-display: 'Cormorant Variable', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
 
   --color-surface-emphasis: oklch(95.2% 0.01 80);
   --color-surface-subtle: oklch(96.5% 0.008 78);
