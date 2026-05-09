@@ -5,6 +5,7 @@ import { SITE_BRAND, SITE_PHONE, SITE_ZIP, SITE_ADDRESS, SITE_BUILDING, SITE_HOU
 import type { CtaBandProps } from '@/components/cta-band';
 import type { FaqListProps } from '@/components/faq-list';
 import type { ImageBreakProps } from '@/components/image-break';
+import type { LayerConfig } from '@/components/section';
 import type { MapInfoRow } from '@/components/map-with-info';
 import type { MediaBlockProps } from '@/components/media-block';
 import type { RichTextProps } from '@/components/rich-text';
@@ -130,6 +131,11 @@ export const homeSectionSurfaces = {
   facts: '',
   info: 'surface-subtle section-pattern-stripe-v',
 } as const;
+
+export const homeSectionLayers: Record<string, LayerConfig | undefined> = {
+  strengths: { depth: 1, surface: 'surface-emphasis section-pattern-dots' },
+  info: { depth: 1, surface: 'surface-subtle section-pattern-stripe-v' },
+};
 
 export const homeConversionCatalog: CtaBandProps = {
   heading: 'ご予約・お問い合わせ',

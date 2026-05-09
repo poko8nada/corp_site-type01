@@ -19,7 +19,7 @@ import {
   homeImageBreaks,
   homeInfoFaq,
   homeLeadCatalog,
-  homeSectionSurfaces,
+  homeSectionLayers,
   homeStrengthsCatalog,
 } from './index';
 
@@ -47,9 +47,10 @@ export function HomePage() {
       </Section>
 
       <Section
-        class={`w-full ${homeSectionSurfaces.strengths} section-divider section-pad-relaxed`}
+        class='w-full section-divider section-pad-relaxed'
         id='home-section-strengths'
         label='強み・信頼'
+        layer={homeSectionLayers.strengths}
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:60ms]'>
@@ -80,9 +81,10 @@ export function HomePage() {
       </Section>
 
       <Section
-        class={`w-full ${homeSectionSurfaces.info} section-divider section-pad-compact`}
+        class='w-full section-divider section-pad-compact'
         id='home-section-info'
         label='営業・ご利用案内'
+        layer={homeSectionLayers.info}
       >
         <div class={container}>
           <div class='reveal-on-scroll [--reveal-delay:80ms]'>
@@ -96,12 +98,12 @@ export function HomePage() {
       </div>
 
       <Section
-        class='relative w-full section-divider section-pad-relaxed overflow-hidden'
+        class='w-full section-divider section-pad-relaxed'
         id='home-section-conversion'
         label='お問い合わせ'
+        layer={{ depth: 1, surface: 'cta-surface section-pattern-cross' }}
       >
-        <div class='absolute inset-0 cta-surface section-pattern-cross' />
-        <div class={`${container} relative max-w-lg`}>
+        <div class='mx-auto w-full max-w-lg px-4 sm:px-6 lg:px-8 relative'>
           <CtaBand {...homeConversionCatalog} />
         </div>
       </Section>

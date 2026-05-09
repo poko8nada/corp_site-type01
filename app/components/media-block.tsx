@@ -101,7 +101,7 @@ function renderStandard(props: MediaBlockProps) {
       <div class={`${imageOrder} reveal-on-scroll [--reveal-delay:40ms]`}>
         <img
           alt={imageAlt}
-          class='img-framed aspect-4/3 w-full object-cover'
+           class='aspect-4/3 w-full rounded-xl border border-border-image object-cover shadow-[0_16px_40px_-22px_var(--color-shadow-card-ambient),0_2px_6px_-2px_var(--color-shadow-card-small)]'
           decoding='async'
           loading='lazy'
           src={imageSrc}

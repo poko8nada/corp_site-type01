@@ -38,27 +38,30 @@ export function SiteLayout(props: SiteLayoutProps) {
     <div class='drawer drawer-end'>
       <input class='drawer-toggle' id={drawerId} type='checkbox' />
       <div class='drawer-content bg-base-100 flex min-h-dvh min-w-0 flex-col'>
-        <a
-          class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-btn focus:border focus:border-base-300 focus:bg-base-100 focus:px-4 focus:py-2 focus:text-base-content focus:shadow focus:outline-2 focus:outline-offset-2'
-          href='#main-content'
-        >
-          メインコンテンツへスキップ
-        </a>
-        <div class='flex min-h-screen flex-1 flex-col'>
-          <div class='sticky top-0 z-40'>
-            <DemoBanner isDemo={isDemo} />
-            <Header
-              brandText={brandText}
-              drawerId={drawerId}
-              navEntries={navEntries}
-              pattern={headerPattern}
-              primaryCta={primaryCta}
-            />
+        <div class='parallax-scroll flex flex-col flex-1'>
+          <div aria-hidden='true' class='parallax-backdrop' />
+          <a
+            class='sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-60 focus:rounded-btn focus:border focus:border-base-300 focus:bg-base-100 focus:px-4 focus:py-2 focus:text-base-content focus:shadow focus:outline-2 focus:outline-offset-2'
+            href='#main-content'
+          >
+            メインコンテンツへスキップ
+          </a>
+          <div class='flex min-h-screen flex-1 flex-col'>
+            <div class='sticky top-0 z-40'>
+              <DemoBanner isDemo={isDemo} />
+              <Header
+                brandText={brandText}
+                drawerId={drawerId}
+                navEntries={navEntries}
+                pattern={headerPattern}
+                primaryCta={primaryCta}
+              />
+            </div>
+            <main class='flex flex-1 flex-col' id='main-content'>
+              {main}
+            </main>
+            <Footer copy={footerCopy} pattern={footerPattern} />
           </div>
-          <main class='flex flex-1 flex-col' id='main-content'>
-            {main}
-          </main>
-          <Footer copy={footerCopy} pattern={footerPattern} />
         </div>
       </div>
       <div class='drawer-side z-50 lg:hidden'>
