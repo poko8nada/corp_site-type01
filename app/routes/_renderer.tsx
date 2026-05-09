@@ -47,7 +47,7 @@ export default jsxRenderer((props) => {
         {frameIsDemo && <meta content='noindex, nofollow' name='robots' />}
         <title>{title}</title>
         <meta name='description' content={escapeHtmlAttr(description)} />
-        <link rel='icon' href='/favicon.ico' />
+        <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
         <Link href='/app/style.css' rel='stylesheet' />
         <script src={clientScriptSrc} type='module'></script>
       </head>
